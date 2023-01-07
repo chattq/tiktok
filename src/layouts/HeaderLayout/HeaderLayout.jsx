@@ -8,17 +8,17 @@ import { faEllipsisVertical, faLanguage, faMagnifyingGlass, faMoon, faMotorcycle
 
 export default function HeaderLayout({ children }) {
   return (
-    <div className='w-full border-y h-[60px]'>
+    <div className='w-full border-b border-[#ccc] h-[60px]'>
       <div className='w-[1150px] h-full m-auto flex items-center justify-between gap-[40px] '>
         <img src={logo} alt="" />
-        <div className='w-[361px] h-[41px] bg-[#f1f1f2] relative flex rounded-full border-[1.5px] border-transparent after:content-[""] after:ml-0.5 after:bg-[#b5b0b0] after:w-[1px] after:h-[18px] after:absolute after:top-[9px] after:right-[52px]'>
-          <input className='h-full bg-transparent flex-1 pl-4 outline-none text-[#707070]' type="text" placeholder='Search account and video' />
+        <div className='w-[361px] h-[41px] bg-[#f1f1f2] relative flex rounded-full after:content-[""] after:ml-0.5 after:bg-[#b5b0b0] after:w-[1px] after:h-[18px] after:absolute after:top-[9px] after:right-[52px] overflow-hidden'>
+          <input className='h-full bg-[#f1f1f2] flex-1 pl-4 outline-none text-[#707070]' type="text" placeholder='Search account and video' />
           <button className='w-[52px] h-full text-[#b5b0b0] text-[18px]'>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </div>
         <div className='flex text-[#161823] gap-[16px]'>
-          <div className='flex items-center h-[36px] min-w-[110px] border px-[16px] rounded-sm cursor-pointer hover:bg-[#f1f1f2] transition-all'>
+          <div className='flex items-center h-[36px] min-w-[110px] border border-[#e3e3e4] px-[16px] rounded-sm cursor-pointer hover:bg-[#f1f1f2] transition-all'>
             <FontAwesomeIcon icon={faPlus} className='w-[16px] h-[16px] mr-[8px]' />
             <span className='text-[#161823] font-semibold leading-6'>Upload</span>
           </div>
@@ -29,10 +29,11 @@ export default function HeaderLayout({ children }) {
           </div>
           <div className='flex items-center  cursor-pointer'>
             <Tippy
+              
               interactive={true}
               placement={'bottom-end'}
               render={(attrs) => (
-                <div className='w-[240px] bg-transparent shadow-lg py-3' tabIndex="-1" {...attrs}>
+                <div className='w-[240px] bg-[white] shadow-lg py-3 '  tabIndex="-1" {...attrs}>
                   <ul>
                     <li className=' font-sans text-base font-medium  flex items-center gap-4 mb-2 hover:bg-[#f1f1f2] transition-all w-full px-4 py-1'>
                       <FontAwesomeIcon icon={faLanguage} className="w-5" />
