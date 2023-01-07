@@ -1,10 +1,18 @@
 import React from 'react'
 import logo from '../../logoTiktok.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Tippy from "@tippyjs/react/headless";
-import "tippy.js/dist/tippy.css";
-import { faEllipsisVertical, faLanguage, faMagnifyingGlass, faMoon, faMotorcycle, faPlus, faQuestionCircle, faSignLanguage } from '@fortawesome/free-solid-svg-icons'
-
+import Tippy from '@tippyjs/react/headless'
+import 'tippy.js/dist/tippy.css'
+import {
+  faEllipsisVertical,
+  faLanguage,
+  faMagnifyingGlass,
+  faMoon,
+  faMotorcycle,
+  faPlus,
+  faQuestionCircle,
+  faSignLanguage
+} from '@fortawesome/free-solid-svg-icons'
 
 export default function HeaderLayout({ children }) {
   return (
@@ -22,12 +30,10 @@ export default function HeaderLayout({ children }) {
             <FontAwesomeIcon icon={faPlus} className='w-[16px] h-[16px] mr-[8px]' />
             <span className='text-[#161823] font-semibold leading-6'>Upload</span>
           </div>
-          <div className='flex items-center justify-center text-[white] bg-[#FE2C55] h-[36px] min-w-[100px] px-[8px] py-[6px]  rounded-md cursor-pointer hover:opacity-60'>
-            <span>
-              Login
-            </span>
+          <div className='flex h-[36px] min-w-[100px] cursor-pointer items-center justify-center rounded-md bg-[#FE2C55] px-[8px]  py-[6px] text-[white] hover:opacity-60'>
+            <span>Login</span>
           </div>
-          <div className='flex items-center  cursor-pointer'>
+          <div className='flex cursor-pointer  items-center'>
             <Tippy
               
               interactive={true}
@@ -35,34 +41,30 @@ export default function HeaderLayout({ children }) {
               render={(attrs) => (
                 <div className='w-[240px] bg-[white] shadow-lg py-3 '  tabIndex="-1" {...attrs}>
                   <ul>
-                    <li className=' font-sans text-base font-medium  flex items-center gap-4 mb-2 hover:bg-[#f1f1f2] transition-all w-full px-4 py-1'>
-                      <FontAwesomeIcon icon={faLanguage} className="w-5" />
+                    <li className=' text-base mb-2 flex  w-full items-center gap-4 px-4 py-1 font-sans font-medium transition-all hover:bg-[#f1f1f2]'>
+                      <FontAwesomeIcon icon={faLanguage} className='w-5' />
                       <span>EngLish</span>
                     </li>
-                    <li className=' font-sans text-base  font-medium flex items-center gap-4 mb-2 hover:bg-[#f1f1f2] transition-all w-full px-4 py-1'>
-                      <FontAwesomeIcon icon={faQuestionCircle} className="w-5" />
+                    <li className=' text-base mb-2  flex w-full items-center gap-4 px-4 py-1 font-sans font-medium transition-all hover:bg-[#f1f1f2]'>
+                      <FontAwesomeIcon icon={faQuestionCircle} className='w-5' />
                       <span>Feed back and help</span>
                     </li>
-                    <li className=' font-sans text-base  font-medium flex items-center gap-4 mb-2 hover:bg-[#f1f1f2] transition-all w-full px-4 py-1'>
-                      <FontAwesomeIcon icon={faMoon} className="w-5" />
+                    <li className=' text-base mb-2  flex w-full items-center gap-4 px-4 py-1 font-sans font-medium transition-all hover:bg-[#f1f1f2]'>
+                      <FontAwesomeIcon icon={faMoon} className='w-5' />
                       <span>Dark mode</span>
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" value="" className="sr-only peer"  />
-                        <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <label className='relative inline-flex cursor-pointer items-center'>
+                        <input type='checkbox' value='' className='peer sr-only' />
+                        <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-0.5 after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
                       </label>
                     </li>
-
                   </ul>
                 </div>
               )}
             >
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </Tippy>
-
           </div>
         </div>
-
-
       </div>
 
       {children}
