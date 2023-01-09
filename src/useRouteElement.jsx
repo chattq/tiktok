@@ -6,8 +6,10 @@ import HeaderProfile from './layouts/HeaderProfile/HeaderProfile'
 import Login from './pages/Auth/Login'
 import Following from './pages/Following/Following'
 import HomeLayout from './pages/Home/HomeLayout/HomeLayout'
+import Following from './pages/Home/Views/Following/Following'
 import HomeMain from './pages/Home/Views/HomeMain/HomeMain'
-import Live from './pages/Live/Live'
+import Live from './pages/Home/Views/Live/Live'
+import InforUser from './pages/InforUser/InforUser'
 import Profile from './pages/Profile/Profile'
 
 export default function useRouteElement() {
@@ -31,6 +33,10 @@ export default function useRouteElement() {
         {
           path: '/following',
           element: <Following />
+        },
+        {
+          path: 'users/:id',
+          element: <InforUser />
         }
       ]
     },
