@@ -7,10 +7,12 @@ import Login from './pages/Auth/Login/Login'
 import LoginWithEmail from './pages/Auth/Login/LoginWithEmail/LoginWithEmail'
 import SignUp from './pages/Auth/SignUp/SignUp'
 import SignUpWithEmail from './pages/Auth/SignUp/SignUpWithEmail/SignUpWithEmail'
-import Following from './pages/Following/Following'
+
 import HomeLayout from './pages/Home/HomeLayout/HomeLayout'
+import Following from './pages/Home/Views/Following/Following'
 import HomeMain from './pages/Home/Views/HomeMain/HomeMain'
-import Live from './pages/Live/Live'
+import Live from './pages/Home/Views/Live/Live'
+import InforUser from './pages/InforUser/InforUser'
 import Profile from './pages/Profile/Profile'
 
 export default function useRouteElement() {
@@ -34,6 +36,10 @@ export default function useRouteElement() {
         {
           path: '/following',
           element: <Following />
+        },
+        {
+          path: 'users/:id',
+          element: <InforUser />
         }
       ]
     },
