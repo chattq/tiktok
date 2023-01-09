@@ -8,20 +8,18 @@ import {
   faLanguage,
   faMagnifyingGlass,
   faMoon,
-  faMotorcycle,
   faPlus,
-  faQuestionCircle,
-  faSignLanguage
+  faQuestionCircle
 } from '@fortawesome/free-solid-svg-icons'
 
 export default function HeaderLayout({ children }) {
   return (
-    <div className='h-[60px] w-full border-y'>
+    <div className='h-[60px] w-full border-b border-[#ccc]'>
       <div className='m-auto flex h-full w-[1150px] items-center justify-between gap-[40px] '>
-        <img src={logo} alt='' />
-        <div className='relative flex h-[41px] w-[361px] rounded-full border-[1.5px] border-transparent bg-[#f1f1f2] after:absolute after:top-[9px] after:right-[52px] after:ml-0.5 after:h-[18px] after:w-[1px] after:bg-[#b5b0b0] after:content-[""]'>
+        <img src={logo} alt='' className='cursor-pointer' />
+        <div className='relative flex h-[41px] w-[361px] overflow-hidden rounded-full bg-[#f1f1f2] after:absolute after:top-[9px] after:right-[52px] after:ml-0.5 after:h-[18px] after:w-[1px] after:bg-[#b5b0b0] after:content-[""]'>
           <input
-            className='h-full flex-1 bg-transparent pl-4 text-[#707070] outline-none'
+            className='h-full flex-1 bg-[#f1f1f2] pl-4 text-[#707070] caret-red-500 outline-none'
             type='text'
             placeholder='Search account and video'
           />
@@ -30,7 +28,7 @@ export default function HeaderLayout({ children }) {
           </button>
         </div>
         <div className='flex gap-[16px] text-[#161823]'>
-          <div className='flex h-[36px] min-w-[110px] cursor-pointer items-center rounded-sm border px-[16px] transition-all hover:bg-[#f1f1f2]'>
+          <div className='flex h-[36px] min-w-[110px] cursor-pointer items-center rounded-sm border border-[#e3e3e4] px-[16px] transition-all hover:bg-[#f1f1f2]'>
             <FontAwesomeIcon icon={faPlus} className='mr-[8px] h-[16px] w-[16px]' />
             <span className='font-semibold leading-6 text-[#161823]'>Upload</span>
           </div>
@@ -42,7 +40,7 @@ export default function HeaderLayout({ children }) {
               interactive={true}
               placement={'bottom-end'}
               render={(attrs) => (
-                <div className='w-[240px] bg-transparent py-3 shadow-lg' tabIndex='-1' {...attrs}>
+                <div className='w-[240px] bg-[white] py-3 shadow-lg ' tabIndex='-1' {...attrs}>
                   <ul>
                     <li className=' mb-2 flex w-full  items-center gap-4 px-4 py-1 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                       <FontAwesomeIcon icon={faLanguage} className='w-5' />

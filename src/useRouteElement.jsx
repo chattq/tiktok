@@ -1,6 +1,10 @@
 import React from 'react'
 import { useRoutes } from 'react-router-dom'
+import HeaderAuth from './layouts/HeaderAuth/HeaderAuth'
 import HeaderLayout from './layouts/HeaderLayout/HeaderLayout'
+import HeaderProfile from './layouts/HeaderProfile/HeaderProfile'
+import Login from './pages/Auth/Login'
+import Following from './pages/Following/Following'
 import HomeLayout from './pages/Home/HomeLayout/HomeLayout'
 import Following from './pages/Home/Views/Following/Following'
 import HomeMain from './pages/Home/Views/HomeMain/HomeMain'
@@ -39,9 +43,17 @@ export default function useRouteElement() {
     {
       path: '/profile',
       element: (
-        <HeaderLayout>
+        <HeaderProfile>
           <Profile />
-        </HeaderLayout>
+        </HeaderProfile>
+      )
+    },
+    {
+      path: '/login',
+      element: (
+        <HeaderAuth>
+          <Login />
+        </HeaderAuth>
       )
     }
   ])
