@@ -44,15 +44,15 @@ export default function HeaderLayout({ children }) {
               render={(attrs) => (
                 <div className='w-[240px] bg-transparent py-3 shadow-lg' tabIndex='-1' {...attrs}>
                   <ul>
-                    <li className=' text-base mb-2 flex  w-full items-center gap-4 px-4 py-1 font-sans font-medium transition-all hover:bg-[#f1f1f2]'>
+                    <li className=' mb-2 flex w-full  items-center gap-4 px-4 py-1 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                       <FontAwesomeIcon icon={faLanguage} className='w-5' />
                       <span>EngLish</span>
                     </li>
-                    <li className=' text-base mb-2  flex w-full items-center gap-4 px-4 py-1 font-sans font-medium transition-all hover:bg-[#f1f1f2]'>
+                    <li className=' mb-2 flex  w-full items-center gap-4 px-4 py-1 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                       <FontAwesomeIcon icon={faQuestionCircle} className='w-5' />
                       <span>Feed back and help</span>
                     </li>
-                    <li className=' text-base mb-2  flex w-full items-center gap-4 px-4 py-1 font-sans font-medium transition-all hover:bg-[#f1f1f2]'>
+                    <li className=' mb-2 flex  w-full items-center gap-4 px-4 py-1 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                       <FontAwesomeIcon icon={faMoon} className='w-5' />
                       <span>Dark mode</span>
                       <label className='relative inline-flex cursor-pointer items-center'>
@@ -69,7 +69,6 @@ export default function HeaderLayout({ children }) {
           </div>
         </div>
       </div>
-
       {children}
     </div>
   )
