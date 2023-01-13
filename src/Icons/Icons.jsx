@@ -1,6 +1,6 @@
 export const HomeIcon = ({ width = '32', height = '32', className }) => (
   <svg
-    class={className}
+    className={className}
     width={width}
     data-e2e=''
     height={height}
@@ -17,7 +17,7 @@ export const HomeIcon = ({ width = '32', height = '32', className }) => (
 )
 export const LiveIcon = ({ width = '32', height = '32', className }) => (
   <svg
-    class={className}
+    className={className}
     width={width}
     data-e2e=''
     height={height}
@@ -35,7 +35,7 @@ export const LiveIcon = ({ width = '32', height = '32', className }) => (
 )
 export const UserIcon = ({ width = '32', height = '32', className }) => (
   <svg
-    class={className}
+    className={className}
     width={width}
     data-e2e=''
     height={height}
@@ -71,26 +71,26 @@ export const GooGleIcon = ({ style }) => (
     style={style}
   >
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M43 24.4313C43 23.084 42.8767 21.7885 42.6475 20.5449H24.3877V27.8945H34.8219C34.3724 30.2695 33.0065 32.2818 30.9532 33.6291V38.3964H37.2189C40.885 35.0886 43 30.2177 43 24.4313Z'
       fill='#4285F4'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24.3872 43.001C29.6219 43.001 34.0107 41.2996 37.2184 38.3978L30.9527 33.6305C29.2165 34.7705 26.9958 35.4441 24.3872 35.4441C19.3375 35.4441 15.0633 32.1018 13.5388 27.6108H7.06152V32.5337C10.2517 38.7433 16.8082 43.001 24.3872 43.001Z'
       fill='#34A853'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M13.5395 27.6094C13.1516 26.4695 12.9313 25.2517 12.9313 23.9994C12.9313 22.7472 13.1516 21.5295 13.5395 20.3894V15.4668H7.06217C5.74911 18.0318 5 20.9336 5 23.9994C5 27.0654 5.74911 29.9673 7.06217 32.5323L13.5395 27.6094Z'
       fill='#FBBC04'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24.3872 12.5568C27.2336 12.5568 29.7894 13.5155 31.7987 15.3982L37.3595 9.94866C34.0018 6.88281 29.6131 5 24.3872 5C16.8082 5 10.2517 9.25777 7.06152 15.4674L13.5388 20.39C15.0633 15.8991 19.3375 12.5568 24.3872 12.5568Z'
       fill='#EA4335'
     ></path>
@@ -107,8 +107,8 @@ export const TitterIcon = ({ style }) => (
     style={style}
   >
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M43.8044 6.79902C42.5841 7.62363 39.7822 8.82191 38.4004 8.82191V8.82437C36.8226 7.08554 34.6013 6 32.1377 6C27.353 6 23.4731 10.093 23.4731 15.1387C23.4731 15.8398 23.5501 16.5236 23.6925 17.1793H23.6911C17.2007 16.9996 10.1022 13.5678 5.82893 7.69403C3.2016 12.4916 5.4752 17.8272 8.45673 19.7713C7.43613 19.8526 5.55733 19.6473 4.673 18.737C4.61373 21.9212 6.06507 26.1403 11.3571 27.6709C10.3379 28.2494 8.53373 28.0834 7.74926 27.9604C8.0246 30.6484 11.5927 34.1625 15.4945 34.1625C14.1039 35.8594 8.8716 38.9374 3 37.9582C6.98767 40.5177 11.6352 42 16.5543 42C30.5333 42 41.3894 30.0482 40.8051 15.3041C40.8028 15.2879 40.8028 15.2716 40.8014 15.2539C40.8028 15.216 40.8051 15.1781 40.8051 15.1387C40.8051 15.0929 40.8014 15.0496 40.8 15.0053C42.0726 14.0871 43.7801 12.463 45 10.3254C44.2925 10.7365 42.1701 11.5596 40.1952 11.7639C41.4627 11.0422 43.3405 8.67865 43.8044 6.79902Z'
       fill='#1DA1F2'
     ></path>
@@ -125,8 +125,8 @@ export const LineIcon = ({ style }) => (
     style={style}
   >
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24 47.001C36.7026 47.001 47 36.7035 47 24.001C47 11.2984 36.7026 1.00098 24 1.00098C11.2975 1.00098 1 11.2984 1 24.001C1 36.7035 11.2975 47.001 24 47.001Z'
       fill='#00B900'
     ></path>
@@ -164,14 +164,14 @@ export const InstagramIcon = ({ style }) => (
     style={style}
   >
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z'
       fill='url(#InstagramCircleColor_paint0_radial)'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24 46C36.1503 46 46 36.1503 46 24C46 11.8497 36.1503 2 24 2C11.8497 2 2 11.8497 2 24C2 36.1503 11.8497 46 24 46Z'
       fill='url(#InstagramCircleColor_paint1_radial)'
     ></path>
@@ -181,14 +181,14 @@ export const InstagramIcon = ({ style }) => (
       stroke-width='2.4186'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24 28.207C26.3015 28.207 28.2068 26.327 28.2068 24.0508C28.2068 21.7071 26.3437 19.8017 24.0421 19.7933C21.69 19.7933 19.7931 21.6649 19.7931 23.9917C19.7931 26.3186 21.6731 28.207 24 28.207ZM30.5 24.0084C30.5 27.6083 27.583 30.5084 23.9831 30.5C20.4001 30.4916 17.5 27.583 17.5 23.9916C17.5 20.3917 20.417 17.4916 24.0169 17.5C27.5999 17.5084 30.5 20.417 30.5 24.0084Z'
       fill='white'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M30.4921 15.3327C31.2981 15.3327 31.9446 15.9712 31.9446 16.7692C31.9446 17.5672 31.2981 18.2216 30.5001 18.2216C29.7101 18.2216 29.0557 17.5672 29.0557 16.7692C29.0636 15.9791 29.7101 15.3327 30.4921 15.3327Z'
       fill='white'
     ></path>
@@ -231,15 +231,15 @@ export const AppleIcon = ({ style }) => (
     style={style}
   >
     <path
-      fill-rule='evenodd'
+      fillRule='evenodd'
       d='M32.54 4c.278 2.368-.73 4.699-2.203 6.412-1.537 1.687-3.999 2.978-6.395 2.811-.312-2.276.9-4.697 2.26-6.174C27.739 5.372 30.406 4.09 32.539 4zm7.844 13.647c-.276.153-4.7 2.614-4.65 7.625.055 6.058 5.697 8.059 5.766 8.08-.034.14-.883 2.89-2.999 5.68-1.768 2.458-3.621 4.86-6.56 4.905-1.399.03-2.342-.345-3.326-.734-1.026-.407-2.095-.831-3.77-.831-1.773 0-2.89.437-3.966.86-.932.364-1.833.717-3.104.766-2.801.097-4.94-2.624-6.772-5.06-3.659-4.97-6.51-14.01-2.689-20.159 1.851-3.016 5.23-4.96 8.837-5.011 1.59-.031 3.114.538 4.45 1.038 1.02.381 1.932.722 2.678.722.657 0 1.543-.328 2.576-.709 1.628-.601 3.62-1.336 5.648-1.137 1.387.036 5.338.508 7.887 3.962l-.006.003z'
-      clip-rule='evenodd'
+      clipRule='evenodd'
     ></path>
   </svg>
 )
 export const tick = ({ width = '14', height = '14', className }) => (
   <svg
-    class={className}
+    className={className}
     width={width}
     data-e2e=''
     height={height}
@@ -256,3 +256,62 @@ export const tick = ({ width = '14', height = '14', className }) => (
     ></path>
   </svg>
 )
+
+export const PaperPlane = ({ style }) => (
+  <svg
+    className='tiktok-9oofjg-StyledIcon e1nx07zo1'
+    width='1em'
+    data-e2e=''
+    height='1em'
+    viewBox='0 0 48 48'
+    fill='currentColor'
+    xmlns='http://www.w3.org/2000/svg'
+    style={style}
+  >
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M2.17877 7.17357C2.50304 6.45894 3.21528 6 4.00003 6H44C44.713 6 45.372 6.37952 45.7299 6.99615C46.0877 7.61278 46.0902 8.37327 45.7365 8.99228L25.7365 43.9923C25.3423 44.6821 24.5772 45.0732 23.7872 44.9886C22.9972 44.9041 22.3321 44.3599 22.0929 43.6023L16.219 25.0017L2.49488 9.31701C1.97811 8.72642 1.85449 7.88819 2.17877 7.17357ZM20.377 24.8856L24.531 38.0397L40.5537 10H8.40757L18.3918 21.4106L30.1002 14.2054C30.5705 13.9159 31.1865 14.0626 31.4759 14.533L32.5241 16.2363C32.8136 16.7066 32.6669 17.3226 32.1966 17.612L20.377 24.8856Z'
+    ></path>
+  </svg>
+)
+
+export const Messages = ({ style }) => (
+  <svg
+    className='tiktok-1g0p6jv-StyledInboxIcon e18kkhh41'
+    width='32'
+    data-e2e=''
+    height='32'
+    viewBox='0 0 32 32'
+    fill='currentColor'
+    xmlns='http://www.w3.org/2000/svg'
+    style={style}
+  >
+    <path
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M24.0362 21.3333H18.5243L15.9983 24.4208L13.4721 21.3333H7.96047L7.99557 8H24.0009L24.0362 21.3333ZM24.3705 23.3333H19.4721L17.2883 26.0026C16.6215 26.8176 15.3753 26.8176 14.7084 26.0026L12.5243 23.3333H7.62626C6.70407 23.3333 5.95717 22.5845 5.9596 21.6623L5.99646 7.66228C5.99887 6.74352 6.74435 6 7.66312 6H24.3333C25.2521 6 25.9975 6.7435 26 7.66224L26.0371 21.6622C26.0396 22.5844 25.2927 23.3333 24.3705 23.3333ZM12.6647 14C12.2965 14 11.998 14.2985 11.998 14.6667V15.3333C11.998 15.7015 12.2965 16 12.6647 16H19.3313C19.6995 16 19.998 15.7015 19.998 15.3333V14.6667C19.998 14.2985 19.6995 14 19.3313 14H12.6647Z'
+    ></path>
+  </svg>
+)
+
+export const BlueTick = ({ style }) => {
+  <svg
+    class='tiktok-shsbhf-StyledVerifyBadge e1aglo370'
+    width='14'
+    data-e2e=''
+    height='14'
+    viewBox='0 0 48 48'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    style={style}
+  >
+    <circle cx='24' cy='24' r='24' fill='#20D5EC'></circle>
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M37.1213 15.8787C38.2929 17.0503 38.2929 18.9497 37.1213 20.1213L23.6213 33.6213C22.4497 34.7929 20.5503 34.7929 19.3787 33.6213L10.8787 25.1213C9.70711 23.9497 9.70711 22.0503 10.8787 20.8787C12.0503 19.7071 13.9497 19.7071 15.1213 20.8787L21.5 27.2574L32.8787 15.8787C34.0503 14.7071 35.9497 14.7071 37.1213 15.8787Z'
+      fill='white'
+    ></path>
+  </svg>
+}

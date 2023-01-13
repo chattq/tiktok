@@ -7,18 +7,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
 
 function Login() {
-  const [loginWithEmail, setLoginWithEmail] = useState()
-  const [EmailParams, setEmailParams] = useSearchParams()
-  const params = EmailParams.get('login')
-
-  const handleLoginWithEmail = () => {
-    setEmailParams({ login: 'Email' })
-    setLoginWithEmail(params)
-  }
-  useEffect(() => {
-    console.log(21, params)
-    setLoginWithEmail(params ? params : '')
-  }, [params])
+ 
   return (
     <>
       <div className='mt-[80px] w-full'>

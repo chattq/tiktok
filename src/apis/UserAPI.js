@@ -8,5 +8,13 @@ export const User = {
         per_page: perPage
       }
     })
+  },
+  searchUser({ q, type }) {
+    return http.get(`/api/users/search`, {
+      params: {
+        q: q,
+        type: type
+      }
+    })
   }
 }
