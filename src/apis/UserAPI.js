@@ -16,5 +16,8 @@ export const User = {
         type: type
       }
     })
+  },
+  getUser(nameUser) {
+    return http.get(`/api/users/@${nameUser}`)
   }
 }
