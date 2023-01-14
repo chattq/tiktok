@@ -34,7 +34,7 @@ export default function useRouteElement() {
           element: <Following />
         },
         {
-          path: 'users/:id',
+          path: 'users/:userId',
           element: <InforUser />
         }
       ]

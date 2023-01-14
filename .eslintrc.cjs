@@ -31,6 +31,8 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-no-target-blank': 'warn',
+    'react/forbid-prop-types': 0,
+    'react/prop-types': 'off',
     'prettier/prettier': [
       'warn',
       {

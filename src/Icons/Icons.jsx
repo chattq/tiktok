@@ -1,6 +1,5 @@
-export const HomeIcon = ({ width = '32', height = '32', className }) => (
+export const HomeIcon = ({ width = '32', height = '32' }) => (
   <svg
-    class={className}
     width={width}
     data-e2e=''
     height={height}
@@ -15,9 +14,8 @@ export const HomeIcon = ({ width = '32', height = '32', className }) => (
     ></path>
   </svg>
 )
-export const LiveIcon = ({ width = '32', height = '32', className }) => (
+export const LiveIcon = ({ width = '32', height = '32' }) => (
   <svg
-    class={className}
     width={width}
     data-e2e=''
     height={height}
@@ -33,9 +31,8 @@ export const LiveIcon = ({ width = '32', height = '32', className }) => (
     <path d='M15 15.134C15.6667 15.5189 15.6667 16.4811 15 16.866L12 18.5981C11.3333 18.983 10.5 18.5019 10.5 17.7321L10.5 14.2679C10.5 13.4981 11.3333 13.017 12 13.4019L15 15.134Z'></path>
   </svg>
 )
-export const UserIcon = ({ width = '32', height = '32', className }) => (
+export const UserIcon = ({ width = '32', height = '32' }) => (
   <svg
-    class={className}
     width={width}
     data-e2e=''
     height={height}
@@ -60,16 +57,8 @@ export const UserIcon = ({ width = '32', height = '32', className }) => (
     ></path>
   </svg>
 )
-export const tick = ({ width = '14', height = '14', className }) => (
-  <svg
-    class={className}
-    width={width}
-    data-e2e=''
-    height={height}
-    viewBox='0 0 48 48'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'
-  >
+export const tick = ({ width = '14', height = '14' }) => (
+  <svg width={width} data-e2e='' height={height} viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <circle cx='24' cy='24' r='24' fill='#20D5EC'></circle>
     <path
       fillRule='evenodd'
