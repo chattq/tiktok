@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import React from 'react'
 
 export default function HomeMain() {
@@ -26,7 +27,7 @@ export default function HomeMain() {
                 </div>
               </div>
             </div>
-            <div className='text-base w-[430px] font-light leading-6 tracking-tighter line-clamp-3'>
+            <div className='w-[430px] text-base font-light leading-6 tracking-tighter line-clamp-3'>
               hóng nha ae có quà đó #roblox #bloxfruits #xuhuong #fypa hóng nha ae có quà đó #roblox #bloxfruits
               #xuhuong #fypa hóng nha ae có quà đó #roblox #bloxfruits #xuhuong #fypa hóng nha ae có quà đó #roblox
               #bloxfruits #xuhuong #fypa

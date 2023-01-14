@@ -8,5 +8,8 @@ export const User = {
         per_page: perPage
       }
     })
+  },
+  getUser(nameUser) {
+    return http.get(`/api/users/@${nameUser}`)
   }
 }

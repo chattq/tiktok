@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react'
 import { HomeIcon, LiveIcon, UserIcon } from '../../../../Icons/Icons'
 import MenuItem from '../../components/MenuItem/MenuItem'
 import UserItem from '../../components/UserItem/UserItem'
-import { useQuery } from '@tanstack/react-query'
 import { User } from '../../../../apis/UserAPI'
 import { Link } from 'react-router-dom'
 
@@ -21,7 +23,6 @@ export default function SideBar() {
       setSuggestedUsers(lessResult)
       setData(lessResult)
     }
-
     getAcounts()
   }, [page, perPage])
 
