@@ -19,7 +19,6 @@ export const HomeIcon = ({ width = '32', height = '32', className }) => (
 )
 export const LiveIcon = ({ width = '32', height = '32' }) => (
   <svg
-    className={className}
     width={width}
     data-e2e=''
     height={height}
@@ -37,7 +36,6 @@ export const LiveIcon = ({ width = '32', height = '32' }) => (
 )
 export const UserIcon = ({ width = '32', height = '32' }) => (
   <svg
-    className={className}
     width={width}
     data-e2e=''
     height={height}
