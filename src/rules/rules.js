@@ -25,14 +25,3 @@ export const rules = {
     }
   }
 }
-
-// password: {
-//   required: {
-//     value: true,
-//     message: 'Vui lòng điền đầy đủ password'
-//   },
-//   pattern: {
-//     value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-//     message: 'Vui lòng điền đúng định dạng password'
-//   }
-// }

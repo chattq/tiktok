@@ -28,6 +28,7 @@ import { useRef } from 'react'
 import { useCallback } from 'react'
 import useDebounce from '../../Hook/useDebounce'
 import Menu from '../Component/Menu/Menu'
+import { Link } from 'react-router-dom'
 
 export default function HeaderLayout({ children }) {
   const dataUser = JSON.parse(localStorage.getItem('userInfo'))
@@ -44,7 +45,8 @@ export default function HeaderLayout({ children }) {
     },
     {
       icon: <Question style={{ width: '20px', height: '20px' }} />,
-      title: 'Feed back and help'
+      title: 'Feed back and help',
+      to: '/feedback'
     },
     {
       icon: <KeyBroad style={{ width: '20px', height: '20px' }} />,
@@ -98,7 +100,10 @@ export default function HeaderLayout({ children }) {
     <>
       <div className='h-[60px] w-full border-b border-[#ccc]'>
         <div className='m-auto flex h-full w-[1150px] items-center justify-between gap-[40px]  '>
-          <img src={logo} alt='' className='cursor-pointer' />
+          <Link to={'/'}>
+            <img src={logo} alt='' className='cursor-pointer' />
+          </Link>
+
           <Tippy
             interactive
             onClickOutside={handleHideResultSearch}
