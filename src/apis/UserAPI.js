@@ -9,6 +9,14 @@ export const User = {
       }
     })
   },
+  searchUser({ q, type }) {
+    return http.get(`/api/users/search`, {
+      params: {
+        q: q,
+        type: type
+      }
+    })
+  },
   getUser(nameUser) {
     return http.get(`/api/users/@${nameUser}`)
   }

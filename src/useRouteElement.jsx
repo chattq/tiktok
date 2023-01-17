@@ -3,7 +3,11 @@ import { useRoutes } from 'react-router-dom'
 import HeaderAuth from './layouts/HeaderAuth/HeaderAuth'
 import HeaderLayout from './layouts/HeaderLayout/HeaderLayout'
 import HeaderProfile from './layouts/HeaderProfile/HeaderProfile'
-import Login from './pages/Auth/Login'
+import Login from './pages/Auth/Login/Login'
+import LoginWithEmail from './pages/Auth/Login/LoginWithEmail/LoginWithEmail'
+import SignUp from './pages/Auth/SignUp/SignUp'
+import SignUpWithEmail from './pages/Auth/SignUp/SignUpWithEmail/SignUpWithEmail'
+
 import HomeLayout from './pages/Home/HomeLayout/HomeLayout'
 import Following from './pages/Home/Views/Following/Following'
 import HomeMain from './pages/Home/Views/HomeMain/HomeMain'
@@ -52,6 +56,30 @@ export default function useRouteElement() {
       element: (
         <HeaderAuth>
           <Login />
+        </HeaderAuth>
+      )
+    },
+    {
+      path: '/login/email',
+      element: (
+        <HeaderAuth>
+          <LoginWithEmail />
+        </HeaderAuth>
+      )
+    },
+    {
+      path: '/signup',
+      element: (
+        <HeaderAuth>
+          <SignUp />
+        </HeaderAuth>
+      )
+    },
+    {
+      path: '/signup/email',
+      element: (
+        <HeaderAuth>
+          <SignUpWithEmail />
         </HeaderAuth>
       )
     }
