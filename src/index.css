@@ -1,7 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@layer utilities {
+  .tab_line {
+    transition: all 0.3s;
+  }
+  .tab_item:nth-child(1):hover ~ .tab_line {
+    transform: translateX(0) !important;
+  }
+  .tab_item:nth-child(2):hover ~ .tab_line {
+    transform: translateX(230px) !important;
+  }
+}
 * {
   padding: 0;
   margin: 0;
