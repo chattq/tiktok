@@ -13,7 +13,7 @@ import Following from './pages/Home/Views/Following/Following'
 import HomeMain from './pages/Home/Views/HomeMain/HomeMain'
 import Live from './pages/Home/Views/Live/Live'
 import InforUser from './pages/InforUser/InforUser'
-import Profile from './pages/Profile/Profile'
+import InforVideos from './pages/InforVideos/InforVideos'
 
 export default function useRouteElement() {
   const routerElement = useRoutes([
@@ -44,12 +44,8 @@ export default function useRouteElement() {
       ]
     },
     {
-      path: '/profile',
-      element: (
-        <HeaderProfile>
-          <Profile />
-        </HeaderProfile>
-      )
+      path: '/users/:userId/:videoId',
+      element: <InforVideos />
     },
     {
       path: '/login',
