@@ -21,7 +21,18 @@ import {
   faTicket,
   faCircleCheck
 } from '@fortawesome/free-solid-svg-icons'
-import { BlueTick, KeyBroad, Language, MenuIcon, Messages, Moon, PaperPlane, Question, tick } from '../../Icons/Icons'
+import {
+  BlueTick,
+  KeyBroad,
+  Language,
+  LogoutIcon,
+  MenuIcon,
+  Messages,
+  Moon,
+  PaperPlane,
+  Question,
+  tick
+} from '../../Icons/Icons'
 import { User } from '../../apis/UserAPI'
 import { useEffect } from 'react'
 import { useRef } from 'react'
@@ -29,6 +40,7 @@ import { useCallback } from 'react'
 import useDebounce from '../../Hook/useDebounce'
 import Menu from '../Component/Menu/Menu'
 import { Link } from 'react-router-dom'
+import { Account } from '../../apis/AcountAPI'
 
 export default function HeaderLayout({ children }) {
   const dataUser = JSON.parse(localStorage.getItem('userInfo'))
@@ -41,7 +53,24 @@ export default function HeaderLayout({ children }) {
   const dataMenu = [
     {
       icon: <Language style={{ width: '20px', height: '20px' }} />,
-      title: 'EngLish'
+      title: 'EngLish',
+      child: {
+        title: 'Language',
+        data: [
+          {
+            code: 'en',
+            title: 'English'
+          },
+          {
+            code: 'vi',
+            title: 'Tiếng Việt'
+          },
+          {
+            code: 'fr',
+            title: 'Français'
+          }
+        ]
+      }
     },
     {
       icon: <Question style={{ width: '20px', height: '20px' }} />,
@@ -57,6 +86,7 @@ export default function HeaderLayout({ children }) {
       title: 'Dark mode'
     }
   ]
+
   const handleSearch = () => {
     User.searchUser({ q: search, type: 'less' })
       .then((res) => {
@@ -94,6 +124,18 @@ export default function HeaderLayout({ children }) {
     inputSearchRef.current.focus()
     setResultSearch([])
     setSearch('')
+  }
+  const handleLogout = () => {
+    Account.getLogout()
+      .then((res) => {
+        console.log(res)
+        localStorage.removeItem('token')
+        localStorage.removeItem('userInfo')
+        window.location.assign('/')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -208,7 +250,7 @@ export default function HeaderLayout({ children }) {
                     interactive={true}
                     placement={'bottom-end'}
                     render={(attrs) => (
-                      <div className='w-[240px] bg-[white] py-3 shadow-lg ' tabIndex='-1' {...attrs}>
+                      <div className='w-[240px] bg-[white] pt-3 shadow-lg ' tabIndex='-1' {...attrs}>
                         <ul>
                           <li className=' mb-2 flex w-full  items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                             <FontAwesomeIcon icon={faUser} className='w-5' />
@@ -227,20 +269,27 @@ export default function HeaderLayout({ children }) {
                             <span>Setting</span>
                           </li>
                           <li className=' mb-2 flex w-full  items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
-                            <FontAwesomeIcon icon={faLanguage} className='w-5' />
+                            <Language style={{ height: '20px', width: '20px' }} />
                             <span>EngLish</span>
                           </li>
                           <li className=' mb-2 flex  w-full items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
-                            <FontAwesomeIcon icon={faQuestionCircle} className='w-5' />
+                            <Question style={{ height: '20px', width: '20px' }} />
                             <span>Feed back and help</span>
                           </li>
-                          <li className=' mb-2 flex  w-full items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
-                            <FontAwesomeIcon icon={faMoon} className='w-5' />
+                          <li className=' flex  w-full items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
+                            <Moon style={{ height: '20px', width: '20px' }} />
                             <span>Dark mode</span>
                             <label className='relative inline-flex cursor-pointer items-center'>
                               <input type='checkbox' value='' className='peer sr-only' />
                               <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-0.5 after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
                             </label>
+                          </li>
+                          <li
+                            className=' mb-2 flex  w-full items-center gap-4 border-t px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'
+                            onClick={handleLogout}
+                          >
+                            <LogoutIcon style={{ width: '20px', height: '20px' }} />
+                            <span>Log out</span>
                           </li>
                         </ul>
                       </div>
@@ -261,42 +310,16 @@ export default function HeaderLayout({ children }) {
               </div>
             ) : (
               <>
-                <div className='flex h-[36px] min-w-[100px] cursor-pointer items-center justify-center rounded-md bg-[#FE2C55] px-[8px]  py-[6px] text-[white] hover:opacity-60'>
+                <Link
+                  className='flex h-[36px] min-w-[100px] cursor-pointer items-center justify-center rounded-md bg-[#FE2C55] px-[8px]  py-[6px] text-[white] hover:opacity-60'
+                  to={'/login'}
+                >
                   <span>Login</span>
-                </div>
+                </Link>
                 <div className='flex cursor-pointer items-center'>
                   <Menu className='w-[240px] rounded-lg bg-[white] py-3 shadow-lg' dataMenu={dataMenu}>
                     <MenuIcon style={{ width: '20px', height: '20px' }} />
                   </Menu>
-                  {/* <Tippy
-                    interactive={true}
-                    placement={'bottom-end'}
-                    offset={[30, 20]}
-                    render={(attrs) => (
-                      <div className='w-[240px] bg-[white] py-3 shadow-lg ' tabIndex='-1' {...attrs}>
-                        <ul>
-                          <li className=' mb-2 flex w-full  items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
-                            <FontAwesomeIcon icon={faLanguage} className='w-5' />
-                            <span>EngLish</span>
-                          </li>
-                          <li className=' mb-2 flex  w-full items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
-                            <FontAwesomeIcon icon={faQuestionCircle} className='w-5' />
-                            <span>Feed back and help</span>
-                          </li>
-                          <li className=' mb-2 flex  w-full items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
-                            <FontAwesomeIcon icon={faMoon} className='w-5' />
-                            <span>Dark mode</span>
-                            <label className='relative inline-flex cursor-pointer items-center'>
-                              <input type='checkbox' value='' className='peer sr-only' />
-                              <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-0.5 after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>
-                            </label>
-                          </li>
-                        </ul>
-                      </div>
-                    )}
-                  >
-                    <FontAwesomeIcon icon={faEllipsisVertical} />
-                  </Tippy> */}
                 </div>
               </>
             )}

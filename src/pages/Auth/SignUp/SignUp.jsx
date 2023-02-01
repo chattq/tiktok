@@ -15,10 +15,13 @@ function SignUp() {
           Create a profile, follow other accounts, make your own videos, and more.
         </p>
         <div className='flex flex-col gap-4'>
-          <div className='relative flex items-center justify-center border border-[#1618231f] p-3'>
+          <Link
+            className='relative flex items-center justify-center border border-[#1618231f] p-3'
+            to={'/signup/email'}
+          >
             <FontAwesomeIcon icon={faUser} className='absolute left-3 text-[20px]' />
             <p className='font-sans text-fontSizeName font-semibold'>Use Phone / email / username</p>
-          </div>
+          </Link>
           <div className='relative flex items-center justify-center border border-[#1618231f] p-3'>
             <FontAwesomeIcon icon={faFacebook} className='absolute left-3 text-[20px] text-blue-600' />
             <p className='font-sans text-fontSizeName font-semibold'>Continue with Facebook</p>
