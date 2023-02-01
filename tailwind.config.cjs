@@ -12,6 +12,9 @@ module.exports = {
         fontSizeMin: '12px',
         fontSizeName: '15px',
         fontSizeTitle: '14px'
+      },
+      fontFamily: {
+        tiktokFont: '"IBM Plex Sans", SofiaPro, Arial, Tahoma, PingFangSC, sans-serif'
       }
     }
   },

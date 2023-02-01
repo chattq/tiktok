@@ -43,6 +43,7 @@ export default function SideBar() {
           {data &&
             data.map((user) => (
               <Link to={`users/@${user.nickname}`}>
+                <div></div>
                 <UserItem key={user.id} data={user} />
               </Link>
             ))}
@@ -52,7 +53,18 @@ export default function SideBar() {
         </span>
       </div>
       <div className='mt-3 border-t border-[#F1F1F2] px-2 py-2'>
-        <h4 className='text-fontSizeTitle font-semibold text-tiktokColorText'>Khám phá</h4>
+        <h4 className='text-fontSizeTitle font-semibold text-tiktokColorText'>Các tài khoản đang follow</h4>
+        <div className='mt-5'>
+          {data &&
+            data.map((user) => (
+              <Link to={`users/@${user.nickname}`}>
+                <UserItem key={user.id} data={user} />
+              </Link>
+            ))}
+        </div>
+        <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
+          {seeMore ? `Ẩn bớt` : `Xem tất cả`}
+        </span>
       </div>
     </>
   )
