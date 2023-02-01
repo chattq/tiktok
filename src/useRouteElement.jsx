@@ -36,9 +36,19 @@ export default function useRouteElement() {
         {
           path: '/following',
           element: <Following />
-        },
+        }
+      ]
+    },
+    {
+      path: 'users/:userId',
+      element: (
+        <HeaderProfile>
+          <HomeLayout />
+        </HeaderProfile>
+      ),
+      children: [
         {
-          path: 'users/:userId',
+          path: '',
           element: <InforUser />
         }
       ]

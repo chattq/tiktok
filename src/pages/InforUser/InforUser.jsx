@@ -4,6 +4,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { User } from '../../apis/UserAPI'
 import { formatNumberFollow, formatNumberLike } from '../../assets/formatNumber'
+import { ImgBasic } from '../../assets/img'
 import { dots, links, locks, share } from '../../Icons/Icons'
 import Videos from './Videos/Videos'
 
@@ -21,7 +22,11 @@ export default function InforUser() {
           <div className='relative max-w-[624px]'>
             <div className='flex'>
               <div className='h-[116px] w-[116px] overflow-hidden rounded-full'>
-                <img className='h-full w-full object-cover' src={inforUser?.avatar} alt={inforUser?.first_name} />
+                <img
+                  className='h-full w-full object-cover'
+                  src={ImgBasic(inforUser?.avatar)}
+                  alt={inforUser?.first_name}
+                />
               </div>
               <div className='ml-5 flex flex-col leading-[35px]'>
                 <div className='flex items-center'>
