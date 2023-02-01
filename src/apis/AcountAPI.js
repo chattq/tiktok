@@ -12,5 +12,10 @@ export const Account = {
       email: email,
       password: password
     })
+  },
+  getLogout() {
+    return http.post(`/api/auth/logout`, {
+     
+    })
   }
 }

@@ -1,14 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function MenuItem({ className, data }) {
+function MenuItem({ className, data, onClick }) {
   console.log(data)
   let Comp = 'div'
-  const _props = {}
+  const _props = {
+    onClick
+  }
   if (data.to) {
     _props.to = data.to
     Comp = Link
   }
+
   return (
     <Comp className={className} {..._props}>
       <span>{data.icon}</span>
