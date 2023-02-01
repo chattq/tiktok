@@ -299,7 +299,6 @@ export const Messages = React.forwardRef(({ style }, ref) => (
 
 export const BlueTick = ({ style }) => (
   <svg
-    class='tiktok-shsbhf-StyledVerifyBadge e1aglo370'
     width='14'
     data-e2e=''
     height='14'
@@ -320,7 +319,6 @@ export const BlueTick = ({ style }) => (
 
 export const Language = ({ style }) => (
   <svg
-    class='css-g0144v'
     width='1em'
     data-e2e=''
     height='1em'
@@ -339,7 +337,6 @@ export const Language = ({ style }) => (
 
 export const Question = ({ style }) => (
   <svg
-    class='css-g0144v'
     width='1em'
     data-e2e=''
     height='1em'
@@ -358,7 +355,6 @@ export const Question = ({ style }) => (
 
 export const KeyBroad = ({ style }) => (
   <svg
-    class='css-g0144v'
     width='1em'
     data-e2e=''
     height='1em'
@@ -377,7 +373,6 @@ export const KeyBroad = ({ style }) => (
 
 export const Moon = ({ style }) => (
   <svg
-    class='css-g0144v'
     width='1em'
     data-e2e=''
     height='1em'
@@ -395,7 +390,6 @@ export const Moon = ({ style }) => (
 )
 export const MenuIcon = React.forwardRef(({ style }, ref) => (
   <svg
-    class='tiktok-lgo5n0-StyledEllipsisVertical e13wiwn65'
     width='1em'
     data-e2e=''
     height='1em'
