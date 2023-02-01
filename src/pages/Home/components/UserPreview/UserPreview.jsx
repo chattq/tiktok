@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { formatNumberFollow, formatNumberLike } from '../../../../assets/formatNumber'
 import { ImgBasic } from '../../../../assets/img'
 
 export default function UserPreview({ data }) {
@@ -18,18 +19,38 @@ export default function UserPreview({ data }) {
             </button>
           </div>
         </div>
-        <div>
-          <h2>{data?.nickname}</h2>
-          <span></span>
+        <div className='flex items-center'>
+          <h2 className='text-[20px] font-bold'>{data?.nickname}</h2>
+          {data.tick && (
+            <div className='ml-2'>
+              <svg
+                className='tiktok-shsbhf-StyledVerifyBadge e1aglo370'
+                width='14'
+                data-e2e=''
+                height='14'
+                viewBox='0 0 48 48'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <circle cx='24' cy='24' r='24' fill='#20D5EC'></circle>
+                <path
+                  fillRule='evenodd'
+                  clipRule='evenodd'
+                  d='M37.1213 15.8787C38.2929 17.0503 38.2929 18.9497 37.1213 20.1213L23.6213 33.6213C22.4497 34.7929 20.5503 34.7929 19.3787 33.6213L10.8787 25.1213C9.70711 23.9497 9.70711 22.0503 10.8787 20.8787C12.0503 19.7071 13.9497 19.7071 15.1213 20.8787L21.5 27.2574L32.8787 15.8787C34.0503 14.7071 35.9497 14.7071 37.1213 15.8787Z'
+                  fill='white'
+                ></path>
+              </svg>
+            </div>
+          )}
         </div>
-        <h4>{`${data?.first_name} ${data?.last_name}`}</h4>
+        <h4 className='mt-1 text-sm font-medium'>{`${data?.first_name} ${data?.last_name}`}</h4>
         <div className='flex'>
-          <div className='flex'>
-            <span>{data?.followers_count}M</span>
+          <div className='flex items-center'>
+            <span className='mr-2 font-semibold'>{formatNumberFollow(data?.followers_count)}</span>
             <p>Follower</p>
           </div>
-          <div className='flex'>
-            <span>{data?.likes_count}M</span>
+          <div className='ml-3 flex items-center'>
+            <span className='mr-2 font-semibold'>{formatNumberLike(data?.likes_count)}</span>
             <p>Thích</p>
           </div>
         </div>
