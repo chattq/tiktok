@@ -8,7 +8,7 @@ export default function UserPreview({ data }) {
     <>
       <div className='w-[290px] rounded-[6px] border bg-white p-5 shadow-xl'>
         <div className='flex items-center justify-between pb-4'>
-          <Link to={`users/@${data.nickname}`}>
+          <Link to={`users/@${data?.nickname}`}>
             <div className='h-[40px] w-[40px] overflow-hidden rounded-full'>
               <img className='h-full w-full object-cover' src={ImgBasic(data?.avatar)} alt={data?.nickname} />
             </div>
@@ -21,7 +21,7 @@ export default function UserPreview({ data }) {
         </div>
         <div className='flex items-center'>
           <h2 className='text-[20px] font-bold'>{data?.nickname}</h2>
-          {data.tick && (
+          {data?.tick && (
             <div className='ml-2'>
               <svg
                 className='tiktok-shsbhf-StyledVerifyBadge e1aglo370'
