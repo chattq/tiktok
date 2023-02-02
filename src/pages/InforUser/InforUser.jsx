@@ -76,7 +76,7 @@ export default function InforUser() {
                 <span className='text-[#23242fbf]'>Thích</span>
               </div>
             </div>
-            <h1 className='mt-3 max-w-[550px] leading-7'>{`${inforUser?.bio}`}</h1>
+            <h1 className='mt-3 max-w-[550px] leading-7 tracking-[0.5px]'>{`${inforUser?.bio}`}</h1>
             <div className='mt-1'>
               {inforUser?.website_url && (
                 <a
@@ -149,8 +149,12 @@ export default function InforUser() {
             </div>
             <div className='tab_line absolute bottom-[-1px] h-[2px] w-[230px] bg-black' />
           </div>
-          <div className='mt-[20px]'>
-            <Videos dataVideos={inforUser?.videos} />
+          <div className='mt-[20px] min-h-[220px] min-w-[300px]'>
+            <div className='grid grid-cols-6 gap-x-[10px] gap-y-[25px]'>
+              {inforUser?.videos.map((video) => (
+                <Videos dataVideos={video} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
