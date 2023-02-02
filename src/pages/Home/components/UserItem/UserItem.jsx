@@ -14,19 +14,19 @@ export default function UserItem({ data }) {
   return (
     <>
       <Tippy interactive placement='bottom' offset={[-20, 10]} delay={[800, 0]} render={RenderUserPreview}>
-        <div key={data.id} className='mb-3 flex cursor-pointer items-center '>
+        <div key={data?.id} className='mb-3 flex cursor-pointer items-center '>
           <div className='mr-3 h-[32px] w-[32px] overflow-hidden rounded-full'>
             <img
               className='h-full w-full rounded-full object-cover'
-              src={ImgBasic(data.avatar)}
-              alt={data.first_name}
+              src={ImgBasic(data?.avatar)}
+              alt={data?.first_name}
             />
           </div>
           <div>
             <img src='' alt='' />
             <div className='flex translate-y-[2px] items-center'>
-              <h4 className='text-fontSizeName font-semibold tracking-wider'>{data.nickname}</h4>
-              {data.tick && (
+              <h4 className='text-fontSizeName font-semibold tracking-wider'>{data?.nickname}</h4>
+              {data?.tick && (
                 <div className='ml-1'>
                   <svg
                     className='tiktok-shsbhf-StyledVerifyBadge e1aglo370'
@@ -48,7 +48,7 @@ export default function UserItem({ data }) {
                 </div>
               )}
             </div>
-            <span className='text-fontSizeMin font-thin text-[rgba(22,24,35,0.75)]'>{`${data.first_name} ${data.last_name}`}</span>
+            <span className='text-fontSizeMin font-thin text-[rgba(22,24,35,0.75)]'>{`${data?.first_name} ${data?.last_name}`}</span>
           </div>
         </div>
       </Tippy>

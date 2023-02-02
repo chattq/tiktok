@@ -494,3 +494,255 @@ export const Play = () => (
     ></path>
   </svg>
 )
+export const Music = () => (
+  <svg
+    fill='rgba(22, 24, 35, 1)'
+    viewBox='0 0 48 48'
+    xmlns='http://www.w3.org/2000/svg'
+    width='1em'
+    height='1em'
+    class='tiktok-wzk98w-SvgIcon epjbyn2'
+  >
+    <use xlink:href='#svg-music-note'></use>
+  </svg>
+)
+
+export const Heart = () => (
+  <svg
+    width='20'
+    data-e2e=''
+    height='20'
+    viewBox='0 0 24 24'
+    fill='rgba(22, 24, 35, 1)'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <g clip-path='url(#HeartFill_clip0)'>
+      <g filter='url(#HeartFill_filter0_d)'>
+        <path
+          fill-rule='evenodd'
+          clip-rule='evenodd'
+          d='M7.5 2.25C10.5 2.25 12 4.25 12 4.25C12 4.25 13.5 2.25 16.5 2.25C20 2.25 22.5 4.99999 22.5 8.5C22.5 12.5 19.2311 16.0657 16.25 18.75C14.4095 20.4072 13 21.5 12 21.5C11 21.5 9.55051 20.3989 7.75 18.75C4.81949 16.0662 1.5 12.5 1.5 8.5C1.5 4.99999 4 2.25 7.5 2.25Z'
+        ></path>
+      </g>
+      <path
+        fill-rule='evenodd'
+        clip-rule='evenodd'
+        d='M2.40179 12.1998C3.58902 14.6966 5.7592 16.9269 7.74989 18.75C9.5504 20.3989 10.9999 21.5 11.9999 21.5C12.9999 21.5 14.4094 20.4072 16.2499 18.75C19.231 16.0657 22.4999 12.5 22.4999 8.49997C22.4999 8.41258 22.4983 8.32566 22.4952 8.23923C20.5671 13.6619 13.6787 18.5 11.75 18.5C10.3127 18.5 5.61087 15.8131 2.40179 12.1998Z'
+        fill-opacity='0.03'
+      ></path>
+    </g>
+    <defs>
+      <filter
+        id='HeartFill_filter0_d'
+        x='-0.9'
+        y='1.05'
+        width='25.8'
+        height='24.05'
+        filterUnits='userSpaceOnUse'
+        color-interpolation-filters='sRGB'
+      >
+        <feFlood flood-opacity='0' result='BackgroundImageFix'></feFlood>
+        <feColorMatrix
+          in='SourceAlpha'
+          type='matrix'
+          values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+          result='hardAlpha'
+        ></feColorMatrix>
+        <feOffset dy='1.2'></feOffset>
+        <feGaussianBlur stdDeviation='1.2'></feGaussianBlur>
+        <feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0'></feColorMatrix>
+        <feBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'></feBlend>
+        <feBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'></feBlend>
+      </filter>
+      <clipPath id='HeartFill_clip0'>
+        <rect width='24' height='24' fill='white'></rect>
+      </clipPath>
+    </defs>
+  </svg>
+)
+export const RedHeart = () => (
+  <svg
+    width='20'
+    data-e2e=''
+    height='20'
+    viewBox='0 0 24 24'
+    fill='rgba(254, 44, 85, 1)'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <g clip-path='url(#HeartFill_clip0)'>
+      <g filter='url(#HeartFill_filter0_d)'>
+        <path
+          fill-rule='evenodd'
+          clip-rule='evenodd'
+          d='M7.5 2.25C10.5 2.25 12 4.25 12 4.25C12 4.25 13.5 2.25 16.5 2.25C20 2.25 22.5 4.99999 22.5 8.5C22.5 12.5 19.2311 16.0657 16.25 18.75C14.4095 20.4072 13 21.5 12 21.5C11 21.5 9.55051 20.3989 7.75 18.75C4.81949 16.0662 1.5 12.5 1.5 8.5C1.5 4.99999 4 2.25 7.5 2.25Z'
+        ></path>
+      </g>
+      <path
+        fill-rule='evenodd'
+        clip-rule='evenodd'
+        d='M2.40179 12.1998C3.58902 14.6966 5.7592 16.9269 7.74989 18.75C9.5504 20.3989 10.9999 21.5 11.9999 21.5C12.9999 21.5 14.4094 20.4072 16.2499 18.75C19.231 16.0657 22.4999 12.5 22.4999 8.49997C22.4999 8.41258 22.4983 8.32566 22.4952 8.23923C20.5671 13.6619 13.6787 18.5 11.75 18.5C10.3127 18.5 5.61087 15.8131 2.40179 12.1998Z'
+        fill-opacity='0.03'
+      ></path>
+    </g>
+    <defs>
+      <filter
+        id='HeartFill_filter0_d'
+        x='-0.9'
+        y='1.05'
+        width='25.8'
+        height='24.05'
+        filterUnits='userSpaceOnUse'
+        color-interpolation-filters='sRGB'
+      >
+        <feFlood flood-opacity='0' result='BackgroundImageFix'></feFlood>
+        <feColorMatrix
+          in='SourceAlpha'
+          type='matrix'
+          values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+          result='hardAlpha'
+        ></feColorMatrix>
+        <feOffset dy='1.2'></feOffset>
+        <feGaussianBlur stdDeviation='1.2'></feGaussianBlur>
+        <feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0'></feColorMatrix>
+        <feBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'></feBlend>
+        <feBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'></feBlend>
+      </filter>
+      <clipPath id='HeartFill_clip0'>
+        <rect width='24' height='24' fill='white'></rect>
+      </clipPath>
+    </defs>
+  </svg>
+)
+export const Comment = () => (
+  <svg width='20' data-e2e='' height='20' viewBox='0 0 20 20' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+    <g clip-path='url(#BubbleEllipsisRightFill_clip0)'>
+      <g opacity='1' filter='url(#BubbleEllipsisRightFill_filter0_d)'>
+        <path
+          fill-rule='evenodd'
+          clip-rule='evenodd'
+          d='M16.0393 14.7137C17.75 13 18.75 11.215 18.75 9.13662C18.75 4.91897 14.8887 1.49997 10.125 1.49997C5.36129 1.49997 1.5 4.91897 1.5 9.13675C1.5 13.3545 5.48622 16.25 10.25 16.25V17.6487C10.25 18.0919 10.7095 18.3771 11.0992 18.1659C12.3166 17.5062 14.5725 16.183 16.0393 14.7137ZM5.93527 8.10679C6.61608 8.10679 7.16797 8.65471 7.16797 9.32962C7.16797 10.0059 6.61608 10.5538 5.93527 10.5538C5.2556 10.5538 4.70368 10.0059 4.70368 9.32962C4.70368 8.65471 5.2556 8.10679 5.93527 8.10679ZM11.3572 9.32962C11.3572 8.65471 10.8055 8.10679 10.125 8.10679C9.44459 8.10679 8.89289 8.65471 8.89289 9.32962C8.89292 10.0059 9.44462 10.5538 10.125 10.5538C10.8055 10.5538 11.3572 10.0059 11.3572 9.32962ZM14.3146 8.10679C14.9953 8.10679 15.5464 8.65471 15.5464 9.32962C15.5464 10.0059 14.9953 10.5538 14.3146 10.5538C13.6339 10.5538 13.082 10.0059 13.0821 9.32962C13.0821 8.65471 13.6339 8.10679 14.3146 8.10679Z'
+        ></path>
+      </g>
+      <path
+        opacity='0.1'
+        fill-rule='evenodd'
+        clip-rule='evenodd'
+        d='M10.25 16.2499C10.25 16.2499 15.0278 15.8807 17.025 13.3234C15.0278 16.1364 13.0307 17.6708 11.2831 18.1822C9.53561 18.6937 10.25 16.2499 10.25 16.2499Z'
+        fill='url(#BubbleEllipsisRightFill_paint0_linear)'
+      ></path>
+    </g>
+    <defs>
+      <filter
+        id='BubbleEllipsisRightFill_filter0_d'
+        x='0.5'
+        y='1.49997'
+        width='19.25'
+        height='18.737'
+        filterUnits='userSpaceOnUse'
+        color-interpolation-filters='sRGB'
+      >
+        <feFlood flood-opacity='0' result='BackgroundImageFix'></feFlood>
+        <feColorMatrix
+          in='SourceAlpha'
+          type='matrix'
+          values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+        ></feColorMatrix>
+        <feOffset dy='1'></feOffset>
+        <feGaussianBlur stdDeviation='0.5'></feGaussianBlur>
+        <feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0'></feColorMatrix>
+        <feBlend mode='normal' in2='BackgroundImageFix' result='effect1_dropShadow'></feBlend>
+        <feBlend mode='normal' in='SourceGraphic' in2='effect1_dropShadow' result='shape'></feBlend>
+      </filter>
+      <linearGradient
+        id='BubbleEllipsisRightFill_paint0_linear'
+        x1='8.50426'
+        y1='15.6957'
+        x2='9.29499'
+        y2='18.1805'
+        gradientUnits='userSpaceOnUse'
+      >
+        <stop></stop>
+        <stop offset='1' stop-opacity='0.01'></stop>
+      </linearGradient>
+      <clipPath id='BubbleEllipsisRightFill_clip0'>
+        <rect width='20' height='20' fill='white'></rect>
+      </clipPath>
+    </defs>
+  </svg>
+)
+export const Embedded = () => (
+  <svg width='24' data-e2e='' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z'
+      fill='#161823'
+      fill-opacity='0.75'
+    ></path>
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M12.313 7.96568C12.3665 7.65966 12.658 7.45498 12.964 7.50851C13.27 7.56203 13.4747 7.8535 13.4211 8.15951L12.0506 15.9952C11.997 16.3012 11.7056 16.5059 11.3996 16.4523C11.0936 16.3988 10.8889 16.1073 10.9424 15.8013L12.313 7.96568ZM16.2402 8.77448C15.96 8.48453 15.5058 8.48453 15.2256 8.77448C14.9454 9.06443 14.9454 9.53454 15.2256 9.82449L17.454 12.1307L15.2262 14.4364C14.946 14.7263 14.946 15.1964 15.2262 15.4864C15.5063 15.7763 15.9606 15.7763 16.2407 15.4864L19.4551 12.1598C19.4704 12.1439 19.4704 12.1182 19.4551 12.1023L19.2233 11.8623L19.2201 11.8586L19.2158 11.854L16.2402 8.77448ZM8.88972 15.4867C8.59977 15.7766 8.12966 15.7766 7.83971 15.4867L5.4207 13.0677L4.76017 12.4071L4.51191 12.1589C4.49603 12.143 4.49603 12.1173 4.51191 12.1014L7.83853 8.77477C8.12848 8.48482 8.59859 8.48482 8.88854 8.77477C9.17849 9.06472 9.17849 9.53482 8.88854 9.82478L6.58318 12.1301L8.88972 14.4367C9.17967 14.7266 9.17967 15.1967 8.88972 15.4867Z'
+      fill='white'
+    ></path>
+  </svg>
+)
+export const IconAt = () => (
+  <svg width='1em' data-e2e='' height='1em' viewBox='0 0 48 48' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42C28.0553 42 31.7921 40.6614 34.8006 38.401L35.6001 37.8003C36.0416 37.4686 36.6685 37.5576 37.0003 37.9992L38.2016 39.5981C38.5334 40.0397 38.4443 40.6666 38.0028 40.9983L37.2033 41.599C33.5258 44.3619 28.9513 46 24 46C11.8497 46 2 36.1503 2 24C2 11.8497 11.8497 2 24 2C36.1503 2 46 11.8497 46 24V26C46 30.4843 42.1949 34 37.8438 34C35.1966 34 32.8496 32.7142 31.3935 30.733C29.5649 32.7403 26.9303 34 24 34C18.4772 34 14 29.5228 14 24C14 18.4772 18.4772 14 24 14C29.5228 14 34 18.4772 34 24C34 24.5814 33.9502 25.1528 33.8541 25.7096C33.8473 25.8052 33.8438 25.902 33.8438 26C33.8438 28.2091 35.6347 30 37.8438 30C40.1201 30 42 28.1431 42 26V24C42 14.0589 33.9411 6 24 6ZM24 18C20.6863 18 18 20.6863 18 24C18 27.3137 20.6863 30 24 30C26.9395 30 29.3891 27.8841 29.9013 25.0918C29.9659 24.7392 30 24.3744 30 24C30 20.6863 27.3137 18 24 18Z'
+    ></path>
+  </svg>
+)
+export const IconFace = () => (
+  <svg width='1em' data-e2e='' height='1em' viewBox='0 0 48 48' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6ZM2 24C2 11.8497 11.8497 2 24 2C36.1503 2 46 11.8497 46 24C46 36.1503 36.1503 46 24 46C11.8497 46 2 36.1503 2 24Z'
+    ></path>
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M17 23C18.6569 23 20 21.2091 20 19C20 16.7909 18.6569 15 17 15C15.3431 15 14 16.7909 14 19C14 21.2091 15.3431 23 17 23Z'
+    ></path>
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M31 23C32.6569 23 34 21.2091 34 19C34 16.7909 32.6569 15 31 15C29.3431 15 28 16.7909 28 19C28 21.2091 29.3431 23 31 23Z'
+    ></path>
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M16 28.3431C16 31.4673 19.5817 36 24 36C28.4183 36 32 31.4673 32 28.3431C32 25.219 16 25.219 16 28.3431Z'
+    ></path>
+  </svg>
+)
+export const DownArow = () => (
+  <svg
+    class='tiktok-1w2nwdz-StyledChevronDownFill eo72wou3'
+    width='1em'
+    data-e2e=''
+    height='1em'
+    viewBox='0 0 48 48'
+    fill='currentColor'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M21.8788 33.1213L7.58586 18.8284C7.19534 18.4379 7.19534 17.8047 7.58586 17.4142L10.4143 14.5858C10.8048 14.1953 11.438 14.1953 11.8285 14.5858L24.0001 26.7574L36.1716 14.5858C36.5622 14.1953 37.1953 14.1953 37.5859 14.5858L40.4143 17.4142C40.8048 17.8047 40.8048 18.4379 40.4143 18.8284L26.1214 33.1213C24.9498 34.2929 23.0503 34.2929 21.8788 33.1213Z'
+    ></path>
+  </svg>
+)
+export const HeartComment = () => (
+  <svg width='20' data-e2e='' height='20' viewBox='0 0 48 48' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+    <path
+      fill-rule='evenodd'
+      clip-rule='evenodd'
+      d='M24 9.01703C19.0025 3.74266 11.4674 3.736 6.67302 8.56049C1.77566 13.4886 1.77566 21.4735 6.67302 26.4016L22.5814 42.4098C22.9568 42.7876 23.4674 43 24 43C24.5326 43 25.0432 42.7876 25.4186 42.4098L41.327 26.4016C46.2243 21.4735 46.2243 13.4886 41.327 8.56049C36.5326 3.736 28.9975 3.74266 24 9.01703ZM21.4938 12.2118C17.9849 8.07195 12.7825 8.08727 9.51028 11.3801C6.16324 14.7481 6.16324 20.214 9.51028 23.582L24 38.1627L38.4897 23.582C41.8368 20.214 41.8368 14.7481 38.4897 11.3801C35.2175 8.08727 30.0151 8.07195 26.5062 12.2118L26.455 12.2722L25.4186 13.3151C25.0432 13.6929 24.5326 13.9053 24 13.9053C23.4674 13.9053 22.9568 13.6929 22.5814 13.3151L21.545 12.2722L21.4938 12.2118Z'
+    ></path>
+  </svg>
+)
