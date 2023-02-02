@@ -56,7 +56,7 @@ export default function SideBar() {
         <div className='mt-5'>
           {data &&
             data.map((user) => (
-              <Link key={user.id} to={`users/@${user.nickname}`}>
+              <Link key={user.id} to={`/users/@${user.nickname}`}>
                 <UserItem data={user} />
               </Link>
             ))}
