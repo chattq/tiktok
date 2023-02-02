@@ -14,6 +14,7 @@ import HomeMain from './pages/Home/Views/HomeMain/HomeMain'
 import Live from './pages/Home/Views/Live/Live'
 import InforUser from './pages/InforUser/InforUser'
 import InforVideos from './pages/InforVideos/InforVideos'
+import Upload from './pages/Upload/Upload'
 
 export default function useRouteElement() {
   const routerElement = useRoutes([
@@ -42,9 +43,9 @@ export default function useRouteElement() {
     {
       path: 'users/:userId',
       element: (
-        <HeaderProfile>
+        <HeaderLayout>
           <HomeLayout />
-        </HeaderProfile>
+        </HeaderLayout>
       ),
       children: [
         {
@@ -87,6 +88,14 @@ export default function useRouteElement() {
         <HeaderAuth>
           <SignUpWithEmail />
         </HeaderAuth>
+      )
+    },
+    {
+      path: '/upload',
+      element: (
+        <HeaderProfile>
+          <Upload />
+        </HeaderProfile>
       )
     }
   ])

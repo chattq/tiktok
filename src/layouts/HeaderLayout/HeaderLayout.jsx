@@ -39,10 +39,13 @@ import { useRef } from 'react'
 import { useCallback } from 'react'
 import useDebounce from '../../Hook/useDebounce'
 import Menu from '../Component/Menu/Menu'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Account } from '../../apis/AcountAPI'
+import { ImgBasic } from '../../assets/img'
 
 export default function HeaderLayout({ children }) {
+  const { userId } = useParams()
+  const checkParams = Boolean(userId)
   const dataUser = JSON.parse(localStorage.getItem('userInfo'))
   const [resultSearch, setResultSearch] = useState([])
   const [search, setSearch] = useState('')
@@ -141,7 +144,13 @@ export default function HeaderLayout({ children }) {
   return (
     <>
       <div className='h-[60px] w-full border-b border-[#ccc]'>
-        <div className='m-auto flex h-full w-[1150px] items-center justify-between gap-[40px]  '>
+        <div
+          className={
+            checkParams
+              ? 'm-auto flex h-full w-full items-center justify-between gap-[40px] px-4  '
+              : 'm-auto flex h-full w-[1150px] items-center justify-between gap-[40px]  '
+          }
+        >
           <Link to={'/'}>
             <img src={logo} alt='' className='cursor-pointer' />
           </Link>
@@ -160,7 +169,7 @@ export default function HeaderLayout({ children }) {
                       className=' mb-2 flex cursor-pointer gap-2 bg-inherit py-[6px] px-4 hover:bg-[#ccc]'
                     >
                       <div className='h-[40px] w-[40px] overflow-hidden rounded-full'>
-                        <img src={item.avatar} alt='' className='h-full w-full object-cover ' />
+                        <img src={ImgBasic(item.avatar)} alt='' className='h-full w-full object-cover ' />
                       </div>
                       <div>
                         <div className=' whitespace-nowrap text-[16px] font-semibold'>
@@ -295,23 +304,23 @@ export default function HeaderLayout({ children }) {
                       </div>
                     )}
                   >
-                    <div>
+                    <Link to={`/users/@${dataUser.nickname}`}>
                       <img
                         src={
-                          dataUser.avatar ||
+                          ImgBasic(dataUser.avatar) ||
                           'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'
                         }
                         alt=''
                         className='h-9 w-9 rounded-full'
                       />
-                    </div>
+                    </Link>
                   </Tippy>
                 </div>
               </div>
             ) : (
               <>
                 <Link
-                  className='flex h-[36px] min-w-[100px] cursor-pointer items-center justify-center rounded-md bg-[#FE2C55] px-[8px]  py-[6px] text-[white] hover:opacity-60'
+                  className='flex h-[36px] min-w-[100px] cursor-pointer items-center justify-center rounded-md bg-[#FE2C55] px-[8px]  py-[6px] text-[white] hover:bg-[#EA284E]'
                   to={'/login'}
                 >
                   <span>Login</span>
