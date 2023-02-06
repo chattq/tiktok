@@ -4,21 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Tippy from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
 import {
-  faEllipsisVertical,
-  faLanguage,
   faMagnifyingGlass,
-  faMoon,
   faPlus,
-  faQuestionCircle,
-  faPaperPlane,
-  faMessage,
   faUser,
   faCoins,
   faVideoCamera,
   faGear,
   faXmarkCircle,
   faSpinner,
-  faTicket,
   faCircleCheck
 } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -44,8 +37,9 @@ import { Account } from '../../apis/AcountAPI'
 import { ImgBasic } from '../../assets/img'
 
 export default function HeaderLayout({ children }) {
-  const { userId } = useParams()
+  const { userId, upload } = useParams()
   const checkParams = Boolean(userId)
+  const checkParamsUpload = Boolean(upload)
   const dataUser = JSON.parse(localStorage.getItem('userInfo'))
   const [resultSearch, setResultSearch] = useState([])
   const [search, setSearch] = useState('')
@@ -87,6 +81,63 @@ export default function HeaderLayout({ children }) {
     {
       icon: <Moon style={{ width: '20px', height: '20px' }} />,
       title: 'Dark mode'
+    }
+  ]
+  const dataMenuUser = [
+    {
+      icon: <FontAwesomeIcon icon={faUser} className='w-5' />,
+      title: 'View Profile'
+    },
+    {
+      icon: <FontAwesomeIcon icon={faCoins} className='w-5' />,
+      title: 'Get Coin'
+    },
+    {
+      icon: <FontAwesomeIcon icon={faVideoCamera} className='w-5' />,
+      title: 'Live'
+    },
+    {
+      icon: <FontAwesomeIcon icon={faGear} className='w-5' />,
+      title: 'Settings'
+    },
+    {
+      icon: <Language style={{ width: '20px', height: '20px' }} />,
+      title: 'EngLish',
+      child: {
+        title: 'Language',
+        data: [
+          {
+            code: 'en',
+            title: 'English'
+          },
+          {
+            code: 'vi',
+            title: 'Tiếng Việt'
+          },
+          {
+            code: 'fr',
+            title: 'Français'
+          }
+        ]
+      }
+    },
+    {
+      icon: <Question style={{ width: '20px', height: '20px' }} />,
+      title: 'Feed back and help',
+      to: '/feedback'
+    },
+    {
+      icon: <KeyBroad style={{ width: '20px', height: '20px' }} />,
+      title: 'Keyboard shortcuts'
+    },
+    {
+      icon: <Moon style={{ width: '20px', height: '20px' }} />,
+      title: 'Dark mode'
+    },
+    {
+      icon: <LogoutIcon style={{ width: '20px', height: '20px' }} />,
+      title: 'Log out',
+      log: 'logout'
     }
   ]
 
@@ -146,7 +197,7 @@ export default function HeaderLayout({ children }) {
       <div className='h-[60px] w-full border-b border-[#ccc]'>
         <div
           className={
-            checkParams
+            checkParams || checkParamsUpload
               ? 'm-auto flex h-full w-full items-center justify-between gap-[40px] px-4  '
               : 'm-auto flex h-full w-[1150px] items-center justify-between gap-[40px]  '
           }
@@ -164,7 +215,8 @@ export default function HeaderLayout({ children }) {
               <div className='z-10  w-[361px] bg-white shadow-md'>
                 {resultSearch.map((item, index) => {
                   return (
-                    <div
+                    <Link
+                      to={`/users/@${item.nickname}`}
                       key={item.id}
                       className=' mb-2 flex cursor-pointer gap-2 bg-inherit py-[6px] px-4 hover:bg-[#ccc]'
                     >
@@ -183,7 +235,7 @@ export default function HeaderLayout({ children }) {
 
                         <p className='textfontSizeTitle font-normal text-[#16182380]'>{item.last_name}</p>
                       </div>
-                    </div>
+                    </Link>
                   )
                 })}
               </div>
@@ -216,10 +268,13 @@ export default function HeaderLayout({ children }) {
           </Tippy>
 
           <div className='flex gap-[16px] text-[#161823]'>
-            <div className='flex h-[36px] min-w-[110px] cursor-pointer items-center rounded-sm border border-[#e3e3e4] px-[16px] transition-all hover:bg-[#f1f1f2]'>
+            <Link
+              className='flex h-[36px] min-w-[110px] cursor-pointer items-center rounded-sm border border-[#e3e3e4] px-[16px] transition-all hover:bg-[#f1f1f2]'
+              to={'/upload'}
+            >
               <FontAwesomeIcon icon={faPlus} className='mr-[8px] h-[16px] w-[16px]' />
               <span className='font-semibold leading-6 text-[#161823]'>Upload</span>
-            </div>
+            </Link>
             {dataUser ? (
               <div className='flex items-center gap-[20px] text-[#161823]'>
                 <div className='cursor-pointer'>
@@ -255,7 +310,19 @@ export default function HeaderLayout({ children }) {
                   </Tippy>
                 </div>
                 <div className='flex cursor-pointer  items-center'>
-                  <Tippy
+                  <Menu className='w-[240px] bg-[white] pt-3 shadow-lg ' dataMenu={dataMenuUser} onClick={handleLogout}>
+                    <Link to={`/users/@${dataUser.nickname}`}>
+                      <img
+                        src={
+                          ImgBasic(dataUser.avatar) ||
+                          'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'
+                        }
+                        alt=''
+                        className='h-9 w-9 rounded-full'
+                      />
+                    </Link>
+                  </Menu>
+                  {/* <Tippy
                     interactive={true}
                     placement={'bottom-end'}
                     render={(attrs) => (
@@ -314,7 +381,7 @@ export default function HeaderLayout({ children }) {
                         className='h-9 w-9 rounded-full'
                       />
                     </Link>
-                  </Tippy>
+                  </Tippy> */}
                 </div>
               </div>
             ) : (

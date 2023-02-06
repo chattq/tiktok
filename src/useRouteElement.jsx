@@ -93,9 +93,9 @@ export default function useRouteElement() {
     {
       path: '/upload',
       element: (
-        <HeaderProfile>
+        <HeaderLayout>
           <Upload />
-        </HeaderProfile>
+        </HeaderLayout>
       )
     }
   ])

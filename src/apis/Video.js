@@ -6,5 +6,16 @@ export const Videos = {
   },
   uploadVideo() {
     return http.post(`/api/videos`, {})
+  },
+  getVideosHomePage(type, page, token) {
+    return http.get(`/api/videos`, {
+      params: {
+        type: type,
+        page: page
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
   }
 }
