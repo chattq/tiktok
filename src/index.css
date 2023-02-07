@@ -11,7 +11,7 @@
   .tab_item:nth-child(2):hover ~ .tab_line {
     transform: translateX(230px) !important;
   }
-  .webkit-scroll-hide::-webkit-scrollbar{
+  .webkit-scroll-hide::-webkit-scrollbar {
     width: 10px;
   }
 }

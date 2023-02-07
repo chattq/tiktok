@@ -5,7 +5,7 @@ import MenuItem from '../MenuItem/MenuItem'
 import { useState } from 'react'
 import HeaderMenu from '../HeaderMenu/HeaderMenu'
 
-function Menu({ children, dataMenu, className }) {
+function Menu({ children, dataMenu, className, onClick }) {
   const [history, setHistory] = useState([{ data: dataMenu }])
   const current = history[history.length - 1]
   const onBack = () => {
@@ -13,7 +13,9 @@ function Menu({ children, dataMenu, className }) {
   }
   const renderItem = () => {
     return current.data?.map((item, index) => {
+      console.log(item, 16)
       const isParent = !!item.child
+      const isLogOut = !!item.log
       return (
         <MenuItem
           key={index}
@@ -24,6 +26,9 @@ function Menu({ children, dataMenu, className }) {
           onClick={() => {
             if (isParent) {
               setHistory((prev) => [...prev, item.child])
+            }
+            if (isLogOut) {
+              onClick()
             }
           }}
         />

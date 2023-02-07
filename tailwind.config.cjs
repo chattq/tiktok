@@ -15,6 +15,10 @@ module.exports = {
       },
       fontFamily: {
         tiktokFont: '"IBM Plex Sans", SofiaPro, Arial, Tahoma, PingFangSC, sans-serif'
+      },
+      backgroundImage: {
+        'phone-pattern': "url('/public/download.png')",
+        'tiktok-bar': "url('/public/tiktokbar.png)"
       }
     }
   },
