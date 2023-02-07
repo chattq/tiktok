@@ -1,5 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { FormatTextBold } from '../../../../assets/FormatTextBoild'
 import { ImgBasic } from '../../../../assets/img'
+import {
+  Email,
+  Embedded,
+  FacebookIcon,
+  LineIcon,
+  LinkedIn,
+  PaperPlane,
+  Pinterest,
+  Reddit,
+  Telegram,
+  TitterIcon,
+  WhatsApp
+} from '../../../../Icons/Icons'
+import CommentComponent from '../../../components/commentComponent/CommentComponent'
+import HeartComponent from '../../../components/heartComponent/HeartComponent'
+import ItemShare from '../../../components/itemShare/ItemShare'
+import ItemSocial from '../../../components/itemSocial/ItemSocial'
+import ShareMoreComponent from '../../../components/shareMore/ShareMoreComponent'
 
 function VideosItems({ dataRender }) {
   const ratio = dataRender.video?.resolution_x > dataRender.video?.resolution_y
@@ -23,7 +42,7 @@ function VideosItems({ dataRender }) {
     }
     const sectionObserver = new IntersectionObserver(revealSection, {
       root: null,
-      threshold: 0.65
+      threshold: 0.6
     })
     allVideos.forEach((item, index) => {
       sectionObserver.observe(item)
@@ -57,7 +76,7 @@ function VideosItems({ dataRender }) {
                   </div>
                 </div>
                 <div className='w-[430px] text-base font-light leading-6 tracking-tighter line-clamp-3'>
-                  {item?.description} 🎧
+                  <FormatTextBold text={item.description} /> 🎧
                 </div>
                 {item.music ? <div className='mt-1 font-medium'>Nhạc Nền - {item?.music} 🎧🎧🎧</div> : null}
                 <div className='mt-3 mb-3 flex items-start overflow-hidden '>
@@ -74,7 +93,28 @@ function VideosItems({ dataRender }) {
                       ref={videoRef}
                     />
                   </div>
-                  <div className=''>thả tym</div>
+                  <div className='flex h-full flex-col items-center  self-end'>
+                    <div>
+                      <HeartComponent />
+                      <p>1k</p>
+                    </div>
+                    <div>
+                      <CommentComponent />
+                      <p>1k</p>
+                    </div>
+                    <div className='flex items-center justify-center gap-1 text-[24px]'>
+                      <ShareMoreComponent
+                        data={[
+                          <ItemShare icon={<LinkedIn />} nameIcon={'LinkedIn'} />,
+                          <ItemShare icon={<Reddit />} nameIcon={'Reddit'} />,
+                          <ItemShare icon={<Telegram />} nameIcon={'Telegram'} />,
+                          <ItemShare icon={<Email />} nameIcon={'Email'} />,
+                          <ItemShare icon={<LineIcon />} nameIcon={'LineIcon'} />,
+                          <ItemShare icon={<Pinterest />} nameIcon={'Pinterest'} />
+                        ]}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
