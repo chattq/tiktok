@@ -1,29 +1,35 @@
 import { useQuery } from '@tanstack/react-query'
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { CommentAPI } from '../../../apis/CommentAPI'
 import CommentItem from '../commentItem/CommentItem'
 
-export default function CommentVideo({ idVideo }) {
+function CommentVideo({ idVideo }) {
   const [reFetchCount, setReFetchCount] = useState(0)
-  useEffect(() => {
-    setReFetchCount((old) => (old += 1))
-  }, [idVideo])
+  const [dataRender, setDataRender] = useState(undefined)
+
   console.log(idVideo)
   const { data: comment, isSuccess } = useQuery({
     queryKey: [`/api/videos/${idVideo}/comments`, reFetchCount],
     queryFn: () => CommentAPI.getCommentVideo(idVideo.IdVideo)
   })
-  if (isSuccess) {
-    return (
-      <>
-        {comment
-          ? comment.data.data.map((item, index) => (
-              <div key={item.id}>
-                <CommentItem comment={item} />
-              </div>
-            ))
-          : null}
-      </>
-    )
-  }
+  useEffect(() => {
+    setReFetchCount((old) => (old += 1))
+  }, [idVideo])
+  useEffect(() => {
+    if (isSuccess) {
+      setDataRender((old) => comment.data.data)
+    }
+  }, [isSuccess])
+  return (
+    <>
+      {dataRender
+        ? dataRender.map((item, index) => (
+            <div key={item.id}>
+              <CommentItem comment={item} />
+            </div>
+          ))
+        : null}
+    </>
+  )
 }
+export default memo(CommentVideo)

@@ -38,13 +38,17 @@ import {
   TiktokLogo,
   TitterIcon,
   WhatsApp,
-  LikedHeart
+  LikedHeart,
+  HeartComment
 } from '../../Icons/Icons'
 import ButtonFollow from '../components/buttonFollow/ButtonFollow'
+import CommentComponent from '../components/commentComponent/CommentComponent'
 import CommentVideo from '../components/commentVideo/CommentVideo'
+import HeartComponent from '../components/heartComponent/HeartComponent'
 import ItemShare from '../components/itemShare/ItemShare'
 import ItemSocial from '../components/itemSocial/ItemSocial'
 import LinkVideo from '../components/linkVideo/LinkVideo'
+import ShareMoreComponent from '../components/shareMore/ShareMoreComponent'
 import UserItemDetailVideo from '../components/userItemDetailVideo/UserItemDetailVideo'
 import UserItem from '../Home/components/UserItem/UserItem'
 
@@ -58,6 +62,7 @@ export default function InforVideos() {
   console.log(videoData)
   const videoRef = useRef()
   const inputCommentRef = useRef()
+  const buttonCommentRef = useRef()
   let isPlaying = false
   // const video = videoData?.data.data
   const [videoRender, setVideoRender] = useState(undefined)
@@ -68,6 +73,7 @@ export default function InforVideos() {
   const widthVideo = videoRender?.meta.video.resolution_x
   const checkVideo = heightVideo > widthVideo
   const [isLiked, setIsLiked] = useState(undefined)
+  const [totalComment, setTotalComment] = useState(0)
   useEffect(() => {
     console.log('re render')
     if (isSuccess) {
@@ -78,6 +84,7 @@ export default function InforVideos() {
         const IdVideo = videoData.data.data.id
         return { IdVideo: IdVideo }
       })
+      setTotalComment((old) => videoData.data.data.comments_count)
     }
   }, [isSuccess])
 
@@ -95,6 +102,8 @@ export default function InforVideos() {
     const newComment = inputCommentRef.current.value
     if (newComment.trim().length) {
       CommentAPI.createANewComment(uuidVideo, newComment).then(() => {
+        inputCommentRef.current.value = ''
+        buttonCommentRef.current.classList.remove('hover:cursor-pointer', 'text-red-500')
         toast.success(
           <>
             <FontAwesomeIcon icon={faTiktok} />
@@ -110,6 +119,7 @@ export default function InforVideos() {
           const IdVideo = JSON.parse(JSON.stringify(old))
           return IdVideo
         })
+        setTotalComment((old) => (old += 1))
       })
     } else {
       toast.warning(
@@ -123,6 +133,14 @@ export default function InforVideos() {
           theme: 'light'
         }
       )
+    }
+  }
+
+  function handleOnChangeInput() {
+    if (inputCommentRef.current.value.length) {
+      buttonCommentRef.current.classList.add('hover:cursor-pointer', 'text-red-500')
+    } else {
+      buttonCommentRef.current.classList.remove('hover:cursor-pointer', 'text-red-500')
     }
   }
 
@@ -207,19 +225,23 @@ export default function InforVideos() {
               <div className='flex justify-between'>
                 <div className='flex'>
                   <div className='flex items-center'>
-                    <span
+                    {/* <span
                       className='mr-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-[50%] bg-[#1618230f]'
                       onClick={handleLikeVideo}
                     >
                       {isLiked ? <LikedHeart /> : <Heart />}
+                    </span> */}
+                    <span onClick={handleLikeVideo}>
+                      <HeartComponent isLiked={isLiked} />
                     </span>
                     <strong>{videoRender?.likes_count}</strong>
                   </div>
                   <div className='flex items-center'>
-                    <span className='mr-1 ml-4 flex h-8 w-8 items-center justify-center rounded-[50%] bg-[#1618230f]'>
+                    {/* <span className='mr-1 ml-4 flex h-8 w-8 items-center justify-center rounded-[50%] bg-[#1618230f]'>
                       <CommentIcon />
-                    </span>
-                    <strong>{videoRender?.comments_count}</strong>
+                    </span> */}
+                    <CommentComponent />
+                    <strong>{totalComment}</strong>
                   </div>
                 </div>
                 <div className='flex items-center justify-center gap-1 text-[24px]'>
@@ -228,26 +250,16 @@ export default function InforVideos() {
                   <ItemSocial icon={<TitterIcon />} meassage={'Chia sẻ với Twitter'} />
                   <ItemSocial icon={<FacebookIcon />} meassage={'Chia sẻ với Facebook'} />
                   <ItemSocial icon={<WhatsApp />} meassage={'Chia sẻ với WhatsApp'} />
-                  <Tippy
-                    interactive
-                    placement='bottom'
-                    offset={[0, 5]}
-                    delay={[100, 0]}
-                    render={(attr) => (
-                      <div className='w-[280px] overflow-auto rounded-lg bg-white p-[8px_0] text-[16px] font-medium leading-[22px] shadow-[rgb(0,0,0,12%)_0px_4px_16px]'>
-                        <ItemShare icon={<LinkedIn />} nameIcon={'LinkedIn'} />
-                        <ItemShare icon={<Reddit />} nameIcon={'Reddit'} />
-                        <ItemShare icon={<Telegram />} nameIcon={'Telegram'} />
-                        <ItemShare icon={<Email />} nameIcon={'Email'} />
-                        <ItemShare icon={<LineIcon />} nameIcon={'LineIcon'} />
-                        <ItemShare icon={<Pinterest />} nameIcon={'Pinterest'} />
-                      </div>
-                    )}
-                  >
-                    <span className='flex h-8 w-8 cursor-pointer items-center justify-center rounded-[50%] text-center hover:bg-[#1618230f]'>
-                      {share()}
-                    </span>
-                  </Tippy>
+                  <ShareMoreComponent
+                    data={[
+                      <ItemShare icon={<LinkedIn />} nameIcon={'LinkedIn'} />,
+                      <ItemShare icon={<Reddit />} nameIcon={'Reddit'} />,
+                      <ItemShare icon={<Telegram />} nameIcon={'Telegram'} />,
+                      <ItemShare icon={<Email />} nameIcon={'Email'} />,
+                      <ItemShare icon={<LineIcon />} nameIcon={'LineIcon'} />,
+                      <ItemShare icon={<Pinterest />} nameIcon={'Pinterest'} />
+                    ]}
+                  />
                 </div>
               </div>
               <div className='mt-4'>
@@ -266,6 +278,12 @@ export default function InforVideos() {
                     <div className='max-h-[68px] min-h-[17px] overflow-y-auto break-all text-[14px] leading-[17px] text-[#161823]'>
                       <input
                         ref={inputCommentRef}
+                        onKeyUp={(e) => {
+                          if (e.key === 'Enter') {
+                            handleComment()
+                          }
+                        }}
+                        onChange={handleOnChangeInput}
                         type='text'
                         placeholder='Thêm bình luận'
                         className='w-[100%] bg-transparent caret-red-600 outline-none'
@@ -281,7 +299,8 @@ export default function InforVideos() {
                 </div>
               </div>
               <div
-                className='text mr-1 flex-[0_0_48px] rounded-lg px-[9px] text-right text-[14px]  font-medium leading-[39px] text-[#16182357]'
+                className='mr-1 flex-[0_0_48px] rounded-lg px-[9px] text-right text-[14px]  font-medium leading-[39px] text-[#16182357]'
+                ref={buttonCommentRef}
                 onClick={handleComment}
               >
                 Đăng

@@ -13,4 +13,9 @@ export const CommentAPI = {
         })
     }
   },
+  deleteAComment( idComment) {
+    if(idComment) {
+        return http.delete(`/api/comments/${idComment}`)
+    }
+  },
 }
