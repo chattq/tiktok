@@ -1,23 +1,44 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { User } from '../../apis/UserAPI'
 import { formatNumberFollow, formatNumberLike } from '../../assets/formatNumber'
+import { FormatTextBold } from '../../assets/FormatTextBoild'
 import { ImgBasic } from '../../assets/img'
-import { dots, links, locks, share } from '../../Icons/Icons'
+import { dots, links, locks, share, TikUser } from '../../Icons/Icons'
 import Videos from './Videos/Videos'
 
 export default function InforUser() {
   const { userId } = useParams()
+  const queryClient = useQueryClient()
   const { data: user } = useQuery({
-    queryKey: ['/api/users/@', userId],
+    queryKey: [`/api/users/@`, userId],
     queryFn: () => User.getUser(userId)
   })
   const inforUser = user?.data.data
+  const followMutation = useMutation(User.followUser)
+  const followUnMutation = useMutation(User.unFollowUser)
+  const handleFollow = () => {
+    followMutation.mutate(inforUser?.id, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
+      }
+    })
+  }
+  const handleUnFollow = () => {
+    followUnMutation.mutate(inforUser?.id, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
+      }
+    })
+  }
   return (
     <>
       <div>
+        {/* <p>
+          <FormatTextBold text={'chusng toi#ahddd #ahhhh'}></FormatTextBold>
+        </p> */}
         <div>
           <div className='relative max-w-[624px]'>
             <div className='flex'>
@@ -54,12 +75,26 @@ export default function InforUser() {
                   )}
                 </div>
                 <span className='mt-2 mb-4 h-[25px] font-tiktokFont text-[18px] font-[500] leading-[25px]'>{`${inforUser?.first_name} ${inforUser?.last_name}`}</span>
-                <button
-                  type='button'
-                  className='w-[164px] rounded-md border-0 bg-tiktokPink px-[8px] font-medium text-white hover:bg-[#dc1f44]'
-                >
-                  Follow
-                </button>
+                {!inforUser?.is_followed ? (
+                  <div
+                    onClick={handleFollow}
+                    className='w-[207px] cursor-pointer rounded border border-tiktokPink bg-tiktokPink px-[8px] text-center font-medium text-white hover:bg-[#dc1f44]'
+                  >
+                    Follow
+                  </div>
+                ) : (
+                  <div className='flex items-center'>
+                    <div className='w-[164px] cursor-pointer rounded border border-[rgba(254,44,85,1)] px-[8px] text-center font-medium text-[rgba(254,44,85,1)] hover:bg-[#FFF2F5]'>
+                      Tin Nhắn
+                    </div>
+                    <div
+                      onClick={handleUnFollow}
+                      className='ml-2 flex h-[37px] w-[37px] cursor-pointer items-center justify-center rounded border hover:bg-[#F8F8F8]'
+                    >
+                      {TikUser()}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className='mt-6 flex items-center'>
@@ -139,7 +174,7 @@ export default function InforUser() {
           </div>
         </div>
         <div>
-          <div className='tab_list border-gray relative flex h-[44px] w-[460px] cursor-pointer items-center border-b-[1px] text-[rgba(22,24,35,0.5)]'>
+          <div className='tab_list border-gray relative flex h-[44px] w-[460px] cursor-pointer items-center border-b-[2px] text-[rgba(22,24,35,0.5)]'>
             <div className='tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium'>
               <span>Video</span>
             </div>

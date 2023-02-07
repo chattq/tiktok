@@ -53,13 +53,16 @@ export default function SideBar() {
       </div>
       <div className='mt-3 border-t border-[#F1F1F2] px-2 py-2'>
         <h4 className='text-fontSizeTitle font-semibold text-tiktokColorText'>Các tài khoản đang follow</h4>
+        <p className='text-[14px] font-thin text-[rgba(22,24,35,0.5)]'>
+          Những tài khoản bạn follow sẽ được xuất hiện tại đây
+        </p>
         <div className='mt-5'>
-          {data &&
+          {/* {data &&
             data.map((user) => (
               <Link key={user.id} to={`/users/@${user.nickname}`}>
                 <UserItem data={user} />
               </Link>
-            ))}
+            ))} */}
         </div>
         <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
           {seeMore ? `Ẩn bớt` : `Xem tất cả`}

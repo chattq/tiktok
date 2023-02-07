@@ -18,6 +18,12 @@ export const User = {
     })
   },
   getUser(nameUser) {
-    return http.get(`/api/users/@${nameUser}`)
+    return http.get(`/api/users/${nameUser}`)
+  },
+  followUser(idFollow) {
+    return http.post(`/api/users/${idFollow}/follow`)
+  },
+  unFollowUser(idUnFollow) {
+    return http.post(`/api/users/${idUnFollow}/unfollow`)
   }
 }
