@@ -43,7 +43,7 @@ export default function UserPreview({ data }) {
             </div>
           )}
         </div>
-        <h4 className='mt-1 text-sm font-medium'>{`${data?.first_name} ${data?.last_name}`}</h4>
+        <h4 className='mb-2 mt-[2px] text-sm font-medium'>{`${data?.first_name} ${data?.last_name}`}</h4>
         <div className='flex'>
           <div className='flex items-center'>
             <span className='mr-2 font-semibold'>{formatNumberFollow(data?.followers_count)}</span>
