@@ -3,8 +3,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { User } from '../../apis/UserAPI'
+import ButtonFollow from '../../assets/ButtonFollow'
 import { formatNumberFollow, formatNumberLike } from '../../assets/formatNumber'
-import { FormatTextBold } from '../../assets/FormatTextBoild'
 import { ImgBasic } from '../../assets/img'
 import { dots, links, locks, share, TikUser } from '../../Icons/Icons'
 import Videos from './Videos/Videos'
@@ -14,18 +14,11 @@ export default function InforUser() {
   const queryClient = useQueryClient()
   const { data: user } = useQuery({
     queryKey: [`/api/users/@`, userId],
-    queryFn: () => User.getUser(userId)
+    queryFn: () => User.getUser(userId),
+    cacheTime: 10 * 100
   })
   const inforUser = user?.data.data
-  const followMutation = useMutation(User.followUser)
   const followUnMutation = useMutation(User.unFollowUser)
-  const handleFollow = () => {
-    followMutation.mutate(inforUser?.id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
-      }
-    })
-  }
   const handleUnFollow = () => {
     followUnMutation.mutate(inforUser?.id, {
       onSuccess: () => {
@@ -36,9 +29,6 @@ export default function InforUser() {
   return (
     <>
       <div>
-        {/* <p>
-          <FormatTextBold text={'chusng toi#ahddd #ahhhh'}></FormatTextBold>
-        </p> */}
         <div>
           <div className='relative max-w-[624px]'>
             <div className='flex'>
@@ -76,12 +66,12 @@ export default function InforUser() {
                 </div>
                 <span className='mt-2 mb-4 h-[25px] font-tiktokFont text-[18px] font-[500] leading-[25px]'>{`${inforUser?.first_name} ${inforUser?.last_name}`}</span>
                 {!inforUser?.is_followed ? (
-                  <div
-                    onClick={handleFollow}
-                    className='w-[207px] cursor-pointer rounded border border-tiktokPink bg-tiktokPink px-[8px] text-center font-medium text-white hover:bg-[#dc1f44]'
-                  >
-                    Follow
-                  </div>
+                  <ButtonFollow
+                    style={
+                      'w-[207px] cursor-pointer rounded border border-tiktokPink bg-tiktokPink px-[8px] text-center font-medium text-white hover:bg-[#dc1f44]'
+                    }
+                    idUserFollow={inforUser?.id}
+                  />
                 ) : (
                   <div className='flex items-center'>
                     <div className='w-[164px] cursor-pointer rounded border border-[rgba(254,44,85,1)] px-[8px] text-center font-medium text-[rgba(254,44,85,1)] hover:bg-[#FFF2F5]'>
