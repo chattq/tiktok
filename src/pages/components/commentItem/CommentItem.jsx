@@ -8,11 +8,8 @@ import { LikeAPI } from '../../../apis/Like'
 import ModalConfirm from '../modalConfirm/ModalConfirm'
 
 export default function CommentItem({ comment }) {
-  console.log(`render comment ${comment?.user.id}`)
   const [openModal, setOpenModal] = useState(false)
-  console.log(comment)
   const dataUser = JSON.parse(localStorage.getItem('userInfo'))
-  console.log(dataUser)
   const isOwnLogin = dataUser.id === comment?.user.id
   const [dataComment, setDataComment] = useState(comment)
   const idComment = dataComment?.id
@@ -22,12 +19,10 @@ export default function CommentItem({ comment }) {
   async function handleLikeComment() {
     if (isLiked) {
       const newData = await LikeAPI.UnLikeComment(idComment)
-      console.log(newData)
       setDataComment(newData.data.data)
       setIsLiked((old) => !old)
     } else {
       const newData = await LikeAPI.LikeComment(idComment)
-      console.log(newData)
       setDataComment(newData.data.data)
       setIsLiked((old) => !old)
     }
