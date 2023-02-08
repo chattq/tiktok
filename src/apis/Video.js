@@ -7,7 +7,15 @@ export const Videos = {
   uploadVideo() {
     return http.post(`/api/videos`, {})
   },
-  getVideosHomePage(type, page, token) {
+  getVideosForyou(type, page) {
+    return http.get(`/api/videos`, {
+      params: {
+        type: type,
+        page: page
+      }
+    })
+  },
+  getVideosFollowing(type, page, token) {
     return http.get(`/api/videos`, {
       params: {
         type: type,

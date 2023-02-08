@@ -8,7 +8,7 @@ function VideosList({ dataRender }) {
       {dataRender.map((item, index) => {
         return (
           <div key={item.uuid}>
-            <VideosItems data={item} />
+            <VideosItems data={item} totalData={dataRender} />
           </div>
         )
       })}

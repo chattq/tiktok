@@ -12,7 +12,7 @@ export default function Following() {
     setNumberLoad((pre) => (pre += 1))
   }
   useEffect(() => {
-    Videos.getVideosHomePage('following', numberLoad, token)
+    Videos.getVideosFollowing('following', numberLoad, token)
       .then((res) => {
         console.log(res)
         setDataRender((pre) => [...pre, ...res.data.data])
