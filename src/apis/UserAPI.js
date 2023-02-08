@@ -9,6 +9,14 @@ export const User = {
       }
     })
   },
+  followUserList({ page, perPage }) {
+    return http.get(`/api/me/followings`, {
+      params: {
+        page,
+        per_page: perPage
+      }
+    })
+  },
   searchUser({ q, type }) {
     return http.get(`/api/users/search`, {
       params: {
