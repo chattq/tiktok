@@ -1,7 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { User } from '../../../../apis/UserAPI'
+import { AppContext } from '../../../../context/app.context'
+import SkeletonUserSuggest from '../../../components/Skeleton/SkeletonUserSuggest'
 import UserItem from '../UserItem/UserItem'
 
 export default function SuggestUser() {
@@ -30,7 +31,9 @@ export default function SuggestUser() {
   return (
     <>
       <div className='mt-5'>
-        {data &&
+        {data.length === 0 ? (
+          <SkeletonUserSuggest />
+        ) : (
           data.map((user) => {
             if (user?.is_followed === false) {
               return (
@@ -41,11 +44,12 @@ export default function SuggestUser() {
                 </>
               )
             }
-          })}
+          })
+        )}
+        <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
+          {seeMore ? `Ẩn bớt` : `Xem tất cả`}
+        </span>
       </div>
-      <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
-        {seeMore ? `Ẩn bớt` : `Xem tất cả`}
-      </span>
     </>
   )
 }

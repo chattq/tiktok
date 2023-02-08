@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import ButtonFollow from '../../../components/buttonFollow/ButtonFollow'
 import { FormatTextBold } from '../../../../assets/FormatTextBoild'
 import { ImgBasic } from '../../../../assets/img'
 import {
@@ -18,6 +17,7 @@ import {
   TitterIcon,
   WhatsApp
 } from '../../../../Icons/Icons'
+import ButtonFollow from '../../../components/buttonFollow/ButtonFollow'
 import CommentComponent from '../../../components/commentComponent/CommentComponent'
 import HeartComponent from '../../../components/heartComponent/HeartComponent'
 import ItemShare from '../../../components/itemShare/ItemShare'

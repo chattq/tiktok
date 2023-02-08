@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { User } from '../../../../apis/UserAPI'
+import SkeletonUserSuggest from '../../../components/Skeleton/SkeletonUserSuggest'
 import UserItem from '../UserItem/UserItem'
 
 export default function FollowUser() {
@@ -15,7 +16,8 @@ export default function FollowUser() {
     const getAcounts = async () => {
       const result = await User.followUserList({ page, perPage })
       setAllFollowUsers(result.data.data)
-      const lessResult = result.data.data.slice(0, 5)
+      const filterResult = result.data.data.filter((item) => item.is_followed)
+      const lessResult = filterResult.slice(0, 5)
       setFollowUsers(lessResult)
       setData(lessResult)
     }
@@ -26,16 +28,18 @@ export default function FollowUser() {
     seeMore ? setData(FollowUsers) : setData(allFollowUsers)
     setSeeMore(!seeMore)
   }
-  // console.log(data)
   return (
     <>
       <div className='mt-5'>
-        {data &&
+        {data.length === 0 ? (
+          <SkeletonUserSuggest />
+        ) : (
           data.map((user) => (
             <Link key={user.id} to={`/users/@${user.nickname}`}>
               <UserItem data={user} />
             </Link>
-          ))}
+          ))
+        )}
       </div>
       <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
         {seeMore ? `Ẩn bớt` : `Xem tất cả`}

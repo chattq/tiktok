@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Play } from '../../../Icons/Icons'
 
-export default function Videos({ dataVideos }) {
+export default function Videos({ dataVideos, previousPath, totalData }) {
   const { userId, videoId } = useParams()
   const [isHover, setIsHover] = useState(false)
   const videoRef = useRef(null)
@@ -19,7 +19,12 @@ export default function Videos({ dataVideos }) {
 
   return (
     <>
-      <Link to={`/users/${userId}/${dataVideos.uuid}`} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      <Link
+        to={`/users/${userId}/${dataVideos.uuid}`}
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        state={{ totalData: totalData, previousPath: previousPath }}
+      >
         <div className='relative w-full'>
           <div className=' '>
             <div className=' h-[250px] w-[190px] overflow-hidden rounded'>
