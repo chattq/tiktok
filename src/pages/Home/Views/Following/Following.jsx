@@ -7,6 +7,7 @@ export default function Following() {
   const [dataRender, setDataRender] = useState([])
   const [numberLoad, setNumberLoad] = useState(1)
   const token = JSON.parse(localStorage.getItem('token'))
+  const previousPath = window.location.pathname
 
   const handleLoadMoreData = () => {
     setNumberLoad((pre) => (pre += 1))
@@ -23,7 +24,7 @@ export default function Following() {
   }, [numberLoad])
   return (
     <>
-      <VideosList dataRender={dataRender} />
+      <VideosList dataRender={dataRender} previousPath={previousPath} />
       <button onClick={handleLoadMoreData}>loadmore</button>
     </>
   )

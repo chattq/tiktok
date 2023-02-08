@@ -1,12 +1,12 @@
 import { faTiktok } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import Tippy from '@tippyjs/react/headless'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useRef } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { CommentAPI } from '../../apis/CommentAPI'
 import { LikeAPI } from '../../apis/Like'
@@ -53,9 +53,21 @@ import UserItemDetailVideo from '../components/userItemDetailVideo/UserItemDetai
 import UserItem from '../Home/components/UserItem/UserItem'
 
 export default function InforVideos() {
+  const nav = useNavigate()
+  const location = useLocation()
+  const { totalData, previousPath } = location.state
+  console.log(58, totalData)
+  console.log(58, previousPath)
+
   const { userId, videoId } = useParams()
   console.log(videoId)
-  const { data: videoData, isSuccess } = useQuery({
+  const videoIndex = totalData.findIndex((item) => item.uuid === videoId)
+  const previousVideo = totalData[videoIndex - 1]
+  console.log(previousVideo)
+  const nextVideo = totalData[videoIndex + 1]
+  console.log(nextVideo)
+
+  const { data: videoData, isLoading } = useQuery({
     queryKey: ['/api/users/@', videoId],
     queryFn: () => Videos.getVideos(videoId)
   })
@@ -65,28 +77,35 @@ export default function InforVideos() {
   const buttonCommentRef = useRef()
   let isPlaying = false
   // const video = videoData?.data.data
-  const [videoRender, setVideoRender] = useState(undefined)
-  const [user, setUser] = useState(undefined)
+  // const [videoRender, setVideoRender] = useState(undefined)
+  const videoRender = videoData?.data.data
+  // const [user, setUser] = useState(undefined)
+  const user = videoData?.data.data.user
   const [idVideo, setIdVideo] = useState(undefined)
+
   const uuidVideo = videoRender?.uuid
   const heightVideo = videoRender?.meta.video.resolution_y
   const widthVideo = videoRender?.meta.video.resolution_x
   const checkVideo = heightVideo > widthVideo
-  const [isLiked, setIsLiked] = useState(undefined)
-  const [totalComment, setTotalComment] = useState(0)
+  const isLiked = videoData?.data.data.is_liked
+  const addCommentMutation = useMutation(CommentAPI.createANewComment)
+  const handleLikePostMutation = useMutation(LikeAPI.LikePost)
+  const handleDislikePostMutation = useMutation(LikeAPI.UnLikePost)
+
+  const queryClient = useQueryClient()
   useEffect(() => {
     console.log('re render')
-    if (isSuccess) {
-      setUser((old) => videoData.data.data.user)
-      setIsLiked((old) => videoData.data.data.is_liked)
-      setVideoRender((old) => videoData.data.data)
+    if (!isLoading) {
+      console.log('re render', isLoading)
+      // setUser((old) => videoData.data.data.user)
+      // setIsLiked((old) => videoData.data.data.is_liked)
+      // setVideoRender((old) => videoData.data.data)
       setIdVideo((old) => {
-        const IdVideo = videoData.data.data.id
-        return { IdVideo: IdVideo }
+        const idVideo = videoData.data.data.id
+        return { idVideo: idVideo }
       })
-      setTotalComment((old) => videoData.data.data.comments_count)
     }
-  }, [isSuccess])
+  }, [isLoading])
 
   function handlePlay() {
     console.log(isPlaying)
@@ -101,26 +120,53 @@ export default function InforVideos() {
   function handleComment() {
     const newComment = inputCommentRef.current.value
     if (newComment.trim().length) {
-      CommentAPI.createANewComment(uuidVideo, newComment).then(() => {
-        inputCommentRef.current.value = ''
-        buttonCommentRef.current.classList.remove('hover:cursor-pointer', 'text-red-500')
-        toast.success(
-          <>
-            <FontAwesomeIcon icon={faTiktok} />
-            <span className='ml-[5px]'>Bình luận thành công</span>
-          </>,
-          {
-            position: 'top-right',
-            autoClose: 2000,
-            theme: 'light'
+      addCommentMutation.mutate(
+        { uuidVideos: uuidVideo, dataComment: newComment },
+        {
+          onSuccess: async function () {
+            await queryClient.invalidateQueries({ queryKey: ['/api/users/@', videoId], exact: true })
+            console.log(videoData)
+
+            inputCommentRef.current.value = ''
+            buttonCommentRef.current.classList.remove('hover:cursor-pointer', 'text-red-500')
+            buttonCommentRef.current.classList.add('text-[#16182357]')
+            toast.success(
+              <>
+                <FontAwesomeIcon icon={faTiktok} />
+                <span className='ml-[5px]'>Bình luận thành công</span>
+              </>,
+              {
+                position: 'top-right',
+                autoClose: 2000,
+                theme: 'light'
+              }
+            )
+            setIdVideo((old) => {
+              const idVideo = videoData.data.data.id
+              return { idVideo: idVideo }
+            })
           }
-        )
-        setIdVideo((old) => {
-          const IdVideo = JSON.parse(JSON.stringify(old))
-          return IdVideo
-        })
-        setTotalComment((old) => (old += 1))
-      })
+        }
+      )
+      // CommentAPI.createANewComment(uuidVideo, newComment).then(() => {
+      //   inputCommentRef.current.value = ''
+      //   buttonCommentRef.current.classList.remove('hover:cursor-pointer', 'text-red-500')
+      //   toast.success(
+      //     <>
+      //       <FontAwesomeIcon icon={faTiktok} />
+      //       <span className='ml-[5px]'>Bình luận thành công</span>
+      //     </>,
+      //     {
+      //       position: 'top-right',
+      //       autoClose: 2000,
+      //       theme: 'light'
+      //     }
+      //   )
+      //   setIdVideo((old) => {
+      //     const IdVideo = JSON.parse(JSON.stringify(old))
+      //     return IdVideo
+      //   })
+      // })
     } else {
       toast.warning(
         <>
@@ -139,24 +185,42 @@ export default function InforVideos() {
   function handleOnChangeInput() {
     if (inputCommentRef.current.value.length) {
       buttonCommentRef.current.classList.add('hover:cursor-pointer', 'text-red-500')
+      buttonCommentRef.current.classList.remove('text-[#16182357]')
     } else {
       buttonCommentRef.current.classList.remove('hover:cursor-pointer', 'text-red-500')
+      buttonCommentRef.current.classList.add('text-[#16182357]')
     }
   }
 
   async function handleLikeVideo() {
     if (isLiked) {
-      const newData = await LikeAPI.UnLikePost(idVideo.IdVideo)
-      console.log(newData)
-      setVideoRender((old) => newData.data.data)
-      setIsLiked((old) => !old)
+      handleDislikePostMutation.mutate(videoData?.data.data.id, {
+        onSuccess: async function () {
+          await queryClient.invalidateQueries({ queryKey: ['/api/users/@', videoId], exact: true })
+          console.log(videoData)
+        }
+      })
     } else {
-      const newData = await LikeAPI.LikePost(idVideo.IdVideo)
-      console.log(newData)
-      setVideoRender((old) => newData.data.data)
-      setIsLiked((old) => !old)
+      handleLikePostMutation.mutate(videoData?.data.data.id, {
+        onSuccess: async function () {
+          await queryClient.invalidateQueries({ queryKey: ['/api/users/@', videoId], exact: true })
+          console.log(videoData)
+        }
+      })
     }
   }
+
+  function handlePreviousVideo() {
+    nav(`/users/@${previousVideo?.user.nickname}/${previousVideo?.uuid}`, {
+      state: { totalData: totalData, previousPath: previousPath }
+    })
+  }
+  function handleNextVideo() {
+    nav(`/users/@${nextVideo?.user.nickname}/${nextVideo?.uuid}`, {
+      state: { totalData: totalData, previousPath: previousPath }
+    })
+  }
+
   return (
     <>
       <ToastContainer />
@@ -183,7 +247,9 @@ export default function InforVideos() {
           </div>
           <button
             className='absolute top-5 left-5 z-10 flex h-10 w-10 items-center justify-center rounded-[50%] bg-[#54545480] hover:bg-[#25252599] hover:opacity-70'
-            onClick={() => {}}
+            onClick={() => {
+              nav(previousPath)
+            }}
           >
             <CloseIcon />
           </button>
@@ -194,12 +260,22 @@ export default function InforVideos() {
             <FlagReport />
             <span className='ml-3'>Báo cáo</span>
           </div>
-          <button className='absolute right-5 top-[calc(50%-48px)] z-10 flex h-10 w-10 -rotate-90 cursor-pointer items-center justify-center rounded-[50%] border-none bg-[#54545480] outline-none hover:bg-[#25252599] hover:opacity-70'>
-            <ToOtherVideo />
-          </button>
-          <button className='absolute top-[calc(50%+8px)] right-5 z-10 flex h-10 w-10 rotate-90 cursor-pointer items-center justify-center rounded-[50%] border-none bg-[#54545480] outline-none hover:bg-[#25252599] hover:opacity-70'>
-            <ToOtherVideo />
-          </button>
+          {previousVideo ? (
+            <button
+              className='absolute right-5 top-[calc(50%-48px)] z-10 flex h-10 w-10 -rotate-90 cursor-pointer items-center justify-center rounded-[50%] border-none bg-[#54545480] outline-none hover:bg-[#25252599] hover:opacity-70'
+              onClick={handlePreviousVideo}
+            >
+              <ToOtherVideo />
+            </button>
+          ) : null}
+          {nextVideo ? (
+            <button
+              className='absolute top-[calc(50%+8px)] right-5 z-10 flex h-10 w-10 rotate-90 cursor-pointer items-center justify-center rounded-[50%] border-none bg-[#54545480] outline-none hover:bg-[#25252599] hover:opacity-70'
+              onClick={handleNextVideo}
+            >
+              <ToOtherVideo />
+            </button>
+          ) : null}
         </div>
         <div className='webkit-scroll-hide flex h-[100vh] w-[554px] flex-col pt-8'>
           <div className='mb-[15px] flex flex-[0_0_82px] justify-between px-8 pt-[22px]'>
@@ -240,8 +316,10 @@ export default function InforVideos() {
                     {/* <span className='mr-1 ml-4 flex h-8 w-8 items-center justify-center rounded-[50%] bg-[#1618230f]'>
                       <CommentIcon />
                     </span> */}
-                    <CommentComponent />
-                    <strong>{totalComment}</strong>
+                    <div className='mr-1 ml-4'>
+                      <CommentComponent />
+                    </div>
+                    <strong>{videoRender?.comments_count}</strong>
                   </div>
                 </div>
                 <div className='flex items-center justify-center gap-1 text-[24px]'>

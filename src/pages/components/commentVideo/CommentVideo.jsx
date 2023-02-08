@@ -7,10 +7,9 @@ function CommentVideo({ idVideo }) {
   const [reFetchCount, setReFetchCount] = useState(0)
   const [dataRender, setDataRender] = useState(undefined)
 
-  console.log(idVideo)
   const { data: comment, isSuccess } = useQuery({
-    queryKey: [`/api/videos/${idVideo}/comments`, reFetchCount],
-    queryFn: () => CommentAPI.getCommentVideo(idVideo.IdVideo)
+    queryKey: [`/api/videos/${idVideo.idVideo}/comments`, reFetchCount],
+    queryFn: () => CommentAPI.getCommentVideo(idVideo.idVideo)
   })
   useEffect(() => {
     setReFetchCount((old) => (old += 1))

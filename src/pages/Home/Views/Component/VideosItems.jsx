@@ -24,7 +24,7 @@ import ButtonUnfollow from '../../../components/buttonUnfollow/ButtonUnfollow'
 import { User } from '../../../../apis/UserAPI'
 import { Link } from 'react-router-dom'
 
-function VideosItems({ data, totalData }) {
+function VideosItems({ data, totalData, previousPath }) {
   console.log('data', data)
   console.log(27, data.user.is_followed)
   const ratio = data?.meta.video.resolution_x > data?.meta.video.resolution_y
@@ -116,7 +116,7 @@ function VideosItems({ data, totalData }) {
               className={`div-video mr-2 ${
                 ratio ? 'w-[calc(450px+((100vw-768px)/1152)*100)]' : 'h-[calc(450px+((100vw-768px)/1152)*100)]'
               } ${ratio ? 'h-fit' : 'w-fit'} `}
-              state={{ totalData: totalData }}
+              state={{ totalData: totalData, previousPath: previousPath }}
             >
               <video
                 className='video-display h-full w-full overflow-hidden rounded-lg outline-none '
