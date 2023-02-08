@@ -110,10 +110,12 @@ function VideosItems({ data }) {
           </div>
           {data?.music ? <div className='mt-1 font-medium'>Nhạc Nền - {data?.music} 🎧🎧🎧</div> : null}
           <div className='mt-3 mb-3 flex  '>
-            <div
+            <Link
+              to={`/users/@${data?.user.nickname}/${data?.uuid}`}
               className={`div-video mr-2 ${
                 ratio ? 'w-[calc(450px+((100vw-768px)/1152)*100)]' : 'h-[calc(450px+((100vw-768px)/1152)*100)]'
               } ${ratio ? 'h-fit' : 'w-fit'} `}
+              state={{ totalData: totalData }}
             >
               <video
                 className='video-display h-full w-full overflow-hidden rounded-lg outline-none '
@@ -121,7 +123,7 @@ function VideosItems({ data }) {
                 src={data?.file_url}
                 ref={videoRef}
               />
-            </div>
+            </Link>
             <div className='flex h-full flex-col items-center  self-end'>
               <div>
                 <HeartComponent />
