@@ -6,7 +6,7 @@ export default function HomeLayout() {
   const { userId } = useParams()
   const checkParams = Boolean(userId)
   return (
-    <div className={checkParams ? 'mt-1 pl-[10px]' : 'relative mt-5 flex justify-center'}>
+    <div className={checkParams ? 'mt-1 pl-[10px]' : 'relative flex justify-center pt-[80px]'}>
       <div className='relative flex'>
         <div className={checkParams ? 'fixed w-[250px] pt-4 ' : 'fixed ml-[-170px] w-[330px]'}>
           <SideBar />
