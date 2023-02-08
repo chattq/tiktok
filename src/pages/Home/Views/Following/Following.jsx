@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Videos } from '../../../../apis/Video'
 import VideosItems from '../Component/VideosItems'
+import VideosList from '../Component/VideosList'
 
 export default function Following() {
   const [dataRender, setDataRender] = useState([])
@@ -22,7 +23,7 @@ export default function Following() {
   }, [numberLoad])
   return (
     <>
-      <VideosItems dataRender={dataRender} />
+      <VideosList dataRender={dataRender} />
       <button onClick={handleLoadMoreData}>loadmore</button>
     </>
   )
