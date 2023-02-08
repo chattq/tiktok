@@ -22,8 +22,9 @@ import ItemSocial from '../../../components/itemSocial/ItemSocial'
 import ShareMoreComponent from '../../../components/shareMore/ShareMoreComponent'
 import ButtonUnfollow from '../../../components/buttonUnfollow/ButtonUnfollow'
 import { User } from '../../../../apis/UserAPI'
+import { Link } from 'react-router-dom'
 
-function VideosItems({ data }) {
+function VideosItems({ data, totalData }) {
   console.log('data', data)
   console.log(27, data.user.is_followed)
   const ratio = data?.meta.video.resolution_x > data?.meta.video.resolution_y
