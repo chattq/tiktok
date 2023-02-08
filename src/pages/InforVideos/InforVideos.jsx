@@ -55,8 +55,10 @@ import UserItem from '../Home/components/UserItem/UserItem'
 export default function InforVideos() {
   const nav = useNavigate()
   const location = useLocation()
-  const { totalData } = location.state
+  const { totalData, previousPath } = location.state
   console.log(58, totalData)
+  console.log(58, previousPath)
+
   const { userId, videoId } = useParams()
   console.log(videoId)
   const videoIndex = totalData.findIndex((item) => item.uuid === videoId)
@@ -140,8 +142,8 @@ export default function InforVideos() {
               }
             )
             setIdVideo((old) => {
-              const IdVideo = JSON.parse(JSON.stringify(old))
-              return IdVideo
+              const idVideo = videoData.data.data.id
+              return { idVideo: idVideo }
             })
           }
         }
@@ -209,10 +211,14 @@ export default function InforVideos() {
   }
 
   function handlePreviousVideo() {
-    nav(`/users/@${previousVideo?.user.nickname}/${previousVideo?.uuid}`, { state: { totalData: totalData } })
+    nav(`/users/@${previousVideo?.user.nickname}/${previousVideo?.uuid}`, {
+      state: { totalData: totalData, previousPath: previousPath }
+    })
   }
   function handleNextVideo() {
-    nav(`/users/@${nextVideo?.user.nickname}/${nextVideo?.uuid}`, { state: { totalData: totalData } })
+    nav(`/users/@${nextVideo?.user.nickname}/${nextVideo?.uuid}`, {
+      state: { totalData: totalData, previousPath: previousPath }
+    })
   }
 
   return (
@@ -241,7 +247,9 @@ export default function InforVideos() {
           </div>
           <button
             className='absolute top-5 left-5 z-10 flex h-10 w-10 items-center justify-center rounded-[50%] bg-[#54545480] hover:bg-[#25252599] hover:opacity-70'
-            onClick={() => {}}
+            onClick={() => {
+              nav(previousPath)
+            }}
           >
             <CloseIcon />
           </button>
