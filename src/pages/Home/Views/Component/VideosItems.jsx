@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import ButtonFollow from '../../../components/buttonFollow/ButtonFollow'
 import { FormatTextBold } from '../../../../assets/FormatTextBoild'
 import { ImgBasic } from '../../../../assets/img'
 import {
