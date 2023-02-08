@@ -7,6 +7,7 @@ import VideosList from '../Component/VideosList'
 export default function HomeMain() {
   const [dataRender, setDataRender] = useState([])
   const [numberLoad, setNumberLoad] = useState(1)
+  const previousPath = window.location.pathname
   const handleLoadMoreData = () => {
     setNumberLoad((prev) => (prev += 1))
     Videos.getVideosHomePage('for-you', numberLoad + 1)
@@ -19,8 +20,7 @@ export default function HomeMain() {
       })
   }
   useEffect(() => {
-    console.log('useEffectHome')
-    Videos.getVideosHomePage('for-you', 1)
+    Videos.getVideosForyou('for-you', 1)
       .then((res) => {
         console.log(res, 17)
         setDataRender(res.data.data)
@@ -32,7 +32,7 @@ export default function HomeMain() {
 
   return (
     <>
-      <VideosList dataRender={dataRender} />
+      <VideosList dataRender={dataRender} previousPath={previousPath} />
       <button onClick={handleLoadMoreData}>loadmore</button>
     </>
   )

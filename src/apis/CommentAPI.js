@@ -6,7 +6,9 @@ export const CommentAPI = {
         return http.get(`/api/videos/${idVideos}/comments`)
     }
   },
-  createANewComment(uuidVideos, dataComment) {
+  createANewComment({uuidVideos, dataComment}) {
+    console.log('uuidVideos', uuidVideos)
+    console.log('dataComment', dataComment)
     if(uuidVideos) {
         return http.post(`/api/videos/${uuidVideos}/comments`, {
           comment: dataComment
