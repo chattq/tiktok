@@ -6,7 +6,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useRef } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { CommentAPI } from '../../apis/CommentAPI'
 import { LikeAPI } from '../../apis/Like'
@@ -53,8 +53,18 @@ import UserItemDetailVideo from '../components/userItemDetailVideo/UserItemDetai
 import UserItem from '../Home/components/UserItem/UserItem'
 
 export default function InforVideos() {
+  const nav = useNavigate()
+  const location = useLocation()
+  const { totalData } = location.state
+  console.log(58, totalData)
   const { userId, videoId } = useParams()
   console.log(videoId)
+  const videoIndex = totalData.findIndex((item) => item.uuid === videoId)
+  const previousVideo = totalData[videoIndex - 1]
+  console.log(previousVideo)
+  const nextVideo = totalData[videoIndex + 1]
+  console.log(nextVideo)
+
   const { data: videoData, isLoading } = useQuery({
     queryKey: ['/api/users/@', videoId],
     queryFn: () => Videos.getVideos(videoId)
@@ -197,6 +207,14 @@ export default function InforVideos() {
       })
     }
   }
+
+  function handlePreviousVideo() {
+    nav(`/users/@${previousVideo?.user.nickname}/${previousVideo?.uuid}`, { state: { totalData: totalData } })
+  }
+  function handleNextVideo() {
+    nav(`/users/@${nextVideo?.user.nickname}/${nextVideo?.uuid}`, { state: { totalData: totalData } })
+  }
+
   return (
     <>
       <ToastContainer />
@@ -234,12 +252,22 @@ export default function InforVideos() {
             <FlagReport />
             <span className='ml-3'>Báo cáo</span>
           </div>
-          <button className='absolute right-5 top-[calc(50%-48px)] z-10 flex h-10 w-10 -rotate-90 cursor-pointer items-center justify-center rounded-[50%] border-none bg-[#54545480] outline-none hover:bg-[#25252599] hover:opacity-70'>
-            <ToOtherVideo />
-          </button>
-          <button className='absolute top-[calc(50%+8px)] right-5 z-10 flex h-10 w-10 rotate-90 cursor-pointer items-center justify-center rounded-[50%] border-none bg-[#54545480] outline-none hover:bg-[#25252599] hover:opacity-70'>
-            <ToOtherVideo />
-          </button>
+          {previousVideo ? (
+            <button
+              className='absolute right-5 top-[calc(50%-48px)] z-10 flex h-10 w-10 -rotate-90 cursor-pointer items-center justify-center rounded-[50%] border-none bg-[#54545480] outline-none hover:bg-[#25252599] hover:opacity-70'
+              onClick={handlePreviousVideo}
+            >
+              <ToOtherVideo />
+            </button>
+          ) : null}
+          {nextVideo ? (
+            <button
+              className='absolute top-[calc(50%+8px)] right-5 z-10 flex h-10 w-10 rotate-90 cursor-pointer items-center justify-center rounded-[50%] border-none bg-[#54545480] outline-none hover:bg-[#25252599] hover:opacity-70'
+              onClick={handleNextVideo}
+            >
+              <ToOtherVideo />
+            </button>
+          ) : null}
         </div>
         <div className='webkit-scroll-hide flex h-[100vh] w-[554px] flex-col pt-8'>
           <div className='mb-[15px] flex flex-[0_0_82px] justify-between px-8 pt-[22px]'>
