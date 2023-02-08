@@ -136,7 +136,7 @@ function Upload() {
   return (
     <>
       <ToastContainer />
-      <div className='relative w-full'>
+      <div className='relative  w-full pt-[60px]'>
         <div className='bg-[#f8f8f8] py-4'>
           <div className='my-0 mx-auto w-[1100px] rounded-md bg-[#ffffff] shadow-lg'>
             <div className='w-[1100px] px-10 py-6 '>
