@@ -194,7 +194,7 @@ export default function HeaderLayout({ children }) {
 
   return (
     <>
-      <div className='h-[60px] w-full border-b border-[#ccc]'>
+      <div className='fixed z-50 h-[60px] w-full border-b border-[#ccc] bg-white'>
         <div
           className={
             checkParams || checkParamsUpload

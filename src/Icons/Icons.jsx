@@ -507,7 +507,7 @@ export const Music = () => (
   </svg>
 )
 
-export const Heart = () => (
+export const Heart = ({ style }) => (
   <svg
     width='20'
     data-e2e=''
@@ -515,6 +515,7 @@ export const Heart = () => (
     viewBox='0 0 24 24'
     fill='rgba(22, 24, 35, 1)'
     xmlns='http://www.w3.org/2000/svg'
+    style={style}
   >
     <g clip-path='url(#HeartFill_clip0)'>
       <g filter='url(#HeartFill_filter0_d)'>
@@ -914,7 +915,7 @@ export const ToOtherVideo = () => (
     ></path>
   </svg>
 )
-export const LikedHeart = () => (
+export const LikedHeart = ({ style }) => (
   <svg
     width='20'
     data-e2e=''
@@ -922,6 +923,7 @@ export const LikedHeart = () => (
     viewBox='0 0 24 24'
     fill='rgba(254, 44, 85, 1)'
     xmlns='http://www.w3.org/2000/svg'
+    style={style}
   >
     <g clip-path='url(#HeartFill_clip0)'>
       <g filter='url(#HeartFill_filter0_d)'>
