@@ -1,4 +1,5 @@
 import React from 'react'
+import ButtonFollow from '../../../components/buttonFollow/ButtonFollow'
 
 export default function Live() {
   return (

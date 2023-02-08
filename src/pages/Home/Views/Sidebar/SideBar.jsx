@@ -4,32 +4,10 @@
 import React, { useEffect, useState } from 'react'
 import { HomeIcon, LiveIcon, UserIcon } from '../../../../Icons/Icons'
 import MenuItem from '../../components/MenuItem/MenuItem'
-import UserItem from '../../components/UserItem/UserItem'
-import { User } from '../../../../apis/UserAPI'
-import { Link } from 'react-router-dom'
+import SuggestUser from '../../components/SuggestUser/SuggestUser'
+import FollowUser from '../../components/FollowUser/FollowUser'
 
 export default function SideBar() {
-  const [data, setData] = useState([])
-  const [allSuggestedUsers, setAllSuggestedUsers] = useState([])
-  const [suggestedUsers, setSuggestedUsers] = useState([])
-  const [page] = useState(1)
-  const [perPage] = useState(15)
-  const [seeMore, setSeeMore] = useState(false)
-  useEffect(() => {
-    const getAcounts = async () => {
-      const result = await User.suggestUserList({ page, perPage })
-      setAllSuggestedUsers(result.data.data)
-      const lessResult = result.data.data.slice(0, 5)
-      setSuggestedUsers(lessResult)
-      setData(lessResult)
-    }
-    getAcounts()
-  }, [page, perPage])
-
-  const handleSeeAll = async () => {
-    seeMore ? setData(suggestedUsers) : setData(allSuggestedUsers)
-    setSeeMore(!seeMore)
-  }
   return (
     <>
       <div className='h-[156px] border-b border-[#F1F1F2]'>
@@ -39,34 +17,14 @@ export default function SideBar() {
       </div>
       <div className='mt-2 px-2 py-1'>
         <h1 className='text-fontSizeTitle font-semibold text-tiktokColorText'>Tài khoản được đề xuất</h1>
-        <div className='mt-5'>
-          {data &&
-            data.map((user) => (
-              <Link key={user.id} to={`/users/@${user.nickname}`}>
-                <UserItem data={user} />
-              </Link>
-            ))}
-        </div>
-        <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
-          {seeMore ? `Ẩn bớt` : `Xem tất cả`}
-        </span>
+        <SuggestUser />
       </div>
       <div className='mt-3 border-t border-[#F1F1F2] px-2 py-2'>
         <h4 className='text-fontSizeTitle font-semibold text-tiktokColorText'>Các tài khoản đang follow</h4>
         <p className='text-[14px] font-thin text-[rgba(22,24,35,0.5)]'>
           Những tài khoản bạn follow sẽ được xuất hiện tại đây
         </p>
-        <div className='mt-5'>
-          {/* {data &&
-            data.map((user) => (
-              <Link key={user.id} to={`/users/@${user.nickname}`}>
-                <UserItem data={user} />
-              </Link>
-            ))} */}
-        </div>
-        <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
-          {seeMore ? `Ẩn bớt` : `Xem tất cả`}
-        </span>
+        <FollowUser />
       </div>
     </>
   )
