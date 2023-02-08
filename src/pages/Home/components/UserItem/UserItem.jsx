@@ -2,19 +2,24 @@ import React from 'react'
 import Tippy from '@tippyjs/react/headless'
 import UserPreview from '../UserPreview/UserPreview'
 import { ImgBasic } from '../../../../assets/img'
+import { useQueryClient } from '@tanstack/react-query'
 
-export default function UserItem({ data }) {
+export default function UserItem({ data, page, perPage }) {
+  const queryClient = useQueryClient()
   const RenderUserPreview = (props) => {
-    return (
-      <div tabIndex='-1' {...props}>
-        <UserPreview data={data} />
-      </div>
-    )
+    if (data.is_followed === false) {
+      return (
+        <div tabIndex='-1' {...props}>
+          <UserPreview data={data} />
+        </div>
+      )
+    }
   }
+
   return (
     <>
       <Tippy interactive placement='bottom' offset={[-20, 10]} delay={[800, 0]} render={RenderUserPreview}>
-        <div key={data?.id} className='mb-3 flex cursor-pointer items-center '>
+        <div key={data?.id} className='mb-3 flex cursor-pointer items-center'>
           <div className='mr-3 h-[32px] w-[32px] overflow-hidden rounded-full'>
             <img
               className='h-full w-full rounded-full object-cover'
