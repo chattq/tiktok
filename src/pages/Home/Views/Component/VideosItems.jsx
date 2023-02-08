@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import ButtonFollow from '../../../../assets/ButtonFollow'
+import ButtonFollow from '../../../components/buttonFollow/ButtonFollow'
 import { FormatTextBold } from '../../../../assets/FormatTextBoild'
 import { ImgBasic } from '../../../../assets/img'
 import {
@@ -20,13 +20,18 @@ import HeartComponent from '../../../components/heartComponent/HeartComponent'
 import ItemShare from '../../../components/itemShare/ItemShare'
 import ItemSocial from '../../../components/itemSocial/ItemSocial'
 import ShareMoreComponent from '../../../components/shareMore/ShareMoreComponent'
+import ButtonUnfollow from '../../../components/buttonUnfollow/ButtonUnfollow'
+import { User } from '../../../../apis/UserAPI'
 
 function VideosItems({ data }) {
+  console.log('data', data)
+  console.log(27, data.user.is_followed)
   const ratio = data?.meta.video.resolution_x > data?.meta.video.resolution_y
   const videoRef = useRef()
+  const [isFollowed, setIsFollowed] = useState(data?.user.is_followed)
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
-
+    setIsFollowed(data?.user.is_followed)
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
@@ -52,6 +57,20 @@ function VideosItems({ data }) {
     })
   }
 
+  const handleFollow = () => {
+    User.followUser(data?.user_id).then((res) => {
+      console.log(61, res)
+      setIsFollowed(res.data.data.is_followed)
+    })
+  }
+  const handleUnFollow = () => {
+    User.unFollowUser(data?.user_id).then((res) => {
+      console.log(res)
+      setIsFollowed(res.data.data.is_followed)
+    })
+  }
+  console.log('fol', isFollowed)
+
   return (
     <div className='w-[710px] border-b pt-2'>
       <div className='flex'>
@@ -69,10 +88,20 @@ function VideosItems({ data }) {
             </div>
             <div className='mt-3 h-4 translate-x-[285px]'>
               <div className='cursor-pointer rounded-md border border-[rgba(254,44,85,1)] px-5 py-1 hover:bg-[#FFF2F5]'>
-                {/* <button className='font-medium text-[rgba(254,44,85,1)]' type='button'>
-                        Follow
-                      </button> */}
-                <ButtonFollow style={'font-medium text-[rgba(254,44,85,1)]'} idUserFollow={data?.id} />
+                {!isFollowed ? (
+                  <button className='font-medium text-[rgba(254,44,85,1)]' type='button' onClick={handleFollow}>
+                    Follow
+                  </button>
+                ) : (
+                  <button className='font-medium text-[rgba(254,44,85,1)]' type='button' onClick={handleUnFollow}>
+                    Following
+                  </button>
+                )}
+                {/* {!data?.user.is_followed ? (
+                  <ButtonFollow style={'font-medium text-[rgba(254,44,85,1)]'} idUserFollow={data?.user_id} />
+                ) : (
+                  <ButtonUnfollow title={'following'} idUserUnFollow={data?.user_id} />
+                )} */}
               </div>
             </div>
           </div>

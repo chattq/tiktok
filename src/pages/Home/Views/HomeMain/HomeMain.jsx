@@ -19,7 +19,6 @@ export default function HomeMain() {
       })
   }
   useEffect(() => {
-    console.log('useEffectHome')
     Videos.getVideosHomePage('for-you', 1)
       .then((res) => {
         console.log(res, 17)
