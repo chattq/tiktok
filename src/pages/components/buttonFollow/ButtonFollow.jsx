@@ -1,12 +1,23 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import React from 'react'
+import { useParams } from 'react-router-dom'
+import { User } from '../../../apis/UserAPI'
 
-export default function ButtonFollow() {
+export default function ButtonFollow({ style, idUserFollow }) {
+  const { userId } = useParams()
+  const queryClient = useQueryClient()
+  const followMutation = useMutation(User.followUser)
+  const handleFollow = () => {
+    followMutation.mutate(idUserFollow, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
+      }
+    })
+  }
+
   return (
-    <button
-      className='h-fit w-fit rounded-md border border-[rgba(254,44,85,1)] px-5 py-1.5 font-medium text-[rgba(254,44,85,1)] outline-none hover:bg-[#FFF2F5]'
-      type='button'
-    >
+    <div onClick={handleFollow} className={style}>
       Follow
-    </button>
+    </div>
   )
 }

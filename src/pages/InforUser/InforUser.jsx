@@ -3,10 +3,12 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { User } from '../../apis/UserAPI'
-import ButtonFollow from '../../assets/ButtonFollow'
 import { formatNumberFollow, formatNumberLike } from '../../assets/formatNumber'
 import { ImgBasic } from '../../assets/img'
 import { dots, links, locks, share, TikUser } from '../../Icons/Icons'
+import ButtonFollow from '../components/buttonFollow/ButtonFollow'
+import ButtonUnfollow from '../components/buttonUnfollow/ButtonUnfollow'
+
 import Videos from './Videos/Videos'
 
 export default function InforUser() {
@@ -18,14 +20,7 @@ export default function InforUser() {
     cacheTime: 10 * 100
   })
   const inforUser = user?.data.data
-  const followUnMutation = useMutation(User.unFollowUser)
-  const handleUnFollow = () => {
-    followUnMutation.mutate(inforUser?.id, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
-      }
-    })
-  }
+
   return (
     <>
       <div>
@@ -77,12 +72,13 @@ export default function InforUser() {
                     <div className='w-[164px] cursor-pointer rounded border border-[rgba(254,44,85,1)] px-[8px] text-center font-medium text-[rgba(254,44,85,1)] hover:bg-[#FFF2F5]'>
                       Tin Nhắn
                     </div>
-                    <div
-                      onClick={handleUnFollow}
-                      className='ml-2 flex h-[37px] w-[37px] cursor-pointer items-center justify-center rounded border hover:bg-[#F8F8F8]'
-                    >
-                      {TikUser()}
-                    </div>
+                    <ButtonUnfollow
+                      idUserUnFollow={inforUser?.id}
+                      title={TikUser()}
+                      style={
+                        'ml-2 flex h-[37px] w-[37px] cursor-pointer items-center justify-center rounded border hover:bg-[#F8F8F8]'
+                      }
+                    />
                   </div>
                 )}
               </div>
