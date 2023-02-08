@@ -12,6 +12,7 @@ import ButtonUnfollow from '../components/buttonUnfollow/ButtonUnfollow'
 import Videos from './Videos/Videos'
 
 export default function InforUser() {
+  const previousPath = window.location.pathname
   const { userId } = useParams()
   const queryClient = useQueryClient()
   const { data: user } = useQuery({
@@ -173,7 +174,7 @@ export default function InforUser() {
           <div className='mt-[20px] min-h-[220px] min-w-[300px]'>
             <div className='grid grid-cols-6 gap-x-[10px] gap-y-[25px]'>
               {inforUser?.videos.map((video) => (
-                <Videos dataVideos={video} />
+                <Videos dataVideos={video} previousPath={previousPath} totalData={inforUser?.videos} />
               ))}
             </div>
           </div>
