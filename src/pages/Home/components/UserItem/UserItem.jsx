@@ -2,10 +2,8 @@ import React from 'react'
 import Tippy from '@tippyjs/react/headless'
 import UserPreview from '../UserPreview/UserPreview'
 import { ImgBasic } from '../../../../assets/img'
-import { useQueryClient } from '@tanstack/react-query'
 
-export default function UserItem({ data, page, perPage }) {
-  const queryClient = useQueryClient()
+export default function UserItem({ data }) {
   const RenderUserPreview = (props) => {
     if (data.is_followed === false) {
       return (

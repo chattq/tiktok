@@ -11,8 +11,40 @@
   .tab_item:nth-child(2):hover ~ .tab_line {
     transform: translateX(230px) !important;
   }
-  .webkit-scroll-hide::-webkit-scrollbar {
-    width: 10px;
+  .scrollbar::-webkit-scrollbar {
+    display: none;
+    width: 6px;
+    height: 5px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    display: none;
+    border-radius: 100vh;
+    background: white;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    display: none;
+    background: #ededef;
+    border-radius: 100vh;
+  }
+  .scrollbar:hover::-webkit-scrollbar {
+    display: block;
+    width: 6px;
+    height: 5px;
+  }
+  .scrollbar:hover::-webkit-scrollbar-track {
+    display: block;
+    border-radius: 100vh;
+    background: white;
+  }
+
+  .scrollbar:hover::-webkit-scrollbar-thumb {
+    display: block;
+    background: #ededef;
+    border-radius: 100vh;
+  }
+  .overflowUnse {
+    overflow: inherit;
   }
 }
 * {
@@ -26,4 +58,17 @@ html {
 }
 body {
   font-family: 'IBM Plex Sans';
+}
+body::-webkit-scrollbar {
+  width: 6px;
+  height: 5px;
+}
+body::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: white;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #d9d9e6;
+  border-radius: 100vh;
 }
