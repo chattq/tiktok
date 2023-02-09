@@ -199,7 +199,7 @@ export default function HeaderLayout({ children }) {
   }
   return (
     <>
-      <div className='fixed z-50 h-[60px] w-full border-b border-[#ccc] bg-white'>
+      <div className='fixed top-0 z-50 h-[60px] w-full border-b border-[#ccc] bg-white'>
         <div
           className={
             checkParams || checkParamsUpload
