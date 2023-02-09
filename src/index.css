@@ -34,10 +34,6 @@
   .tab_item:nth-child(1):hover ~ .tab_line2 {
     transform: translateX(0) !important;
   }
-
-  .tab_item:nth-child(2):hover ~ .tab_line2 {
-    transform: translateX(230px) !important;
-  }
   .scrollbar::-webkit-scrollbar {
     display: none;
     width: 6px;
