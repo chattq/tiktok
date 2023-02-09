@@ -4,12 +4,16 @@
 @layer utilities {
   .tab_line {
     transition: all 0.3s;
+    background: transparent;
   }
   .tab_item:nth-child(1):hover ~ .tab_line {
     transform: translateX(0) !important;
+    background-color: black;
   }
+
   .tab_item:nth-child(2):hover ~ .tab_line {
     transform: translateX(230px) !important;
+    background-color: black;
   }
   .scrollbar::-webkit-scrollbar {
     display: none;
@@ -37,14 +41,10 @@
     border-radius: 100vh;
     background: white;
   }
-
   .scrollbar:hover::-webkit-scrollbar-thumb {
     display: block;
     background: #ededef;
     border-radius: 100vh;
-  }
-  .overflowUnse {
-    overflow: inherit;
   }
 }
 * {

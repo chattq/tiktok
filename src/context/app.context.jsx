@@ -7,7 +7,6 @@ export const AppContext = createContext(initialAppContext)
 
 export const AppProvider = ({ children }) => {
   const [dataUser, setDataUser] = useState(initialAppContext.dataUserSideBar)
-
   return (
     <AppContext.Provider
       value={{

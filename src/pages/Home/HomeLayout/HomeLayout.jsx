@@ -11,13 +11,13 @@ export default function HomeLayout() {
         <div
           className={
             checkParams
-              ? 'overflowUnse fixed z-10  h-[100vh] w-[200px] pt-4 scrollbar'
+              ? 'fixed z-10  h-[100vh] w-[240px] pt-4 scrollbar'
               : 'fixed z-10 ml-[-170px] h-[100vh] w-[330px] pt-[20px] scrollbar '
           }
         >
           <SideBar />
         </div>
-        <div className={checkParams ? 'mr-3 w-full pt-8 pl-[250px]' : 'w-[785px] pl-[260px] pt-[35px] '}>
+        <div className={checkParams ? 'mr-3 w-full pt-8 pl-[270px]' : 'w-[785px] pl-[260px] pt-[35px] '}>
           <Outlet />
         </div>
       </div>
