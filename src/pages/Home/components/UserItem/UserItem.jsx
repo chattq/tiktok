@@ -16,7 +16,14 @@ export default function UserItem({ data }) {
 
   return (
     <>
-      <Tippy interactive placement='bottom' offset={[-20, 10]} delay={[800, 0]} render={RenderUserPreview}>
+      <Tippy
+        interactive
+        appendTo={document.body}
+        placement='bottom'
+        offset={[-20, 10]}
+        delay={[800, 0]}
+        render={RenderUserPreview}
+      >
         <div key={data?.id} className=' mb-3 flex cursor-pointer'>
           <div className='flex items-center'>
             <div className='mr-3 h-[32px] w-[32px] overflow-hidden rounded-full'>

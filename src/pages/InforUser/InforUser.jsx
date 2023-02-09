@@ -199,8 +199,6 @@ export default function InforUser() {
                 {locks()}
                 <span className='ml-2'>Đã thích</span>
               </div>
-              {/* <div className={'tab_line1 absolute bottom-[-1px] h-[2px] w-[230px] bg-black '} /> */}
-              {/* <div className={'tab_line2 absolute bottom-[-1px] right-0 h-[2px] w-[230px] bg-black '} /> */}
               {!checkPage ? <div className={'tab_line1'} /> : <div className={'tab_line2'} />}
             </div>
             <div className='mt-[20px] min-h-[220px] min-w-[300px]'>
