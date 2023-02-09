@@ -2,18 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 @layer utilities {
-  .tab_line {
-    transition: all 0.3s;
-    background: transparent;
+  .tab_list {
+    position: relative;
   }
-  .tab_item:nth-child(1):hover ~ .tab_line {
-    transform: translateX(0) !important;
+  .tab_line1 {
+    position: absolute;
+    bottom: -2px;
     background-color: black;
+    border: 1px solid black;
+    height: 2px;
+    width: 230px;
+    transition: all 0.3s ease;
+  }
+  .tab_line2 {
+    position: absolute;
+    bottom: -2px;
+    transform: translateX(230px);
+    background-color: black;
+    border: 1px solid black;
+    height: 2px;
+    width: 230px;
+    transition: all 0.3s ease;
+  }
+  .tab_item:nth-child(1):hover ~ .tab_line1 {
+    transform: translateX(0) !important;
   }
 
-  .tab_item:nth-child(2):hover ~ .tab_line {
+  .tab_item:nth-child(2):hover ~ .tab_line1 {
     transform: translateX(230px) !important;
-    background-color: black;
+  }
+  .tab_item:nth-child(1):hover ~ .tab_line2 {
+    transform: translateX(0) !important;
+  }
+
+  .tab_item:nth-child(2):hover ~ .tab_line2 {
+    transform: translateX(230px) !important;
   }
   .scrollbar::-webkit-scrollbar {
     display: none;

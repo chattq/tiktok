@@ -102,29 +102,6 @@ export default function InforUser() {
                       />
                     </div>
                   )}
-                  {/* {dataUser ? (
-                    <p>sửa</p>
-                  ) : !inforUser?.is_followed ? (
-                    <ButtonFollow
-                      style={
-                        'w-[207px] cursor-pointer rounded border border-tiktokPink bg-tiktokPink px-[8px] text-center font-medium text-white hover:bg-[#dc1f44]'
-                      }
-                      idUserFollow={inforUser?.id}
-                    />
-                  ) : (
-                    <div className='flex items-center'>
-                      <div className='w-[164px] cursor-pointer rounded border border-[rgba(254,44,85,1)] px-[8px] text-center font-medium text-[rgba(254,44,85,1)] hover:bg-[#FFF2F5]'>
-                        Tin Nhắn
-                      </div>
-                      <ButtonUnfollow
-                        idUserUnFollow={inforUser?.id}
-                        title={TikUser()}
-                        style={
-                          'ml-2 flex h-[37px] w-[37px] cursor-pointer items-center justify-center rounded border hover:bg-[#F8F8F8]'
-                        }
-                      />
-                    </div>
-                  )} */}
                 </div>
               </div>
               <div className='mt-6 flex items-center'>
@@ -204,13 +181,9 @@ export default function InforUser() {
             </div>
           </div>
           <div>
-            <div className='tab_list border-gray relative flex h-[44px] w-[460px] cursor-pointer items-center border-b-[2px] text-[rgba(22,24,35,0.5)]'>
+            <div className='tab_list border-gray flex h-[44px] w-[460px] cursor-pointer items-center border-b-[2px] text-[rgba(22,24,35,0.5)]'>
               <div
-                className={
-                  !checkPage
-                    ? 'tab_item flex h-full w-[230px] items-center justify-center border-b-2 border-[black] text-[18px] font-medium text-black '
-                    : 'tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium '
-                }
+                className={'tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium '}
                 onClick={handleVideo}
               >
                 <span className={!checkPage ? 'text-black' : ''}>Video</span>
@@ -218,22 +191,17 @@ export default function InforUser() {
               <div
                 className={
                   checkPage
-                    ? 'tab_item flex h-full w-[230px] items-center justify-center border-b-2 border-[black] text-[18px] font-medium text-black '
-                    : 'tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium '
+                    ? 'tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium text-black'
+                    : 'tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium'
                 }
                 onClick={handleLike}
               >
                 {locks()}
                 <span className='ml-2'>Đã thích</span>
               </div>
-              {/* <div
-                className={
-                  !checkPage
-                    ? 'absolute bottom-[-1px] h-[2px] w-[230px] bg-black '
-                    : 'absolute bottom-[-1px] h-[2px] w-[230px] translate-x-[230px] bg-black '
-                }
-              ></div> */}
-              <div className={'tab_line absolute bottom-[-1px] h-[2px] w-[230px] '} />
+              {/* <div className={'tab_line1 absolute bottom-[-1px] h-[2px] w-[230px] bg-black '} /> */}
+              {/* <div className={'tab_line2 absolute bottom-[-1px] right-0 h-[2px] w-[230px] bg-black '} /> */}
+              {!checkPage ? <div className={'tab_line1'} /> : <div className={'tab_line2'} />}
             </div>
             <div className='mt-[20px] min-h-[220px] min-w-[300px]'>
               {!checkPage ? (
