@@ -1,9 +1,9 @@
 import http from './http'
 
 export const CommentAPI = {
-  getCommentVideo(idVideos) {
+  getCommentVideo(idVideos, page = 1) {
     if(idVideos) {
-        return http.get(`/api/videos/${idVideos}/comments`)
+        return http.get(`/api/videos/${idVideos}/comments?page=${page}`)
     }
   },
   createANewComment({uuidVideos, dataComment}) {
