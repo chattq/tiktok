@@ -2,17 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 @layer utilities {
-  .tab_line {
-    transition: all 0.3s;
+  .tab_list {
+    position: relative;
   }
-  .tab_item:nth-child(1):hover ~ .tab_line {
+  .tab_line1 {
+    position: absolute;
+    bottom: -2px;
+    background-color: black;
+    border: 1px solid black;
+    height: 2px;
+    width: 230px;
+    transition: all 0.3s ease;
+  }
+  .tab_line2 {
+    position: absolute;
+    bottom: -2px;
+    transform: translateX(230px);
+    background-color: black;
+    border: 1px solid black;
+    height: 2px;
+    width: 230px;
+    transition: all 0.3s ease;
+  }
+  .tab_item:nth-child(1):hover ~ .tab_line1 {
     transform: translateX(0) !important;
   }
-  .tab_item:nth-child(2):hover ~ .tab_line {
+
+  .tab_item:nth-child(2):hover ~ .tab_line1 {
     transform: translateX(230px) !important;
   }
-  .webkit-scroll-hide::-webkit-scrollbar {
-    width: 10px;
+  .tab_item:nth-child(1):hover ~ .tab_line2 {
+    transform: translateX(0) !important;
+  }
+
+  .tab_item:nth-child(2):hover ~ .tab_line2 {
+    transform: translateX(230px) !important;
+  }
+  .scrollbar::-webkit-scrollbar {
+    display: none;
+    width: 6px;
+    height: 5px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    display: none;
+    border-radius: 100vh;
+    background: white;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    display: none;
+    background: #ededef;
+    border-radius: 100vh;
+  }
+  .scrollbar:hover::-webkit-scrollbar {
+    display: block;
+    width: 6px;
+    height: 5px;
+  }
+  .scrollbar:hover::-webkit-scrollbar-track {
+    display: block;
+    border-radius: 100vh;
+    background: white;
+  }
+  .scrollbar:hover::-webkit-scrollbar-thumb {
+    display: block;
+    background: #ededef;
+    border-radius: 100vh;
   }
 }
 * {
@@ -26,4 +81,17 @@ html {
 }
 body {
   font-family: 'IBM Plex Sans';
+}
+body::-webkit-scrollbar {
+  width: 6px;
+  height: 5px;
+}
+body::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: white;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #d9d9e6;
+  border-radius: 100vh;
 }

@@ -6,6 +6,7 @@ import SkeletonUserSuggest from '../../../components/Skeleton/SkeletonUserSugges
 import UserItem from '../UserItem/UserItem'
 
 export default function SuggestUser() {
+  const { setDataUser } = useContext(AppContext)
   const [data, setData] = useState([])
   const [allSuggestedUsers, setAllSuggestedUsers] = useState([])
   const [suggestedUsers, setSuggestedUsers] = useState([])
@@ -28,6 +29,10 @@ export default function SuggestUser() {
     seeMore ? setData(suggestedUsers) : setData(allSuggestedUsers)
     setSeeMore(!seeMore)
   }
+  const handleCheckProfile = () => {
+    setDataUser('123')
+    localStorage.setItem('checkDataUser', '123')
+  }
   return (
     <>
       <div className='mt-5'>
@@ -38,7 +43,7 @@ export default function SuggestUser() {
             if (user?.is_followed === false) {
               return (
                 <>
-                  <Link key={user.id} to={`/users/@${user.nickname}`}>
+                  <Link key={user.id} to={`/users/@${user.nickname}`} onClick={handleCheckProfile}>
                     <UserItem data={user} />
                   </Link>
                 </>

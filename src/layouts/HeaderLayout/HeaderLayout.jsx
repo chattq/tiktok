@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import logo from '../../logoTiktok.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Tippy from '@tippyjs/react/headless'
@@ -35,8 +35,10 @@ import Menu from '../Component/Menu/Menu'
 import { Link, useParams } from 'react-router-dom'
 import { Account } from '../../apis/AcountAPI'
 import { ImgBasic } from '../../assets/img'
+import { AppContext } from '../../context/app.context'
 
 export default function HeaderLayout({ children }) {
+  const { setDataUser } = useContext(AppContext)
   const { userId, upload } = useParams()
   const checkParams = Boolean(userId)
   const checkParamsUpload = Boolean(upload)
@@ -191,7 +193,10 @@ export default function HeaderLayout({ children }) {
         console.log(error)
       })
   }
-
+  const handleSentProfileUser = () => {
+    setDataUser('321')
+    localStorage.setItem('checkDataUser', '321')
+  }
   return (
     <>
       <div className='fixed z-50 h-[60px] w-full border-b border-[#ccc] bg-white'>
@@ -313,6 +318,7 @@ export default function HeaderLayout({ children }) {
                   <Menu className='w-[240px] bg-[white] pt-3 shadow-lg ' dataMenu={dataMenuUser} onClick={handleLogout}>
                     <Link to={`/users/@${dataUser.nickname}`}>
                       <img
+                        onClick={handleSentProfileUser}
                         src={
                           ImgBasic(dataUser.avatar) ||
                           'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'
