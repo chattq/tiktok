@@ -2,10 +2,8 @@ import React from 'react'
 import Tippy from '@tippyjs/react/headless'
 import UserPreview from '../UserPreview/UserPreview'
 import { ImgBasic } from '../../../../assets/img'
-import { useQueryClient } from '@tanstack/react-query'
 
-export default function UserItem({ data, page, perPage }) {
-  const queryClient = useQueryClient()
+export default function UserItem({ data }) {
   const RenderUserPreview = (props) => {
     if (data.is_followed === false) {
       return (
@@ -18,17 +16,25 @@ export default function UserItem({ data, page, perPage }) {
 
   return (
     <>
-      <Tippy interactive placement='bottom' offset={[-20, 10]} delay={[800, 0]} render={RenderUserPreview}>
-        <div key={data?.id} className='mb-3 flex cursor-pointer items-center'>
-          <div className='mr-3 h-[32px] w-[32px] overflow-hidden rounded-full'>
-            <img
-              className='h-full w-full rounded-full object-cover'
-              src={ImgBasic(data?.avatar)}
-              alt={data?.first_name}
-            />
+      <Tippy
+        interactive
+        appendTo={document.body}
+        placement='bottom'
+        offset={[-20, 10]}
+        delay={[800, 0]}
+        render={RenderUserPreview}
+      >
+        <div key={data?.id} className=' mb-3 flex cursor-pointer'>
+          <div className='flex items-center'>
+            <div className='mr-3 h-[32px] w-[32px] overflow-hidden rounded-full'>
+              <img
+                className='h-full w-full rounded-full object-cover'
+                src={ImgBasic(data?.avatar)}
+                alt={data?.first_name}
+              />
+            </div>
           </div>
           <div>
-            <img src='' alt='' />
             <div className='flex translate-y-[2px] items-center'>
               <h4 className='text-fontSizeName font-semibold tracking-wider'>{data?.nickname}</h4>
               {data?.tick && (

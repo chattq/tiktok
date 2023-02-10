@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { User } from '../../apis/UserAPI'
 import { formatNumberFollow, formatNumberLike } from '../../assets/formatNumber'
 import { ImgBasic } from '../../assets/img'
-import { dots, links, locks, share, TikUser } from '../../Icons/Icons'
+import { AppContext } from '../../context/app.context'
+import { dots, EditProfile, links, locks, LockUser, share, TikUser } from '../../Icons/Icons'
 import ButtonFollow from '../components/buttonFollow/ButtonFollow'
 import ButtonUnfollow from '../components/buttonUnfollow/ButtonUnfollow'
 import SkeletonUserInfor from '../components/Skeleton/SkeletonUseInfor'
@@ -13,6 +14,10 @@ import SkeletonUserInfor from '../components/Skeleton/SkeletonUseInfor'
 import Videos from './Videos/Videos'
 
 export default function InforUser() {
+  const { dataUser } = useContext(AppContext)
+  const checkDataUser = localStorage.getItem('checkDataUser')
+  console.log(checkDataUser, dataUser)
+  const [checkPage, setCheckPage] = useState(false)
   const previousPath = window.location.pathname
   const { userId } = useParams()
   const { data: user, isLoading } = useQuery({
@@ -21,7 +26,12 @@ export default function InforUser() {
     cacheTime: 10 * 100
   })
   const inforUser = user?.data.data
-
+  const handleVideo = () => {
+    setCheckPage(false)
+  }
+  const handleLike = () => {
+    setCheckPage(true)
+  }
   return (
     <>
       {isLoading ? (
@@ -64,7 +74,14 @@ export default function InforUser() {
                     )}
                   </div>
                   <span className='mt-2 mb-4 h-[25px] font-tiktokFont text-[18px] font-[500] leading-[25px]'>{`${inforUser?.first_name} ${inforUser?.last_name}`}</span>
-                  {!inforUser?.is_followed ? (
+                  {dataUser === '321' || checkDataUser === '321' ? (
+                    <div className='w-[125px] cursor-pointer'>
+                      <div className='border-[rgba(22, 24, 35, 0.12)] flex items-center justify-center rounded-[4px] border font-bold'>
+                        {EditProfile()}
+                        <span className='ml-2'>Sửa hồ sơ</span>
+                      </div>
+                    </div>
+                  ) : !inforUser?.is_followed ? (
                     <ButtonFollow
                       style={
                         'w-[207px] cursor-pointer rounded border border-tiktokPink bg-tiktokPink px-[8px] text-center font-medium text-white hover:bg-[#dc1f44]'
@@ -164,22 +181,40 @@ export default function InforUser() {
             </div>
           </div>
           <div>
-            <div className='tab_list border-gray relative flex h-[44px] w-[460px] cursor-pointer items-center border-b-[2px] text-[rgba(22,24,35,0.5)]'>
-              <div className='tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium'>
-                <span>Video</span>
+            <div className='tab_list border-gray flex h-[44px] w-[460px] cursor-pointer items-center border-b-[2px] text-[rgba(22,24,35,0.5)]'>
+              <div
+                className={'tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium '}
+                onClick={handleVideo}
+              >
+                <span className={!checkPage ? 'text-black' : ''}>Video</span>
               </div>
-              <div className='tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium'>
+              <div
+                className={
+                  checkPage
+                    ? 'tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium text-black'
+                    : 'tab_item flex h-full w-[230px] items-center justify-center text-[18px] font-medium'
+                }
+                onClick={handleLike}
+              >
                 {locks()}
                 <span className='ml-2'>Đã thích</span>
               </div>
-              <div className='tab_line absolute bottom-[-1px] h-[2px] w-[230px] bg-black' />
+              {!checkPage ? <div className={'tab_line1'} /> : <div className={'tab_line2'} />}
             </div>
             <div className='mt-[20px] min-h-[220px] min-w-[300px]'>
-              <div className='grid grid-cols-6 gap-x-[10px] gap-y-[25px]'>
-                {inforUser?.videos.map((video) => (
-                  <Videos dataVideos={video} previousPath={previousPath} totalData={inforUser?.videos} />
-                ))}
-              </div>
+              {!checkPage ? (
+                <div className='grid grid-cols-6 gap-x-[10px] gap-y-[25px]'>
+                  {inforUser?.videos.map((video) => (
+                    <Videos dataVideos={video} previousPath={previousPath} totalData={inforUser?.videos} />
+                  ))}
+                </div>
+              ) : (
+                <div className='mt-[150px] flex flex-col items-center'>
+                  <div className=' text-[#b0b0b4]'>{LockUser()}</div>
+                  <p className='mt-4 text-[25px] font-bold'>Video đã thích của người dùng này ở trạng thái riêng tư</p>
+                  <p className='mt-4'>Các video được thích bởi tiin.vn hiện đang ẩn</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
