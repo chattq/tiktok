@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import React, { useContext, useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import React, { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { User } from '../../apis/UserAPI'
 import { formatNumberFollow, formatNumberLike } from '../../assets/formatNumber'
@@ -9,6 +9,7 @@ import { AppContext } from '../../context/app.context'
 import { dots, EditProfile, links, locks, LockUser, share, TikUser } from '../../Icons/Icons'
 import ButtonFollow from '../components/buttonFollow/ButtonFollow'
 import ButtonUnfollow from '../components/buttonUnfollow/ButtonUnfollow'
+import ModalEditProfile from '../components/ModalEditProfile/ModalEditProfile'
 import SkeletonUserInfor from '../components/Skeleton/SkeletonUseInfor'
 
 import Videos from './Videos/Videos'
@@ -75,12 +76,14 @@ export default function InforUser() {
                   </div>
                   <span className='mt-2 mb-4 h-[25px] font-tiktokFont text-[18px] font-[500] leading-[25px]'>{`${inforUser?.first_name} ${inforUser?.last_name}`}</span>
                   {dataUser === '321' || checkDataUser === '321' ? (
-                    <div className='w-[125px] cursor-pointer'>
-                      <div className='border-[rgba(22, 24, 35, 0.12)] flex items-center justify-center rounded-[4px] border font-bold'>
-                        {EditProfile()}
-                        <span className='ml-2'>Sửa hồ sơ</span>
+                    <ModalEditProfile style={'w-[125px]'}>
+                      <div className='w-[125px] cursor-pointer'>
+                        <div className='border-[rgba(22, 24, 35, 0.12)] flex items-center justify-center rounded-[4px] border font-bold'>
+                          {EditProfile()}
+                          <span className='ml-2'>Sửa hồ sơ</span>
+                        </div>
                       </div>
-                    </div>
+                    </ModalEditProfile>
                   ) : !inforUser?.is_followed ? (
                     <ButtonFollow
                       style={
