@@ -4,33 +4,23 @@ import { ImgBasic } from '../../../../assets/img'
 import {
   CommentIcon,
   Email,
-  Embedded,
-  FacebookIcon,
   Heart,
   LikedHeart,
   LineIcon,
   LinkedIn,
-  PaperPlane,
   Pinterest,
   Reddit,
-  Telegram,
-  TitterIcon,
-  WhatsApp
+  Telegram
 } from '../../../../Icons/Icons'
-import ButtonFollow from '../../../components/buttonFollow/ButtonFollow'
-import CommentComponent from '../../../components/commentComponent/CommentComponent'
-import HeartComponent from '../../../components/heartComponent/HeartComponent'
 import ItemShare from '../../../components/itemShare/ItemShare'
-import ItemSocial from '../../../components/itemSocial/ItemSocial'
 import ShareMoreComponent from '../../../components/shareMore/ShareMoreComponent'
-import ButtonUnfollow from '../../../components/buttonUnfollow/ButtonUnfollow'
 import { User } from '../../../../apis/UserAPI'
 import { Link } from 'react-router-dom'
 import { LikeAPI } from '../../../../apis/Like'
 
 function VideosItems({ data, totalData, previousPath }) {
   console.log('data', data)
-  console.log(27, data.user.is_followed)
+  console.log(27, data?.user.is_followed)
   const ratio = data?.meta.video.resolution_x > data?.meta.video.resolution_y
   const videoRef = useRef()
   const [isFollowed, setIsFollowed] = useState(data?.user.is_followed)
@@ -94,14 +84,20 @@ function VideosItems({ data, totalData, previousPath }) {
   return (
     <div className='w-[710px] border-b pt-2'>
       <div className='relative flex'>
-        <div>
-          <div className='mt-1 h-[56px] w-[56px] overflow-hidden rounded-full'>
-            <img src={ImgBasic(data?.user.avatar)} alt='' className='h-full w-full object-cover' />
-          </div>
-        </div>
+        <Link
+          to={`/users/@${data?.user.nickname}`}
+          className='group mt-1 h-[56px] w-[56px] overflow-hidden rounded-full'
+        >
+          <img src={ImgBasic(data?.user.avatar)} alt='' className='h-full w-full object-cover' />
+        </Link>
         <div className='ml-3 p-1'>
-          <div className='flex items-center'>
-            <div className='text-[18px] font-black'>{data?.user.nickname}</div>
+          <div className='flex items-center '>
+            <Link
+              to={`/users/@${data?.user.nickname}`}
+              className='cursor-pointer text-[18px] font-black hover:underline group-hover:underline'
+            >
+              {data?.user.nickname}
+            </Link>
             <div className='ml-2 text-[14px] font-extralight tracking-tighter'>
               {data?.user.last_name}
               {data?.user.first_name}
@@ -125,11 +121,6 @@ function VideosItems({ data, totalData, previousPath }) {
                     Following
                   </button>
                 )}
-                {/* {!data?.user.is_followed ? (
-                  <ButtonFollow style={'font-medium text-[rgba(254,44,85,1)]'} idUserFollow={data?.user_id} />
-                ) : (
-                  <ButtonUnfollow title={'following'} idUserUnFollow={data?.user_id} />
-                )} */}
               </div>
             </div>
           </div>
@@ -146,7 +137,7 @@ function VideosItems({ data, totalData, previousPath }) {
               state={{ totalData: totalData, previousPath: previousPath }}
             >
               <video
-                className='video-display h-full w-full overflow-hidden rounded-lg outline-none '
+                className='video-display h-full w-full overflow-hidden rounded-lg  '
                 muted
                 src={data?.file_url}
                 ref={videoRef}
@@ -169,12 +160,15 @@ function VideosItems({ data, totalData, previousPath }) {
                   {likesCount || data.likes_count}.K
                 </p>
               </div>
-              <div className='flex flex-col items-center justify-center'>
+              <Link
+                to={`/users/@${data?.user.nickname}/${data?.uuid}`}
+                className='flex cursor-pointer flex-col items-center justify-center'
+              >
                 <span className='flex h-12 w-12 items-center justify-center rounded-[50%] bg-[#1618230f]'>
                   <CommentIcon />
                 </span>
                 <p className='text-center text-fontSizeMin leading-tight text-tiktokColorText'>{data.comments_count}</p>
-              </div>
+              </Link>
               <div className='flex flex-col items-center justify-center'>
                 <div className='mr-1 flex h-12 w-12 cursor-pointer items-center justify-center rounded-[50%] bg-[#1618230f]'>
                   <div>
@@ -187,6 +181,7 @@ function VideosItems({ data, totalData, previousPath }) {
                         <ItemShare icon={<LineIcon />} nameIcon={'LineIcon'} />,
                         <ItemShare icon={<Pinterest />} nameIcon={'Pinterest'} />
                       ]}
+                      placement={'right'}
                     />
                   </div>
                 </div>

@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Videos } from '../../../../apis/Video'
-import { ImgBasic } from '../../../../assets/img'
-import VideosItems from '../Component/VideosItems'
 import VideosList from '../Component/VideosList'
 
 export default function HomeMain() {
   const [dataRender, setDataRender] = useState([])
   const [numberLoad, setNumberLoad] = useState(1)
+
   const previousPath = window.location.pathname
   const handleLoadMoreData = () => {
     setNumberLoad((prev) => (prev += 1))
-    Videos.getVideosHomePage('for-you', numberLoad + 1)
+    Videos.getVideosForyou('for-you', numberLoad + 1)
       .then((res) => {
         console.log(res, 17)
         setDataRender((prev) => [...prev, ...res.data.data])
@@ -19,7 +18,15 @@ export default function HomeMain() {
         console.log(error)
       })
   }
+
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      handleLoadMoreData()
+    }
+  }
+
   useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
     Videos.getVideosForyou('for-you', 1)
       .then((res) => {
         console.log(res, 17)
@@ -32,8 +39,9 @@ export default function HomeMain() {
 
   return (
     <>
-      <VideosList dataRender={dataRender} previousPath={previousPath} />
-      <button onClick={handleLoadMoreData}>loadmore</button>
+      <div>
+        <VideosList dataRender={dataRender} previousPath={previousPath} />
+      </div>
     </>
   )
 }
