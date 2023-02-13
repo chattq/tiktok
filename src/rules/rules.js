@@ -29,5 +29,17 @@ export const rules = {
       value: true,
       message: 'Vui lòng điền đầy đủ'
     }
+  },
+  first_name: {
+    required: {
+      value: true,
+      message: 'Vui lòng điền đầy đủ'
+    }
+  },
+  bio: {
+    required: {
+      value: true,
+      message: 'Vui lòng điền đầy đủ'
+    }
   }
 }
