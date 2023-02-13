@@ -11,8 +11,10 @@ import { ImgBasic } from '../../../assets/img'
 import { Account } from '../../../apis/AcountAPI'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTiktok } from '@fortawesome/free-brands-svg-icons'
+import { useParams } from 'react-router-dom'
 
 export default function ModalEditProfile({ children, style }) {
+  const { userId } = useParams()
   const queryClient = useQueryClient()
   let user = JSON.parse(localStorage.getItem('userInfo'))
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -33,8 +35,6 @@ export default function ModalEditProfile({ children, style }) {
     formState: { errors },
     watch
   } = useForm()
-  const avatar = watch()
-  console.log(avatar)
   const showModal = () => {
     setIsModalOpen(true)
   }
@@ -46,55 +46,55 @@ export default function ModalEditProfile({ children, style }) {
   }
   useEffect(() => {
     if (profile) {
-      // setValue('last_name', profile.last_name)
-      // setValue('avatar', profile.avatar)
+      setValue('last_name', profile.last_name)
+      setValue('avatar', profile.avatar)
+      setValue('first_name', profile.first_name)
+      setValue('bio', profile.bio)
     }
   }, [profile, setValue])
-  const updateProfileMutation = useMutation((data) => {
-    return User.updateMe(data)
-  })
+  const updateProfileMutation = useMutation(User.updateMe)
   const onSubmit = handleSubmit(async (data) => {
+    // console.log(57, data.avatar)
     const dataUpdate = new FormData()
     dataUpdate.append('avatar', data.avatar)
     dataUpdate.append('last_name', data.last_name)
     dataUpdate.append('first_name', data.first_name)
     dataUpdate.append('bio', data.bio)
     try {
-      // updateProfileMutation.mutate(dataUpdate, {
-      //   onSuccess: async function () {
-      //     await queryClient.invalidateQueries({ queryKey: ['/auth/me'], exact: true })
-      //     localStorage.setItem('userInfo', JSON.stringify(dataProfile?.data.data))
-      //     toast.success(
-      //       <>
-      //         <FontAwesomeIcon icon={faTiktok} />
-      //         <span className='ml-[5px]'>Upload thành công</span>
-      //       </>,
-      //       {
-      //         position: 'top-right',
-      //         autoClose: 2000,
-      //         theme: 'light'
-      //       }
-      //     )
-      //   }
-      // })
-      const response = await User.updateMe(data)
-      console.log(response)
-      localStorage.setItem('userInfo', JSON.stringify(response.data.data))
-      toast.success(
-        <>
-          <FontAwesomeIcon icon={faTiktok} />
-          <span className='ml-[5px]'>Upload thành công</span>
-        </>,
-        {
-          position: 'top-right',
-          autoClose: 2000,
-          theme: 'light'
+      updateProfileMutation.mutateAsync(dataUpdate, {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId] })
+          toast.success(
+            <>
+              <FontAwesomeIcon icon={faTiktok} />
+              <span className='ml-[5px]'>Upload thành công</span>
+            </>,
+            {
+              position: 'top-right',
+              autoClose: 2000,
+              theme: 'light'
+            }
+          )
         }
-      )
+      })
+      // const response = await User.updateMe(data)
+      // console.log(response)
+      // localStorage.setItem('userInfo', JSON.stringify(response.data.data))
+      // toast.success(
+      //   <>
+      //     <FontAwesomeIcon icon={faTiktok} />
+      //     <span className='ml-[5px]'>Upload thành công</span>
+      //   </>,
+      //   {
+      //     position: 'top-right',
+      //     autoClose: 2000,
+      //     theme: 'light'
+      //   }
+      // )
       setIsModalOpen(false)
-      setTimeout(() => {
-        window.location.reload()
-      }, 2000)
+      // setTimeout(() => {
+      //   window.location.reload()
+      // }, 2000)
     } catch (error) {
       console.log(error)
     }
@@ -152,7 +152,6 @@ export default function ModalEditProfile({ children, style }) {
                     type='text'
                     {...register('first_name', rules.first_name)}
                     className='h-[38px] w-[360px] rounded bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none'
-                    defaultValue={user?.first_name}
                   />
                 </div>
                 <div>{errors.first_name?.message}</div>
@@ -166,7 +165,6 @@ export default function ModalEditProfile({ children, style }) {
                     type='text'
                     {...register('last_name', rules.last_name)}
                     className='h-[38px] w-[360px] rounded bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none'
-                    defaultValue={user?.last_name}
                   />
                 </div>
                 <div>{errors.last_name?.message}</div>
@@ -179,7 +177,6 @@ export default function ModalEditProfile({ children, style }) {
                   type='text'
                   {...register('bio', rules.bio)}
                   className='h-[100px] w-[360px] resize-none rounded bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none'
-                  defaultValue={user.bio}
                 />
                 <div>{errors.bio?.message}</div>
               </div>
