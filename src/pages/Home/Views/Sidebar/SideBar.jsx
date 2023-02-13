@@ -14,8 +14,8 @@ export default function SideBar() {
   const newArr = []
   newArr.push(userId)
   const checkUser = Boolean(newArr.includes('@' + dataUserLocal?.nickname))
-  const [data, setData] = useState([])
   const checkToken = Boolean(localStorage.getItem('token'))
+  const [data, setData] = useState([])
   const [page] = useState(1)
   const [perPage] = useState(15)
   useEffect(() => {

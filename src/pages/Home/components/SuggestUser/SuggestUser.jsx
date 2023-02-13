@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { User } from '../../../../apis/UserAPI'
@@ -11,16 +12,19 @@ export default function SuggestUser() {
   const [page] = useState(1)
   const [perPage] = useState(15)
   const [seeMore, setSeeMore] = useState(false)
+  const { data: dataUser } = useQuery({
+    queryKey: ['/api/users/suggested', { page, perPage }],
+    queryFn: () => User.suggestUserList({ page, perPage })
+  })
+  const profile = dataUser?.data.data
   useEffect(() => {
-    const getAcounts = async () => {
-      const result = await User.suggestUserList({ page, perPage })
-      setAllSuggestedUsers(result.data.data)
-      const filterResult = result.data.data.filter((item) => !item.is_followed)
+    if (profile) {
+      setAllSuggestedUsers(profile)
+      const filterResult = profile.filter((item) => !item.is_followed)
       const lessResult = filterResult.slice(0, 5)
       setSuggestedUsers(lessResult)
       setData(lessResult)
     }
-    getAcounts()
   }, [page, perPage])
 
   const handleSeeAll = async () => {
@@ -35,13 +39,7 @@ export default function SuggestUser() {
         ) : (
           data.map((user) => {
             if (user?.is_followed === false) {
-              return (
-                <>
-                  <Link key={user.id} to={`/users/@${user.nickname}`}>
-                    <UserItem data={user} />
-                  </Link>
-                </>
-              )
+              return <UserItem data={user} page={page} perPage={perPage} />
             }
           })
         )}

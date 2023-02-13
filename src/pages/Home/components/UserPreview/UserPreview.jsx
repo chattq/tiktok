@@ -4,7 +4,7 @@ import { formatNumberFollow, formatNumberLike } from '../../../../assets/formatN
 import { ImgBasic } from '../../../../assets/img'
 import ButtonFollow from '../../../components/buttonFollow/ButtonFollow'
 
-export default function UserPreview({ data }) {
+export default function UserPreview({ data, page, perPage }) {
   return (
     <>
       <div className='w-[330px] rounded-[6px] border bg-white p-5 shadow-xl'>
@@ -15,10 +15,13 @@ export default function UserPreview({ data }) {
             </div>
           </Link>
           <div>
-            {/* <ButtonFollow
+            <ButtonFollow
               style={'rounded-[6px] border-0 bg-tiktokPink py-2 px-6 font-medium text-white cursor-pointer'}
-            /> */}
-            <button className='rounded-[6px] border-0 bg-tiktokPink py-2 px-6 font-medium text-white'>Follow</button>
+              idUserFollow={data?.id}
+              page={page}
+              perPage={perPage}
+            />
+            {/* <button className='rounded-[6px] border-0 bg-tiktokPink py-2 px-6 font-medium text-white'>Follow</button> */}
           </div>
         </div>
         <div className='flex items-center'>
