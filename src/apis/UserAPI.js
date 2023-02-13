@@ -37,11 +37,8 @@ export const User = {
   me() {
     return http.get('/api/auth/me')
   },
-  updateMe(body, token) {
-    return http.post('/api/auth/me?_method=PATCH', body, {
-      headers: {
-        Authorization: `Bearer  ${token}`
-      }
-    })
+  updateMe(data) {
+    console.log('data', data.last_name)
+    return http.post('/api/auth/me?_method=PATCH', data)
   }
 }
