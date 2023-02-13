@@ -47,7 +47,7 @@ function VideosItems({ data, totalData, previousPath }) {
     }
     const sectionObserver = new IntersectionObserver(revealSection, {
       root: null,
-      threshold: 0.6
+      threshold: 0.65
     })
     allVideos.forEach((item, index) => {
       sectionObserver.observe(item)
@@ -82,7 +82,7 @@ function VideosItems({ data, totalData, previousPath }) {
   }
 
   return (
-    <div className='w-[710px] border-b pt-2'>
+    <div className='w-[710px] border-b py-4'>
       <div className='relative flex'>
         <Link
           to={`/users/@${data?.user.nickname}`}
@@ -94,7 +94,7 @@ function VideosItems({ data, totalData, previousPath }) {
           <div className='flex items-center '>
             <Link
               to={`/users/@${data?.user.nickname}`}
-              className='cursor-pointer text-[18px] font-black hover:underline group-hover:underline'
+              className='cursor-pointer text-[18px] font-black group-hover:underline hover:underline'
             >
               {data?.user.nickname}
             </Link>
@@ -139,6 +139,7 @@ function VideosItems({ data, totalData, previousPath }) {
               <video
                 className='video-display h-full w-full overflow-hidden rounded-lg  '
                 muted
+                controls
                 src={data?.file_url}
                 ref={videoRef}
               />
@@ -163,6 +164,7 @@ function VideosItems({ data, totalData, previousPath }) {
               <Link
                 to={`/users/@${data?.user.nickname}/${data?.uuid}`}
                 className='flex cursor-pointer flex-col items-center justify-center'
+                state={{ totalData: totalData, previousPath: previousPath }}
               >
                 <span className='flex h-12 w-12 items-center justify-center rounded-[50%] bg-[#1618230f]'>
                   <CommentIcon />
