@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { User } from '../../../../apis/UserAPI'
-import { AppContext } from '../../../../context/app.context'
 import SkeletonUserSuggest from '../../../components/Skeleton/SkeletonUserSuggest'
 import UserItem from '../UserItem/UserItem'
 
@@ -32,15 +30,7 @@ export default function FollowUser() {
   return (
     <>
       <div className='mt-4'>
-        {data.length === 0 ? (
-          <SkeletonUserSuggest />
-        ) : (
-          data.map((user) => (
-            <Link key={user.id} to={`/users/@${user.nickname}`}>
-              <UserItem data={user} />
-            </Link>
-          ))
-        )}
+        {data.length === 0 ? <SkeletonUserSuggest /> : data.map((user) => <UserItem data={user} />)}
       </div>
       <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
         {seeMore ? `Ẩn bớt` : `Xem tất cả`}
