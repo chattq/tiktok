@@ -65,6 +65,9 @@
     background: #ededef;
     border-radius: 100vh;
   }
+  .caret {
+    caret-color: red;
+  }
 }
 * {
   padding: 0;

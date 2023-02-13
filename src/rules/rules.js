@@ -23,5 +23,11 @@ export const rules = {
       value: 6,
       message: 'Mật khẩu phải lớn hơn 6 kí tự'
     }
+  },
+  last_name: {
+    required: {
+      value: true,
+      message: 'Vui lòng điền đầy đủ'
+    }
   }
 }

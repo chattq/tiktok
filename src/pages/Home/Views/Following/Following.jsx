@@ -10,22 +10,30 @@ export default function Following() {
   const previousPath = window.location.pathname
 
   const handleLoadMoreData = () => {
-    setNumberLoad((pre) => (pre += 1))
-  }
-  useEffect(() => {
-    Videos.getVideosFollowing('following', numberLoad, token)
+    setNumberLoad((pre) => pre + 1)
+    Videos.getVideosFollowing('following', numberLoad + 1, token)
       .then((res) => {
         console.log(res)
-        setDataRender((pre) => [...pre, ...res.data.data])
+        setDataRender((prev) => [...prev, ...res.data.data])
       })
       .catch((error) => {
         console.log(error)
       })
-  }, [numberLoad])
+  }
+  useEffect(() => {
+    Videos.getVideosFollowing('following', 1, token)
+      .then((res) => {
+        console.log(res)
+        setDataRender(res.data.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
   return (
-    <>
+    <div className='wrapper'>
       <VideosList dataRender={dataRender} previousPath={previousPath} />
       <button onClick={handleLoadMoreData}>loadmore</button>
-    </>
+    </div>
   )
 }
