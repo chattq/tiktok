@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { User } from '../../../../apis/UserAPI'
+import { AppContext } from '../../../../context/app.context'
 import SkeletonUserSuggest from '../../../components/Skeleton/SkeletonUserSuggest'
 import UserItem from '../UserItem/UserItem'
 
 export default function FollowUser() {
+  const { setDataUser } = useContext(AppContext)
   const [data, setData] = useState([])
   const [allFollowUsers, setAllFollowUsers] = useState([])
   const [FollowUsers, setFollowUsers] = useState([])
@@ -28,14 +30,18 @@ export default function FollowUser() {
     seeMore ? setData(FollowUsers) : setData(allFollowUsers)
     setSeeMore(!seeMore)
   }
+  const handleCheckProfile = () => {
+    setDataUser('123')
+    localStorage.setItem('checkDataUser', '123')
+  }
   return (
     <>
-      <div className='mt-5'>
+      <div className='mt-4'>
         {data.length === 0 ? (
           <SkeletonUserSuggest />
         ) : (
           data.map((user) => (
-            <Link key={user.id} to={`/users/@${user.nickname}`}>
+            <Link key={user.id} to={`/users/@${user.nickname}`} onClick={handleCheckProfile}>
               <UserItem data={user} />
             </Link>
           ))
