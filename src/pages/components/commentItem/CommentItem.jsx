@@ -7,7 +7,7 @@ import { FlagReport, HeartComment, LikedHeart, MenuIcon, MoreComment, TrashIcon 
 import { LikeAPI } from '../../../apis/Like'
 import ModalConfirm from '../modalConfirm/ModalConfirm'
 
-export default function CommentItem({ comment }) {
+export default function CommentItem({ comment, uuidVideo }) {
   const [openModal, setOpenModal] = useState(false)
   const dataUser = JSON.parse(localStorage.getItem('userInfo'))
   const isOwnLogin = dataUser.id === comment?.user.id
@@ -107,6 +107,7 @@ export default function CommentItem({ comment }) {
             setOpenModal={setOpenModal}
             idComment={idComment}
             setDataComment={setDataComment}
+            uuidVideo={uuidVideo}
           />
         </div>
       ) : null}

@@ -4,7 +4,7 @@ import { formatNumberFollow, formatNumberLike } from '../../../assets/formatNumb
 import { ImgBasic } from '../../../assets/img'
 import ButtonFollow from '../buttonFollow/ButtonFollow'
 
-export default function UserPreviewDetailVideo({ data }) {
+export default function UserPreviewDetailVideo({ data, uuidVideo }) {
   return (
     <>
       <div className='z-10 w-[290px] rounded-[6px] border bg-white p-5 shadow-xl'>
@@ -15,7 +15,16 @@ export default function UserPreviewDetailVideo({ data }) {
             </div>
           </Link>
           <div className=''>
-            <ButtonFollow />
+            <ButtonFollow
+              style={`h-fit cursor-pointer rounded-[4px] border ${
+                data?.is_followed ? 'border-[#1618231f]' : 'border-[rgba(254,44,85,1)]'
+              } bg-white px-5 py-1 font-medium ${
+                data?.is_followed ? 'text-[#161823]' : 'text-[#fe2c55]'
+              } hover:bg-[#FFF2F5]`}
+              idUserFollow={data?.id}
+              isFollowed={data?.is_followed}
+              uuidVideo={uuidVideo}
+            />
           </div>
         </div>
         <div className='flex items-center'>

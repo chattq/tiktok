@@ -222,7 +222,7 @@ function Upload() {
                   <div className='flex justify-between'>
                     <h3 className='text-base font-semibold text-tiktokColorText'>Caption</h3>
                     <p className='text-[13px] font-normal text-[#16182380]'>
-                      {textAreaRef.current?.value ? textAreaRef.current?.value : 0}/150
+                      {textAreaRef.current?.value.length ? textAreaRef.current?.value.length   : 0}/150
                     </p>
                   </div>
                   <div className='relative min-h-[46px] w-full'>

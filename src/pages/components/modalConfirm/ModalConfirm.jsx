@@ -5,12 +5,16 @@ import { CommentAPI } from '../../../apis/CommentAPI'
 import { toast, ToastContainer } from 'react-toastify'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTiktok } from '@fortawesome/free-brands-svg-icons'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-export default function ModalConfirm({ openModal, setOpenModal, idComment, setDataComment }) {
+export default function ModalConfirm({ openModal, setOpenModal, idComment, setDataComment, uuidVideo }) {
   const cancelButtonRef = useRef(null)
+  const deleteCommentMutation = useMutation(CommentAPI.deleteAComment)
+  const queryClient = useQueryClient()
   function handleClearComment() {
-    CommentAPI.deleteAComment(idComment)
-      .then(() => {
+    deleteCommentMutation.mutate(idComment, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['/api/users/@', uuidVideo], exact: true })
         toast.success(
           <>
             <FontAwesomeIcon icon={faTiktok} />
@@ -24,21 +28,38 @@ export default function ModalConfirm({ openModal, setOpenModal, idComment, setDa
         )
         setOpenModal(false)
         setDataComment(null)
-      })
+      }
+    })
+    // CommentAPI.deleteAComment(idComment)
+    //   .then(() => {
+    //     toast.success(
+    //       <>
+    //         <FontAwesomeIcon icon={faTiktok} />
+    //         <span className='ml-[5px]'>Xóa bình luận thành công</span>
+    //       </>,
+    //       {
+    //         position: 'top-right',
+    //         autoClose: 2000,
+    //         theme: 'light'
+    //       }
+    //     )
+    //     setOpenModal(false)
+    //     setDataComment(null)
+    //   })
 
-      .catch(() => {
-        toast.error(
-          <>
-            <FontAwesomeIcon icon={faTiktok} />
-            <span className='ml-[5px]'>Xóa bình luận thất bại</span>
-          </>,
-          {
-            position: 'top-right',
-            autoClose: 2000,
-            theme: 'light'
-          }
-        )
-      })
+    //   .catch(() => {
+    //     toast.error(
+    //       <>
+    //         <FontAwesomeIcon icon={faTiktok} />
+    //         <span className='ml-[5px]'>Xóa bình luận thất bại</span>
+    //       </>,
+    //       {
+    //         position: 'top-right',
+    //         autoClose: 2000,
+    //         theme: 'light'
+    //       }
+    //     )
+    //   })
   }
   return (
     <>
