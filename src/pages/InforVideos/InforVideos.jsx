@@ -49,6 +49,7 @@ import ItemShare from '../components/itemShare/ItemShare'
 import ItemSocial from '../components/itemSocial/ItemSocial'
 import LinkVideo from '../components/linkVideo/LinkVideo'
 import ShareMoreComponent from '../components/shareMore/ShareMoreComponent'
+import SkeletonUserSuggest from '../components/Skeleton/SkeletonUserSuggest'
 import UserItemDetailVideo from '../components/userItemDetailVideo/UserItemDetailVideo'
 import UserItem from '../Home/components/UserItem/UserItem'
 
@@ -83,7 +84,7 @@ export default function InforVideos() {
   const user = videoData?.data.data.user
   const [idVideo, setIdVideo] = useState(undefined)
 
-  const uuidVideo = videoRender?.uuid
+  const uuidVideo = videoData?.data.data.uuid
   const heightVideo = videoRender?.meta.video.resolution_y
   const widthVideo = videoRender?.meta.video.resolution_x
   const checkVideo = heightVideo > widthVideo
@@ -278,13 +279,24 @@ export default function InforVideos() {
           ) : null}
         </div>
         <div className='webkit-scroll-hide flex h-[100vh] w-[554px] flex-col pt-8'>
-          <div className='mb-[15px] flex flex-[0_0_82px] justify-between px-8 pt-[22px]'>
+          <div className='mb-[15px] flex flex-[0_0_82px] justify-between px-8 pt-[22px] '>
             {user ? (
-              <Link to={`/users/@${user?.nickname}`}>
-                <UserItemDetailVideo data={user} timePublish={videoRender?.created_at} />
-              </Link>
-            ) : null}
-            <ButtonFollow />
+              <UserItemDetailVideo data={user} timePublish={videoRender?.created_at} uuidVideo={uuidVideo} />
+            ) : (
+              <SkeletonUserSuggest></SkeletonUserSuggest>
+            )}
+            <span className='h-fit'>
+              <ButtonFollow
+                style={`h-fit cursor-pointer rounded-[4px] border ${
+                  user?.is_followed ? 'border-[#1618231f]' : 'border-[rgba(254,44,85,1)]'
+                } bg-white px-5 py-1 font-medium ${
+                  user?.is_followed ? 'text-[#161823]' : 'text-[#fe2c55]'
+                } hover:bg-[#FFF2F5]`}
+                idUserFollow={user?.id}
+                isFollowed={user?.is_followed}
+                uuidVideo={uuidVideo}
+              />
+            </span>
           </div>
           <div className='flex flex-shrink-0 flex-col px-8'>
             <div>{videoRender?.description}</div>
@@ -345,9 +357,7 @@ export default function InforVideos() {
               </div>
             </div>
           </div>
-          <div className='webkit-scroll-hide relative w-[100%] flex-grow overflow-y-auto overflow-x-hidden border border-t-[#16182333] border-b-[#16182333] bg-[#f8f8f8] py-6 px-8'>
-            {idVideo ? <CommentVideo idVideo={idVideo} /> : null}
-          </div>
+          {idVideo ? <CommentVideo idVideo={idVideo} uuidVideo={uuidVideo} /> : null}
           <div className='mx-[30px] flex-[0_0_auto] bg-[#ffffff] py-[21px]'>
             <div className='flex items-end '>
               <div className='flex-[1_1_auto]'>
