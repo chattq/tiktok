@@ -33,5 +33,15 @@ export const User = {
   },
   unFollowUser(idUnFollow) {
     return http.post(`/api/users/${idUnFollow}/unfollow`)
+  },
+  me() {
+    return http.get('/api/auth/me')
+  },
+  updateMe(body, token) {
+    return http.post('/api/auth/me?_method=PATCH', body, {
+      headers: {
+        Authorization: `Bearer  ${token}`
+      }
+    })
   }
 }
