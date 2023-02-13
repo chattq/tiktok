@@ -1,14 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Hashtag, HomeIcon, LiveIcon, MusicSidebar, UserIcon } from '../../../../Icons/Icons'
 import MenuItem from '../../components/MenuItem/MenuItem'
 import SuggestUser from '../../components/SuggestUser/SuggestUser'
 import FollowUser from '../../components/FollowUser/FollowUser'
 import SkeletonUserSuggest from '../../../components/Skeleton/SkeletonUserSuggest'
-import { AppContext } from '../../../../context/app.context'
 import { useQuery } from '@tanstack/react-query'
 import { User } from '../../../../apis/UserAPI'
+import { useParams } from 'react-router-dom'
 
 export default function SideBar() {
+  const dataUserLocal = JSON.parse(localStorage.getItem('userInfo'))
+  const { userId } = useParams()
+  const newArr = []
+  newArr.push(userId)
+  const checkUser = Boolean(newArr.includes('@' + dataUserLocal?.nickname))
   const [data, setData] = useState([])
   const checkToken = Boolean(localStorage.getItem('token'))
   const [page] = useState(1)
@@ -47,10 +52,12 @@ export default function SideBar() {
             </div>
           )}
         </div>
-        <div className='mt-2 mb-3 px-2 py-1'>
-          <h1 className='text-fontSizeTitle font-semibold text-tiktokColorText'>Tài khoản được đề xuất</h1>
-          {isLoading ? <SkeletonUserSuggest /> : <SuggestUser />}
-        </div>
+        {checkUser ? null : (
+          <div className='mt-2 mb-3 px-2 py-1'>
+            <h1 className='text-fontSizeTitle font-semibold text-tiktokColorText'>Tài khoản được đề xuất</h1>
+            {isLoading ? <SkeletonUserSuggest /> : <SuggestUser />}
+          </div>
+        )}
         {checkToken ? (
           <div className=' border-t border-[#F1F1F2] px-2 py-2'>
             <h4 className='mt-1 text-fontSizeTitle font-semibold text-tiktokColorText'>Các tài khoản đang follow</h4>
