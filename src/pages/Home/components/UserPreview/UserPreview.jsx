@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatNumberFollow, formatNumberLike } from '../../../../assets/formatNumber'
 import { ImgBasic } from '../../../../assets/img'
+import ButtonFollow from '../../../components/buttonFollow/ButtonFollow'
 
-export default function UserPreview({ data }) {
+export default function UserPreview({ data, page, perPage }) {
   return (
     <>
       <div className='w-[330px] rounded-[6px] border bg-white p-5 shadow-xl'>
@@ -13,10 +14,14 @@ export default function UserPreview({ data }) {
               <img className='h-full w-full object-cover' src={ImgBasic(data?.avatar)} alt={data?.nickname} />
             </div>
           </Link>
-          <div className=''>
-            <button className='rounded-[6px] border-0 bg-tiktokPink py-2 px-6 font-medium text-white' type='button'>
-              Follow
-            </button>
+          <div>
+            <ButtonFollow
+              style={'rounded-[6px] border-0 bg-tiktokPink py-2 px-6 font-medium text-white cursor-pointer'}
+              idUserFollow={data?.id}
+              page={page}
+              perPage={perPage}
+            />
+            {/* <button className='rounded-[6px] border-0 bg-tiktokPink py-2 px-6 font-medium text-white'>Follow</button> */}
           </div>
         </div>
         <div className='flex items-center'>

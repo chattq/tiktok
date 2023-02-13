@@ -194,10 +194,6 @@ export default function HeaderLayout({ children }) {
         console.log(error)
       })
   }
-  const handleSentProfileUser = () => {
-    setDataUser('321')
-    localStorage.setItem('checkDataUser', '321')
-  }
   return (
     <>
       <div className='fixed top-0 z-50 h-[60px] w-full border-b border-[#ccc] bg-white dark:bg-red-800'>
@@ -319,7 +315,6 @@ export default function HeaderLayout({ children }) {
                   <Menu className='w-[240px] bg-[white] pt-3 shadow-lg ' dataMenu={dataMenuUser} onClick={handleLogout}>
                     <Link to={`/users/@${dataUser.nickname}`}>
                       <img
-                        onClick={handleSentProfileUser}
                         src={
                           ImgBasic(dataUser.avatar) ||
                           'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'

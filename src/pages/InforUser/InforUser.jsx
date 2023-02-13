@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom'
 import { User } from '../../apis/UserAPI'
 import { formatNumberFollow, formatNumberLike } from '../../assets/formatNumber'
 import { ImgBasic } from '../../assets/img'
-import { AppContext } from '../../context/app.context'
 import { dots, EditProfile, links, locks, LockUser, share, TikUser } from '../../Icons/Icons'
 import ButtonFollow from '../components/buttonFollow/ButtonFollow'
 import ButtonUnfollow from '../components/buttonUnfollow/ButtonUnfollow'
@@ -15,9 +14,7 @@ import SkeletonUserInfor from '../components/Skeleton/SkeletonUseInfor'
 import Videos from './Videos/Videos'
 
 export default function InforUser() {
-  const { dataUser } = useContext(AppContext)
-  const checkDataUser = localStorage.getItem('checkDataUser')
-  console.log(checkDataUser, dataUser)
+  const DataUser = JSON.parse(localStorage.getItem('userInfo'))
   const [checkPage, setCheckPage] = useState(false)
   const previousPath = window.location.pathname
   const { userId } = useParams()
@@ -27,6 +24,7 @@ export default function InforUser() {
     cacheTime: 10 * 100
   })
   const inforUser = user?.data.data
+  const checkDataUser = Boolean(DataUser?.id === inforUser?.id)
   const handleVideo = () => {
     setCheckPage(false)
   }
@@ -75,7 +73,7 @@ export default function InforUser() {
                     )}
                   </div>
                   <span className='mt-2 mb-4 h-[25px] font-tiktokFont text-[18px] font-[500] leading-[25px]'>{`${inforUser?.first_name} ${inforUser?.last_name}`}</span>
-                  {dataUser === '321' || checkDataUser === '321' ? (
+                  {checkDataUser ? (
                     <ModalEditProfile style={'w-[125px]'}>
                       <div className='w-[125px] cursor-pointer'>
                         <div className='border-[rgba(22, 24, 35, 0.12)] flex items-center justify-center rounded-[4px] border font-bold'>

@@ -3,7 +3,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { User } from '../../../apis/UserAPI'
 
-export default function ButtonFollow({ style, idUserFollow, isFollowed, uuidVideo }) {
+export default function ButtonFollow({ style, idUserFollow, isFollowed, uuidVideo, page, perPage }) {
   const { userId } = useParams()
   const queryClient = useQueryClient()
   const followMutation = useMutation(User.followUser)
@@ -12,6 +12,7 @@ export default function ButtonFollow({ style, idUserFollow, isFollowed, uuidVide
     if (isFollowed) {
       unFollowMutation.mutate(idUserFollow, {
         onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['/api/users/suggested', { page, perPage }] })
           queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
           if (uuidVideo) {
             queryClient.invalidateQueries({ queryKey: ['/api/users/@', uuidVideo], exact: true })
@@ -21,6 +22,7 @@ export default function ButtonFollow({ style, idUserFollow, isFollowed, uuidVide
     } else {
       followMutation.mutate(idUserFollow, {
         onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['/api/users/suggested', { page, perPage }] })
           queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
           if (uuidVideo) {
             queryClient.invalidateQueries({ queryKey: ['/api/users/@', uuidVideo], exact: true })
