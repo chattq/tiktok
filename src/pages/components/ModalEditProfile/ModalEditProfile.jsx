@@ -16,7 +16,6 @@ import { useParams } from 'react-router-dom'
 export default function ModalEditProfile({ children, style }) {
   const { userId } = useParams()
   const queryClient = useQueryClient()
-  let user = JSON.parse(localStorage.getItem('userInfo'))
   const [isModalOpen, setIsModalOpen] = useState(false)
   const fileInput = useRef(null)
   const [file, setFile] = useState()
@@ -25,7 +24,7 @@ export default function ModalEditProfile({ children, style }) {
     queryFn: User.me
   })
   const previewImg = useMemo(() => {
-    return file ? URL.createObjectURL(file) : user.avatar
+    return file ? URL.createObjectURL(file) : ''
   }, [file])
   const profile = dataProfile?.data.data
   const {
@@ -52,31 +51,32 @@ export default function ModalEditProfile({ children, style }) {
       setValue('bio', profile.bio)
     }
   }, [profile, setValue])
+  const avatar = watch('avatar')
+  console.log(avatar)
   const updateProfileMutation = useMutation(User.updateMe)
   const onSubmit = handleSubmit(async (data) => {
-    // console.log(57, data.avatar)
-    const dataUpdate = new FormData()
-    dataUpdate.append('avatar', data.avatar)
-    dataUpdate.append('last_name', data.last_name)
-    dataUpdate.append('first_name', data.first_name)
-    dataUpdate.append('bio', data.bio)
     try {
-      updateProfileMutation.mutateAsync(dataUpdate, {
+      const dataUpdate = new FormData()
+      // dataUpdate.append('avatar', file.name)
+      dataUpdate.append('last_name', data.last_name)
+      dataUpdate.append('first_name', data.first_name)
+      dataUpdate.append('bio', data.bio)
+      await updateProfileMutation.mutateAsync(dataUpdate, {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId] })
-          toast.success(
-            <>
-              <FontAwesomeIcon icon={faTiktok} />
-              <span className='ml-[5px]'>Upload thành công</span>
-            </>,
-            {
-              position: 'top-right',
-              autoClose: 2000,
-              theme: 'light'
-            }
-          )
         }
       })
+      toast.success(
+        <>
+          <FontAwesomeIcon icon={faTiktok} />
+          <span className='ml-[5px]'>Upload thành công</span>
+        </>,
+        {
+          position: 'top-right',
+          autoClose: 2000,
+          theme: 'light'
+        }
+      )
       // const response = await User.updateMe(data)
       // console.log(response)
       // localStorage.setItem('userInfo', JSON.stringify(response.data.data))
@@ -139,7 +139,12 @@ export default function ModalEditProfile({ children, style }) {
               <div className='flex pt-[24px] pb-[20px]'>
                 <div className='mr-[24px] w-[120px] text-[16px] font-medium'>Ảnh hồ sơ</div>
                 <div className='ml-[128px] h-[100px] w-[100px] overflow-hidden rounded-full'>
-                  <img src={previewImg} alt='' onClick={handleUpload} className='h-full w-full object-cover' />
+                  <img
+                    src={previewImg || ImgBasic(profile?.avatar)}
+                    alt=''
+                    onClick={handleUpload}
+                    className='h-full w-full object-cover'
+                  />
                   <input hidden type='file' accept='.jpg, .jpeg,.png' ref={fileInput} onChange={onFileChange} />
                 </div>
               </div>
