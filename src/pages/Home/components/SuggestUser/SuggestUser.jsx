@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { User } from '../../../../apis/UserAPI'
-import { AppContext } from '../../../../context/app.context'
 import SkeletonUserSuggest from '../../../components/Skeleton/SkeletonUserSuggest'
 import UserItem from '../UserItem/UserItem'
 
 export default function SuggestUser() {
-  const { setDataUser } = useContext(AppContext)
   const [data, setData] = useState([])
   const [allSuggestedUsers, setAllSuggestedUsers] = useState([])
   const [suggestedUsers, setSuggestedUsers] = useState([])
@@ -29,10 +27,6 @@ export default function SuggestUser() {
     seeMore ? setData(suggestedUsers) : setData(allSuggestedUsers)
     setSeeMore(!seeMore)
   }
-  const handleCheckProfile = () => {
-    setDataUser('123')
-    localStorage.setItem('checkDataUser', '123')
-  }
   return (
     <>
       <div className='mt-5'>
@@ -43,7 +37,7 @@ export default function SuggestUser() {
             if (user?.is_followed === false) {
               return (
                 <>
-                  <Link key={user.id} to={`/users/@${user.nickname}`} onClick={handleCheckProfile}>
+                  <Link key={user.id} to={`/users/@${user.nickname}`}>
                     <UserItem data={user} />
                   </Link>
                 </>
