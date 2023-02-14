@@ -30,9 +30,6 @@ function CommentVideo({ idVideo, uuidVideo }) {
 
   function handleScrollComment() {
     const { clientHeight, scrollTop, scrollHeight } = displayCommentRef.current
-    console.log('clientHeight', clientHeight)
-    console.log('scrollTop', scrollTop)
-    console.log('scrollHeight', scrollHeight)
     if (scrollTop + clientHeight >= scrollHeight) {
       if (currentPage < totalPage) {
         CommentAPI.getCommentVideo(idVideo.idVideo, currentPage + 1).then((res) => {

@@ -58,30 +58,21 @@ export default function InforVideos() {
   const nav = useNavigate()
   const location = useLocation()
   const { totalData, previousPath } = location.state
-  console.log(58, totalData)
-  console.log(58, previousPath)
 
   const { userId, videoId } = useParams()
-  console.log(videoId)
   const videoIndex = totalData.findIndex((item) => item.uuid === videoId)
   const previousVideo = totalData[videoIndex - 1]
-  console.log(previousVideo)
   const nextVideo = totalData[videoIndex + 1]
-  console.log(nextVideo)
 
   const { data: videoData, isLoading } = useQuery({
     queryKey: ['/api/users/@', videoId],
     queryFn: () => Videos.getVideos(videoId)
   })
-  console.log(videoData)
   const videoRef = useRef()
   const inputCommentRef = useRef()
   const buttonCommentRef = useRef()
   let isPlaying = false
-  // const video = videoData?.data.data
-  // const [videoRender, setVideoRender] = useState(undefined)
   const videoRender = videoData?.data.data
-  // const [user, setUser] = useState(undefined)
   const user = videoData?.data.data.user
   const [idVideo, setIdVideo] = useState(undefined)
 
@@ -96,12 +87,7 @@ export default function InforVideos() {
 
   const queryClient = useQueryClient()
   useEffect(() => {
-    console.log('re render')
     if (!isLoading) {
-      console.log('re render', isLoading)
-      // setUser((old) => videoData.data.data.user)
-      // setIsLiked((old) => videoData.data.data.is_liked)
-      // setVideoRender((old) => videoData.data.data)
       setIdVideo((old) => {
         const idVideo = videoData.data.data.id
         return { idVideo: idVideo }
@@ -110,7 +96,6 @@ export default function InforVideos() {
   }, [isLoading])
 
   function handlePlay() {
-    console.log(isPlaying)
     if (!isPlaying) {
       videoRef.current.play()
     } else {
@@ -127,7 +112,6 @@ export default function InforVideos() {
         {
           onSuccess: async function () {
             await queryClient.invalidateQueries({ queryKey: ['/api/users/@', videoId], exact: true })
-            console.log(videoData)
 
             inputCommentRef.current.value = ''
             buttonCommentRef.current.classList.remove('hover:cursor-pointer', 'text-red-500')
@@ -199,14 +183,12 @@ export default function InforVideos() {
       handleDislikePostMutation.mutate(videoData?.data.data.id, {
         onSuccess: async function () {
           await queryClient.invalidateQueries({ queryKey: ['/api/users/@', videoId], exact: true })
-          console.log(videoData)
         }
       })
     } else {
       handleLikePostMutation.mutate(videoData?.data.data.id, {
         onSuccess: async function () {
           await queryClient.invalidateQueries({ queryKey: ['/api/users/@', videoId], exact: true })
-          console.log(videoData)
         }
       })
     }

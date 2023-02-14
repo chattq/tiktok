@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function MenuItem({ className, data, onClick }) {
-  console.log(data)
   let Comp = 'div'
   const _props = {
     onClick

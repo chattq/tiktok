@@ -3,7 +3,6 @@ import VideosItemNotLogin from './VideosItemNotLogin'
 import VideosItems from './VideosItems'
 
 function VideosList({ dataRender, previousPath }) {
-  console.log(dataRender, 5)
   return (
     <>
       {dataRender.map((item, index) => {
