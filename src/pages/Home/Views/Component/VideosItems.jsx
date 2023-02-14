@@ -20,10 +20,13 @@ import { LikeAPI } from '../../../../apis/Like'
 import ButtonPlayVideo from '../../../components/ControlVideo/ButtonPlayVideo'
 import ButtonVolume from '../../../components/ControlVideo/ButtonVolume'
 import ButtonChangeVolume from '../../../components/ControlVideo/ButtonChangeVolume'
+import { useContext } from 'react'
+import { AppContext } from '../../../../context/app.context'
 
 function VideosItems({ data, totalData, previousPath }) {
   console.log('data', data)
   console.log(27, data?.user.is_followed)
+  const { setIsPlaying } = useContext(AppContext)
   const ratio = data?.meta.video.resolution_x > data?.meta.video.resolution_y
   const videoRef = useRef()
   const [isFollowed, setIsFollowed] = useState(data?.user.is_followed)
@@ -38,6 +41,7 @@ function VideosItems({ data, totalData, previousPath }) {
   }, [data])
 
   const handleScroll = (e) => {
+    setIsPlaying(true)
     const allVideos = document.querySelectorAll('.video-display')
     const revealSection = function (entries, observer) {
       const [entry] = entries
@@ -56,7 +60,6 @@ function VideosItems({ data, totalData, previousPath }) {
       sectionObserver.observe(item)
     })
   }
-
   const handleFollow = () => {
     User.followUser(data?.user_id).then((res) => {
       console.log(61, res)
@@ -150,12 +153,14 @@ function VideosItems({ data, totalData, previousPath }) {
             <div className='absolute bottom-[25px] left-[20px] z-50'>
               <ButtonPlayVideo videoRef={videoRef} />
             </div>
-            <div className='absolute bottom-[40px] right-[170px]'>
+            <div className='volume1 absolute bottom-[40px] right-[170px]'>
               <ButtonVolume videoRef={videoRef} />
             </div>
-            <div className='absolute bottom-[120px] right-[148px] rotate-[-90deg]'>
-              <ButtonChangeVolume videoRef={videoRef} />
-            </div>
+            <ButtonChangeVolume
+              videoRef={videoRef}
+              style={'controlVolume absolute bottom-[120px] right-[148px] rotate-[-90deg]'}
+            />
+
             <div className='flex h-full flex-col items-center  gap-1 self-end'>
               <div className='flex flex-col items-center justify-center'>
                 <span className='mr-1 flex h-12 w-12 cursor-pointer items-center justify-center rounded-[50%] bg-[#1618230f]'>
