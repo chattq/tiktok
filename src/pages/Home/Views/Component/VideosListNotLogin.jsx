@@ -1,15 +1,13 @@
 import React from 'react'
 import VideosItemNotLogin from './VideosItemNotLogin'
-import VideosItems from './VideosItems'
 
-function VideosList({ dataRender, previousPath }) {
-  console.log(dataRender, 5)
+function VideosListNotLogin({ dataRender, previousPath, isLogin }) {
   return (
     <>
       {dataRender.map((item, index) => {
         return (
           <div key={item.uuid}>
-            <VideosItems data={item} totalData={dataRender} previousPath={previousPath} />
+            <VideosItemNotLogin dataVideos={item} totalData={dataRender} previousPath={previousPath} />
           </div>
         )
       })}
@@ -17,4 +15,4 @@ function VideosList({ dataRender, previousPath }) {
   )
 }
 
-export default VideosList
+export default VideosListNotLogin

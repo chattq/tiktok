@@ -35,6 +35,10 @@ export default function HomeMain() {
       .catch((error) => {
         console.log(error)
       })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   return (
