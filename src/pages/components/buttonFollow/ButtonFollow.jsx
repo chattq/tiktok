@@ -12,8 +12,8 @@ export default function ButtonFollow({ style, idUserFollow, isFollowed, uuidVide
     if (isFollowed) {
       unFollowMutation.mutate(idUserFollow, {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ['/api/users/suggested', { page, perPage }] })
-          queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
+          queryClient.invalidateQueries({ queryKey: ['/api/users/suggested', { page, perPage }], exact: true })
+          // queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
           if (uuidVideo) {
             queryClient.invalidateQueries({ queryKey: ['/api/users/@', uuidVideo], exact: true })
           }
@@ -23,7 +23,7 @@ export default function ButtonFollow({ style, idUserFollow, isFollowed, uuidVide
       followMutation.mutate(idUserFollow, {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: ['/api/users/suggested', { page, perPage }] })
-          queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
+          // queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
           if (uuidVideo) {
             queryClient.invalidateQueries({ queryKey: ['/api/users/@', uuidVideo], exact: true })
           }

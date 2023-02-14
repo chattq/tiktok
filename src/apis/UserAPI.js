@@ -38,7 +38,6 @@ export const User = {
     return http.get('/api/auth/me')
   },
   updateMe(body) {
-    console.log(41, body)
     return http.post('/api/auth/me?_method=PATCH', body)
   }
 }

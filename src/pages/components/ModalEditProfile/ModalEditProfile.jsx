@@ -33,12 +33,18 @@ export default function ModalEditProfile({ children, style }) {
     handleSubmit,
     formState: { errors },
     watch
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      last_name: '',
+      avatar: '',
+      first_name: '',
+      bio: '',
+      website_url: '',
+      facebook_url: ''
+    }
+  })
   const showModal = () => {
     setIsModalOpen(true)
-  }
-  const handleOk = () => {
-    setIsModalOpen(false)
   }
   const handleCancel = () => {
     setIsModalOpen(false)
@@ -49,16 +55,18 @@ export default function ModalEditProfile({ children, style }) {
       setValue('avatar', profile.avatar)
       setValue('first_name', profile.first_name)
       setValue('bio', profile.bio)
+      setValue('website_url', profile.website_url)
+      setValue('facebook_url', profile.facebook_url)
     }
   }, [profile, setValue])
-  const avatar = watch('avatar')
-  console.log(avatar)
   const updateProfileMutation = useMutation(User.updateMe)
   const onSubmit = handleSubmit(async (data) => {
     try {
       const dataUpdate = new FormData()
-      // dataUpdate.append('avatar', file.name)
+      // dataUpdate.append('', file)
       dataUpdate.append('last_name', data.last_name)
+      dataUpdate.append('website_url', data.website_url)
+      dataUpdate.append('facebook_url', data.facebook_url)
       dataUpdate.append('first_name', data.first_name)
       dataUpdate.append('bio', data.bio)
       await updateProfileMutation.mutateAsync(dataUpdate, {
@@ -77,24 +85,10 @@ export default function ModalEditProfile({ children, style }) {
           theme: 'light'
         }
       )
-      // const response = await User.updateMe(data)
-      // console.log(response)
-      // localStorage.setItem('userInfo', JSON.stringify(response.data.data))
-      // toast.success(
-      //   <>
-      //     <FontAwesomeIcon icon={faTiktok} />
-      //     <span className='ml-[5px]'>Upload thành công</span>
-      //   </>,
-      //   {
-      //     position: 'top-right',
-      //     autoClose: 2000,
-      //     theme: 'light'
-      //   }
-      // )
-      setIsModalOpen(false)
-      // setTimeout(() => {
-      //   window.location.reload()
-      // }, 2000)
+      refetch()
+      setTimeout(() => {
+        setIsModalOpen(false)
+      }, 1000)
     } catch (error) {
       console.log(error)
     }
@@ -102,6 +96,7 @@ export default function ModalEditProfile({ children, style }) {
   const maxSizeUploadImg = 5 * 1048576
   const onFileChange = (event) => {
     const fileFromLocal = event.target.files?.[0]
+    fileInput.current?.setAttribute('value', '')
     if (fileFromLocal && (fileFromLocal?.size >= maxSizeUploadImg || !fileFromLocal.type.includes('image'))) {
       toast.warning(`Dung lượng file tối đa 5MB, Định dạng:.JPEG, .PNG`)
     } else {
@@ -118,10 +113,10 @@ export default function ModalEditProfile({ children, style }) {
         {children}
       </span>
       <Modal
+        style={{ top: '20px' }}
         width={700}
         open={isModalOpen}
         closable={false}
-        onOk={handleOk}
         cancelButtonProps={{ style: { display: 'none' } }}
         okButtonProps={{ style: { display: 'none' } }}
       >
@@ -156,7 +151,7 @@ export default function ModalEditProfile({ children, style }) {
                   <input
                     type='text'
                     {...register('first_name', rules.first_name)}
-                    className='h-[38px] w-[360px] rounded bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none'
+                    className='h-[38px] w-[360px] rounded border border-transparent bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none focus:border focus:border-[rgba(73,79,113,0.12)]'
                   />
                 </div>
                 <div>{errors.first_name?.message}</div>
@@ -169,25 +164,50 @@ export default function ModalEditProfile({ children, style }) {
                   <input
                     type='text'
                     {...register('last_name', rules.last_name)}
-                    className='h-[38px] w-[360px] rounded bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none'
+                    className='h-[38px] w-[360px] rounded border border-transparent bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none focus:border focus:border-[rgba(73,79,113,0.12)]'
                   />
                 </div>
                 <div>{errors.last_name?.message}</div>
               </div>
             </div>
             <div className='border-b-[1px] border-[rgba(22,24,35,0.2)]'>
-              <div className='flex'>
+              <div className='flex pt-4 pb-4'>
+                <div className='mr-[24px] w-[120px] text-[16px] font-medium'>Link website</div>
+                <div>
+                  <input
+                    type='text'
+                    {...register('website_url')}
+                    className='h-[38px] w-[360px] rounded border border-transparent bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none focus:border focus:border-[rgba(73,79,113,0.12)]'
+                  />
+                </div>
+                <div>{errors.website_url?.message}</div>
+              </div>
+            </div>
+            <div className='border-b-[1px] border-[rgba(22,24,35,0.2)]'>
+              <div className='flex pt-4 pb-4'>
+                <div className='mr-[24px] w-[120px] text-[16px] font-medium'>Link facebook</div>
+                <div>
+                  <input
+                    type='text'
+                    {...register('facebook_url')}
+                    className='h-[38px] w-[360px] rounded border border-transparent bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none focus:border focus:border-[rgba(73,79,113,0.12)]'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='border-b-[1px] border-[rgba(22,24,35,0.2)]'>
+              <div className='flex pt-4 pb-4'>
                 <div className='mr-[24px] w-[120px] text-[16px] font-medium'>Tiểu sử</div>
                 <textarea
                   type='text'
                   {...register('bio', rules.bio)}
-                  className='h-[100px] w-[360px] resize-none rounded bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none'
+                  className='h-[100px] w-[360px] resize-none rounded border border-transparent bg-[#f1f1f2] px-[12px] py-[7px] text-[rgb(22,24,35)] caret-[red] outline-none focus:border focus:border-[rgba(73,79,113,0.12)]'
                 />
                 <div>{errors.bio?.message}</div>
               </div>
             </div>
           </div>
-          <div className='pt-24px flex justify-end'>
+          <div className='flex justify-end pt-[20px]'>
             <button
               className='mr-3 min-w-[96px] rounded border border-[#e3e3e4] px-4 py-[7px] text-[16px] font-medium hover:bg-[#f8f8f8]'
               type='button'
@@ -196,7 +216,7 @@ export default function ModalEditProfile({ children, style }) {
               Hủy
             </button>
             <button
-              className='min-w-[96px] rounded border border-[#e3e3e4] px-4 py-[7px] text-[16px] font-medium'
+              className='min-w-[96px] rounded border border-[#e3e3e4] px-4 py-[7px] text-[16px] font-medium hover:bg-[#f8f8f8]'
               type='submit'
             >
               Lưu
