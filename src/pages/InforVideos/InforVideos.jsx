@@ -54,6 +54,7 @@ import UserItemDetailVideo from '../components/userItemDetailVideo/UserItemDetai
 import UserItem from '../Home/components/UserItem/UserItem'
 
 export default function InforVideos() {
+  const loginId = JSON.parse(localStorage.getItem('userInfo')).id
   const nav = useNavigate()
   const location = useLocation()
   const { totalData, previousPath } = location.state
@@ -285,18 +286,22 @@ export default function InforVideos() {
             ) : (
               <SkeletonUserSuggest></SkeletonUserSuggest>
             )}
-            <span className='h-fit'>
-              <ButtonFollow
-                style={`h-fit cursor-pointer rounded-[4px] border ${
-                  user?.is_followed ? 'border-[#1618231f]' : 'border-[rgba(254,44,85,1)]'
-                } bg-white px-5 py-1 font-medium ${
-                  user?.is_followed ? 'text-[#161823]' : 'text-[#fe2c55]'
-                } hover:bg-[#FFF2F5]`}
-                idUserFollow={user?.id}
-                isFollowed={user?.is_followed}
-                uuidVideo={uuidVideo}
-              />
-            </span>
+            {user ? (
+              <span className='h-fit'>
+                {loginId !== user.id ? (
+                  <ButtonFollow
+                    style={`h-fit cursor-pointer rounded-[4px] border ${
+                      user?.is_followed ? 'border-[#1618231f]' : 'border-[rgba(254,44,85,1)]'
+                    } bg-white px-5 py-1 font-medium ${
+                      user?.is_followed ? 'text-[#161823]' : 'text-[#fe2c55]'
+                    } hover:bg-[#FFF2F5]`}
+                    idUserFollow={user?.id}
+                    isFollowed={user?.is_followed}
+                    uuidVideo={uuidVideo}
+                  />
+                ) : null}
+              </span>
+            ) : null}
           </div>
           <div className='flex flex-shrink-0 flex-col px-8'>
             <div>{videoRender?.description}</div>
