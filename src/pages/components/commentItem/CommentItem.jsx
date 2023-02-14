@@ -39,7 +39,10 @@ export default function CommentItem({ comment, uuidVideo }) {
                 </div>
               </div>
               <div className='flex-[1_1_auto] '>
-                <Link className='text-[18px] font-semibold leading-[25px] hover:underline'>
+                <Link
+                  to={`/users/@${dataComment.user.nickname}`}
+                  className='text-[18px] font-semibold leading-[25px] hover:underline'
+                >
                   {dataComment.user.first_name + ' ' + dataComment.user.last_name}
                 </Link>
                 <p className='text-4 mb-[6px] whitespace-pre-line break-words leading-[22px]'>
