@@ -1,8 +1,10 @@
-import React from 'react'
+import { Tree } from 'antd'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { formatNumberFollow, formatNumberLike } from '../../../../assets/formatNumber'
 import { ImgBasic } from '../../../../assets/img'
 import ButtonFollow from '../../../components/buttonFollow/ButtonFollow'
+import ButtonUnfollow from '../../../components/buttonUnfollow/ButtonUnfollow'
 
 export default function UserPreview({ data, page, perPage }) {
   return (
