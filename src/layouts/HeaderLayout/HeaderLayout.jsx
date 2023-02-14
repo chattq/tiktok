@@ -89,7 +89,8 @@ export default function HeaderLayout({ children }) {
   const dataMenuUser = [
     {
       icon: <FontAwesomeIcon icon={faUser} className='w-5' />,
-      title: 'View Profile'
+      title: 'View Profile',
+      to: dataUser ? `/users/@${dataUser.nickname}` : null
     },
     {
       icon: <FontAwesomeIcon icon={faCoins} className='w-5' />,
@@ -97,6 +98,17 @@ export default function HeaderLayout({ children }) {
     },
     {
       icon: <FontAwesomeIcon icon={faVideoCamera} className='w-5' />,
+
+
+
+
+
+
+
+
+
+
+      
       title: 'Live'
     },
     {

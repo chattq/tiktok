@@ -54,7 +54,6 @@ function Upload() {
     if (textAreaRef.current.value) {
       setLoadingUpload(true)
       setCaptionRequied(false)
-      console.log('click')
       var formData = new FormData()
       formData.append('upload_file', fileVideos)
       formData.append('description', textAreaRef.current.value)
@@ -114,7 +113,6 @@ function Upload() {
     const file = e.target.files[0]
     setFileVideos(file)
     const file_url = URL.createObjectURL(file)
-    console.log(file_url)
     setVideoSrc(file_url)
   }
   const handleDiscardAll = () => {
@@ -222,7 +220,7 @@ function Upload() {
                   <div className='flex justify-between'>
                     <h3 className='text-base font-semibold text-tiktokColorText'>Caption</h3>
                     <p className='text-[13px] font-normal text-[#16182380]'>
-                      {textAreaRef.current?.value.length ? textAreaRef.current?.value.length   : 0}/150
+                      {textAreaRef.current?.value.length ? textAreaRef.current?.value.length : 0}/150
                     </p>
                   </div>
                   <div className='relative min-h-[46px] w-full'>

@@ -13,7 +13,6 @@ function Menu({ children, dataMenu, className, onClick }) {
   }
   const renderItem = () => {
     return current.data?.map((item, index) => {
-      console.log(item, 16)
       const isParent = !!item.child
       const isLogOut = !!item.log
       return (

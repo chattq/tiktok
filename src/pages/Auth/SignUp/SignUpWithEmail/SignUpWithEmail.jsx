@@ -52,41 +52,6 @@ function SignUpWithEmail() {
           alert('loi')
         }
       })
-
-    // axios
-    //   .post('https://tiktok.fullstack.edu.vn/api/auth/register', {
-    //     type: 'email',
-    //     email: data.email,
-    //     password: data.password
-    //   })
-    //   .then((res) => {
-    //     console.log(res)
-    //     setLoadingSignUp(false)
-    //     reset()
-    //     setFailSignUp(false)
-    //     toast.success(
-    //       <>
-    //         <FontAwesomeIcon icon={faTiktok} />
-    //         <span className='ml-[5px]'>Đăng nhập thành công</span>
-    //       </>,
-    //       {
-    //         position: 'top-right',
-    //         autoClose: 2000,
-    //         theme: 'light'
-    //       }
-    //     )
-    //     setTimeout(() => {
-    //       nav('/login/email')
-    //     }, 2500)
-    //   })
-    //   .catch((error) => {
-    //     setLoadingSignUp(false)
-    //     if (error.response.status === 409) {
-    //       setFailSignUp(true)
-    //     } else {
-    //       alert('loi')
-    //     }
-    //   })
   }
   return (
     <>
