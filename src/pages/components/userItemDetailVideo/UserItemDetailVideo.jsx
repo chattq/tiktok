@@ -3,19 +3,20 @@ import Tippy from '@tippyjs/react/headless'
 import { ImgBasic } from '../../../assets/img'
 import UserPreviewDetailVideo from '../userPreviewDetailVideo/UserPreviewDetailVideo'
 import { calculateTimePublish } from '../../../assets/calculateTimePublish'
+import { Link } from 'react-router-dom'
 
-export default function UserItemDetailVideo({ data, timePublish }) {
+export default function UserItemDetailVideo({ data, timePublish, uuidVideo }) {
   const RenderUserPreview = (props) => {
     return (
       <div tabIndex='-1' {...props}>
-        <UserPreviewDetailVideo data={data} />
+        <UserPreviewDetailVideo data={data} uuidVideo={uuidVideo} />
       </div>
     )
   }
   return (
     <>
       <Tippy interactive placement='bottom-start' offset={[0, 0]} delay={[100, 0]} render={RenderUserPreview}>
-        <div key={data?.id} className='group mb-3 flex cursor-pointer items-center'>
+        <Link to={`/users/@${data?.nickname}`} className='group mb-3 flex cursor-pointer items-center'>
           <div className='mr-3 h-[32px] w-[32px] overflow-hidden rounded-full'>
             <img
               className='h-full w-full rounded-full object-cover'
@@ -54,7 +55,7 @@ export default function UserItemDetailVideo({ data, timePublish }) {
               <span>{calculateTimePublish(timePublish)}</span>
             </span>
           </div>
-        </div>
+        </Link>
       </Tippy>
     </>
   )

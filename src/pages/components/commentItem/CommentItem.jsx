@@ -7,7 +7,7 @@ import { FlagReport, HeartComment, LikedHeart, MenuIcon, MoreComment, TrashIcon 
 import { LikeAPI } from '../../../apis/Like'
 import ModalConfirm from '../modalConfirm/ModalConfirm'
 
-export default function CommentItem({ comment }) {
+export default function CommentItem({ comment, uuidVideo }) {
   const [openModal, setOpenModal] = useState(false)
   const dataUser = JSON.parse(localStorage.getItem('userInfo'))
   const isOwnLogin = dataUser.id === comment?.user.id
@@ -39,7 +39,10 @@ export default function CommentItem({ comment }) {
                 </div>
               </div>
               <div className='flex-[1_1_auto] '>
-                <Link className='text-[18px] font-semibold leading-[25px] hover:underline'>
+                <Link
+                  to={`/users/@${dataComment.user.nickname}`}
+                  className='text-[18px] font-semibold leading-[25px] hover:underline'
+                >
                   {dataComment.user.first_name + ' ' + dataComment.user.last_name}
                 </Link>
                 <p className='text-4 mb-[6px] whitespace-pre-line break-words leading-[22px]'>
@@ -107,6 +110,7 @@ export default function CommentItem({ comment }) {
             setOpenModal={setOpenModal}
             idComment={idComment}
             setDataComment={setDataComment}
+            uuidVideo={uuidVideo}
           />
         </div>
       ) : null}

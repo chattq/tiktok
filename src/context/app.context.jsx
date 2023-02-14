@@ -1,17 +1,17 @@
 import { createContext, useState } from 'react'
 
 const initialAppContext = {
-  dataUserSideBar: undefined
+  checkFollow: false
 }
 export const AppContext = createContext(initialAppContext)
 
 export const AppProvider = ({ children }) => {
-  const [dataUser, setDataUser] = useState(initialAppContext.dataUserSideBar)
+  const [follow, setFollow] = useState(initialAppContext.checkFollow)
   return (
     <AppContext.Provider
       value={{
-        dataUser,
-        setDataUser
+        follow,
+        setFollow
       }}
     >
       {children}

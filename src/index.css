@@ -42,12 +42,12 @@
   .scrollbar::-webkit-scrollbar-track {
     display: none;
     border-radius: 100vh;
-    background: white;
+    background: #d7d6d635;
   }
 
   .scrollbar::-webkit-scrollbar-thumb {
     display: none;
-    background: #ededef;
+    background: #fff;
     border-radius: 100vh;
   }
   .scrollbar:hover::-webkit-scrollbar {
@@ -62,11 +62,40 @@
   }
   .scrollbar:hover::-webkit-scrollbar-thumb {
     display: block;
-    background: #ededef;
+    background: #fff;
     border-radius: 100vh;
   }
   .caret {
     caret-color: red;
+  }
+  .volume1:hover ~ .controlVolume {
+    display: block;
+  }
+  .rangeVolume {
+    -webkit-appearance: none;
+    width: 70%;
+    height: 1.5px;
+    background: #fff;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+  }
+  .rangeVolume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    border-radius: 100%;
+    height: 12px;
+    background: #fff;
+    cursor: pointer;
+  }
+
+  .rangeVolume::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: red;
+    cursor: pointer;
   }
 }
 * {
