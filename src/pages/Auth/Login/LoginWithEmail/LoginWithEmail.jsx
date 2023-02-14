@@ -21,7 +21,6 @@ function LoginWithEmail() {
     formState: { errors }
   } = useForm()
   const onSubmit = (data) => {
-    console.log(data)
     setLoading(true)
     Account.getLogin(data.email, data.password)
       .then((res) => {
@@ -52,39 +51,6 @@ function LoginWithEmail() {
         setLoginFail(true)
         setLoading(false)
       })
-    // axios
-    //   .post('https://tiktok.fullstack.edu.vn/api/auth/login', {
-    //     email: data.email,
-    //     password: data.password
-    //   })
-    //   .then((res) => {
-    //     console.log(res)
-    //     setLoginFail(false)
-    //     setLoading(false)
-    //     reset()
-    //     localStorage.setItem('token', JSON.stringify(res.data.meta.token))
-    //     localStorage.setItem('userInfo', JSON.stringify(res.data.data))
-
-    //     toast.success(
-    //       <>
-    //         <FontAwesomeIcon icon={faTiktok} />
-    //         <span className='ml-[5px]'>Đăng nhập thành công</span>
-    //       </>,
-    //       {
-    //         position: 'top-right',
-    //         autoClose: 2000,
-    //         theme: 'light'
-    //       }
-    //     )
-    //     setTimeout(() => {
-    //       window.location.assign('/')
-    //     }, 3000)
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //     setLoginFail(true)
-    //     setLoading(false)
-    //   })
   }
   return (
     <>

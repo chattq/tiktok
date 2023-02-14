@@ -7,8 +7,6 @@ export const CommentAPI = {
     }
   },
   createANewComment({uuidVideos, dataComment}) {
-    console.log('uuidVideos', uuidVideos)
-    console.log('dataComment', dataComment)
     if(uuidVideos) {
         return http.post(`/api/videos/${uuidVideos}/comments`, {
           comment: dataComment

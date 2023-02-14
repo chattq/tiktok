@@ -22,8 +22,6 @@ import ButtonVolume from '../../../components/ControlVideo/ButtonVolume'
 import ButtonChangeVolume from '../../../components/ControlVideo/ButtonChangeVolume'
 
 function VideosItems({ data, totalData, previousPath }) {
-  console.log('data', data)
-  console.log(27, data?.user.is_followed)
   const ratio = data?.meta.video.resolution_x > data?.meta.video.resolution_y
   const videoRef = useRef()
   const [isFollowed, setIsFollowed] = useState(data?.user.is_followed)
