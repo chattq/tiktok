@@ -1,17 +1,25 @@
 import { createContext, useState } from 'react'
 
 const initialAppContext = {
-  checkFollow: false
+  playing: false,
+  muted: null,
+  range: 0
 }
 export const AppContext = createContext(initialAppContext)
 
 export const AppProvider = ({ children }) => {
-  const [follow, setFollow] = useState(initialAppContext.checkFollow)
+  const [isPlaying, setIsPlaying] = useState(initialAppContext.playing)
+  const [numberMuted, setNumberMuted] = useState(initialAppContext.muted)
+  const [numberRange, setNumberRange] = useState(initialAppContext.range)
   return (
     <AppContext.Provider
       value={{
-        follow,
-        setFollow
+        numberMuted,
+        numberRange,
+        setNumberRange,
+        setNumberMuted,
+        isPlaying,
+        setIsPlaying
       }}
     >
       {children}
