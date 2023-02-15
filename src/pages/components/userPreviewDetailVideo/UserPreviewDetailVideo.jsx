@@ -5,7 +5,8 @@ import { ImgBasic } from '../../../assets/img'
 import ButtonFollow from '../buttonFollow/ButtonFollow'
 
 export default function UserPreviewDetailVideo({ data, uuidVideo }) {
-  const loginId = JSON.parse(localStorage.getItem('userInfo')).id
+  const loginId = JSON.parse(localStorage.getItem('userInfo'))
+  const checkIdUser = Boolean(loginId?.id !== data.id)
   return (
     <>
       <div className='z-10 w-[290px] rounded-[6px] border bg-white p-5 shadow-xl'>
@@ -16,7 +17,7 @@ export default function UserPreviewDetailVideo({ data, uuidVideo }) {
             </div>
           </Link>
           <div className=''>
-            {loginId !== data.id ? (
+            {checkIdUser ? (
               <ButtonFollow
                 style={`h-fit cursor-pointer rounded-[4px] border ${
                   data?.is_followed ? 'border-[#1618231f]' : 'border-[rgba(254,44,85,1)]'
