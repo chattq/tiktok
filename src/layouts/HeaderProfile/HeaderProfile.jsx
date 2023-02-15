@@ -19,8 +19,10 @@ import {
   faVideoCamera
 } from '@fortawesome/free-solid-svg-icons'
 import { LiveIcon } from '../../Icons/Icons'
+import { useTranslation } from 'react-i18next'
 
 function HeaderProfile({ children }) {
+  const { t } = useTranslation()
   return (
     <>
       <div className='h-[60px] w-full border-b border-[#ccc] px-4'>
@@ -39,7 +41,7 @@ function HeaderProfile({ children }) {
           <div className='flex items-center gap-[20px] text-[#161823]'>
             <div className='flex h-[36px] min-w-[110px] cursor-pointer items-center rounded-sm border border-[#e3e3e4] px-[16px] transition-all hover:bg-[#f1f1f2]'>
               <FontAwesomeIcon icon={faPlus} className='mr-[8px] h-[16px] w-[16px]' />
-              <span className='font-semibold leading-6 text-[#161823]'>Upload</span>
+              <span className='font-semibold leading-6 text-[#161823]'>{t('Upload')}</span>
             </div>
             <div className='cursor-pointer'>
               <Tippy
@@ -82,11 +84,11 @@ function HeaderProfile({ children }) {
                     <ul>
                       <li className=' mb-2 flex w-full  items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                         <FontAwesomeIcon icon={faUser} className='w-5' />
-                        <span>View Profile</span>
+                        <span>{t('View profile')}</span>
                       </li>
                       <li className=' mb-2 flex w-full  items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                         <FontAwesomeIcon icon={faCoins} className='w-5' />
-                        <span>Get Coin</span>
+                        <span>{t('Get coin')}</span>
                       </li>
                       <li className=' mb-2 flex w-full  items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                         <FontAwesomeIcon icon={faVideoCamera} className='w-5' />
@@ -94,19 +96,19 @@ function HeaderProfile({ children }) {
                       </li>
                       <li className=' mb-2 flex w-full  items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                         <FontAwesomeIcon icon={faGear} className='w-5' />
-                        <span>Setting</span>
+                        <span>{t('Setting')}</span>
                       </li>
                       <li className=' mb-2 flex w-full  items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                         <FontAwesomeIcon icon={faLanguage} className='w-5' />
-                        <span>EngLish</span>
+                        <span>{t('Language')}</span>
                       </li>
                       <li className=' mb-2 flex  w-full items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                         <FontAwesomeIcon icon={faQuestionCircle} className='w-5' />
-                        <span>Feed back and help</span>
+                        <span>{t('Feed back and help')}</span>
                       </li>
                       <li className=' mb-2 flex  w-full items-center gap-4 px-4 py-3 font-sans text-base font-medium transition-all hover:bg-[#f1f1f2]'>
                         <FontAwesomeIcon icon={faMoon} className='w-5' />
-                        <span>Dark mode</span>
+                        <span>{t('Dark mode')}</span>
                         <label className='relative inline-flex cursor-pointer items-center'>
                           <input type='checkbox' value='' className='peer sr-only' />
                           <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:top-0.5 after:left-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-4 peer-focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:peer-focus:ring-blue-800"></div>

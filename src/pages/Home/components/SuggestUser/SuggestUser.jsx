@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { User } from '../../../../apis/UserAPI'
 import SkeletonUserSuggest from '../../../components/Skeleton/SkeletonUserSuggest'
 import UserItem from '../UserItem/UserItem'
 
 export default function SuggestUser() {
+  const { t } = useTranslation()
   const [data, setData] = useState([])
   const [allSuggestedUsers, setAllSuggestedUsers] = useState([])
   const [suggestedUsers, setSuggestedUsers] = useState([])
@@ -44,7 +46,7 @@ export default function SuggestUser() {
           })
         )}
         <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
-          {seeMore ? `Ẩn bớt` : `Xem tất cả`}
+          {seeMore ? `${t('See less')}` : `${t('See all')}`}
         </span>
       </div>
     </>

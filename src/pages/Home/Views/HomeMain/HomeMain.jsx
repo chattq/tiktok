@@ -11,7 +11,6 @@ export default function HomeMain() {
     setNumberLoad((prev) => (prev += 1))
     Videos.getVideosForyou('for-you', numberLoad + 1)
       .then((res) => {
-        console.log(res, 17)
         setDataRender((prev) => [...prev, ...res.data.data])
       })
       .catch((error) => {
@@ -29,7 +28,6 @@ export default function HomeMain() {
     window.addEventListener('scroll', handleScroll)
     Videos.getVideosForyou('for-you', 1)
       .then((res) => {
-        console.log(res, 17)
         setDataRender(res.data.data)
       })
       .catch((error) => {

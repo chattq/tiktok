@@ -1,12 +1,11 @@
-import { Tree } from 'antd'
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatNumberFollow, formatNumberLike } from '../../../../assets/formatNumber'
 import { ImgBasic } from '../../../../assets/img'
 import ButtonFollow from '../../../components/buttonFollow/ButtonFollow'
-import ButtonUnfollow from '../../../components/buttonUnfollow/ButtonUnfollow'
 
 export default function UserPreview({ data, page, perPage }) {
+  const checkToken = Boolean(localStorage.getItem('token'))
   return (
     <>
       <div className='w-[330px] rounded-[6px] border bg-white p-5 shadow-xl'>
@@ -17,13 +16,18 @@ export default function UserPreview({ data, page, perPage }) {
             </div>
           </Link>
           <div>
-            <ButtonFollow
-              style={'rounded-[6px] border-0 bg-tiktokPink py-2 px-6 font-medium text-white cursor-pointer'}
-              idUserFollow={data?.id}
-              page={page}
-              perPage={perPage}
-            />
-            {/* <button className='rounded-[6px] border-0 bg-tiktokPink py-2 px-6 font-medium text-white'>Follow</button> */}
+            {checkToken ? (
+              <ButtonFollow
+                style={'rounded-[6px] border-0 bg-tiktokPink py-2 px-6 font-medium text-white cursor-pointer'}
+                idUserFollow={data?.id}
+                page={page}
+                perPage={perPage}
+              />
+            ) : (
+              <Link to={'/login'} className='rounded-[6px] border-0 bg-tiktokPink py-2 px-6 font-medium text-white'>
+                Follow
+              </Link>
+            )}
           </div>
         </div>
         <div className='flex items-center'>

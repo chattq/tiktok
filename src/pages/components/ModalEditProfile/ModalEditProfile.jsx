@@ -6,14 +6,20 @@ import { User } from '../../../apis/UserAPI'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast, ToastContainer } from 'react-toastify'
 import axios from 'axios'
-import { CloseX } from '../../../Icons/Icons'
+import { CloseX, EditAvatar } from '../../../Icons/Icons'
 import { ImgBasic } from '../../../assets/img'
 import { Account } from '../../../apis/AcountAPI'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTiktok } from '@fortawesome/free-brands-svg-icons'
 import { useParams } from 'react-router-dom'
+import { useContext } from 'react'
+import { AppContext } from '../../../context/app.context'
+import { useTranslation } from 'react-i18next'
 
 export default function ModalEditProfile({ children, style }) {
+  const { t } = useTranslation()
+  const { setDataUser } = useContext(AppContext)
+  const token = JSON.parse(localStorage.getItem('token'))
   const { userId } = useParams()
   const queryClient = useQueryClient()
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -59,36 +65,57 @@ export default function ModalEditProfile({ children, style }) {
       setValue('facebook_url', profile.facebook_url)
     }
   }, [profile, setValue])
-  const updateProfileMutation = useMutation(User.updateMe)
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const dataUpdate = new FormData()
-      // dataUpdate.append('', file)
-      dataUpdate.append('last_name', data.last_name)
-      dataUpdate.append('website_url', data.website_url)
-      dataUpdate.append('facebook_url', data.facebook_url)
-      dataUpdate.append('first_name', data.first_name)
-      dataUpdate.append('bio', data.bio)
-      await updateProfileMutation.mutateAsync(dataUpdate, {
-        onSuccess: () => {
+      var formData = new FormData()
+      if (typeof data.avatar !== 'string') {
+        formData.append('avatar', data.avatar)
+      }
+      if (file) {
+        formData.append('avatar', file)
+      }
+      formData.append('last_name', data.last_name)
+      formData.append('first_name', data.first_name)
+      formData.append('bio', data.bio)
+      formData.append('website_url', data.website_url)
+      formData.append('facebook_url', data.facebook_url)
+      axios
+        .post('https://tiktok.fullstack.edu.vn/api/auth/me?_method=PATCH', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token} `
+          }
+        })
+        .then((res) => {
+          setDataUser(res.data.data)
+          localStorage.setItem('userInfo', JSON.stringify(res.data.data))
           queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId] })
-        }
-      })
-      toast.success(
-        <>
-          <FontAwesomeIcon icon={faTiktok} />
-          <span className='ml-[5px]'>Upload thành công</span>
-        </>,
-        {
-          position: 'top-right',
-          autoClose: 2000,
-          theme: 'light'
-        }
-      )
-      refetch()
-      setTimeout(() => {
-        setIsModalOpen(false)
-      }, 1000)
+          toast.success(
+            <>
+              <FontAwesomeIcon icon={faTiktok} />
+              <span className='ml-[5px]'>Upload thành công</span>
+            </>,
+            {
+              position: 'top-right',
+              autoClose: 2000,
+              theme: 'light'
+            }
+          )
+        })
+        .catch((error) => {
+          console.log(error)
+          toast.error(
+            <>
+              <FontAwesomeIcon icon={faTiktok} />
+              <span className='ml-[5px]'>Upload thất bại</span>
+            </>,
+            {
+              position: 'top-right',
+              autoClose: 2000,
+              theme: 'light'
+            }
+          )
+        })
     } catch (error) {
       console.log(error)
     }
@@ -101,6 +128,7 @@ export default function ModalEditProfile({ children, style }) {
       toast.warning(`Dung lượng file tối đa 5MB, Định dạng:.JPEG, .PNG`)
     } else {
       setFile(fileFromLocal)
+      // setValue('avatar', fileFromLocal)
     }
   }
   const handleUpload = () => {
@@ -123,7 +151,7 @@ export default function ModalEditProfile({ children, style }) {
         <form onSubmit={onSubmit} noValidate>
           <div className='border-b-[1px] border-[rgba(22,24,35,0.2)]'>
             <div className='flex items-center justify-between pt-[5px] pb-[12px]'>
-              <div className='text-[20px] font-bold '>Sửa hồ sơ</div>
+              <div className='text-[20px] font-bold '>{t('Edit profile')}</div>
               <div className='cursor-pointer' onClick={handleCancel}>
                 {CloseX()}
               </div>
@@ -131,8 +159,8 @@ export default function ModalEditProfile({ children, style }) {
           </div>
           <div>
             <div className='border-b-[1px] border-[rgba(22,24,35,0.2)]'>
-              <div className='flex pt-[24px] pb-[20px]'>
-                <div className='mr-[24px] w-[120px] text-[16px] font-medium'>Ảnh hồ sơ</div>
+              <div className='relative flex pt-[24px] pb-[20px]'>
+                <div className='mr-[24px] w-[120px] text-[16px] font-medium'>{t('Profile photo')}</div>
                 <div className='ml-[128px] h-[100px] w-[100px] overflow-hidden rounded-full'>
                   <img
                     src={previewImg || ImgBasic(profile?.avatar)}
@@ -141,6 +169,12 @@ export default function ModalEditProfile({ children, style }) {
                     className='h-full w-full object-cover'
                   />
                   <input hidden type='file' accept='.jpg, .jpeg,.png' ref={fileInput} onChange={onFileChange} />
+                </div>
+                <div
+                  className='absolute left-[53%] top-[60%] h-[30px] w-[30px] rounded-full border border-[rgb(208,208,211)] bg-[rgb(255,255,255)]'
+                  onClick={handleUpload}
+                >
+                  <div className='flex translate-y-[5px] justify-center'>{EditAvatar()}</div>
                 </div>
               </div>
             </div>
@@ -197,7 +231,7 @@ export default function ModalEditProfile({ children, style }) {
             </div>
             <div className='border-b-[1px] border-[rgba(22,24,35,0.2)]'>
               <div className='flex pt-4 pb-4'>
-                <div className='mr-[24px] w-[120px] text-[16px] font-medium'>Tiểu sử</div>
+                <div className='mr-[24px] w-[120px] text-[16px] font-medium'>{t('Bio')}</div>
                 <textarea
                   type='text'
                   {...register('bio', rules.bio)}
@@ -213,13 +247,13 @@ export default function ModalEditProfile({ children, style }) {
               type='button'
               onClick={handleCancel}
             >
-              Hủy
+              {t('Cancel')}
             </button>
             <button
               className='min-w-[96px] rounded border border-[#e3e3e4] px-4 py-[7px] text-[16px] font-medium hover:bg-[#f8f8f8]'
               type='submit'
             >
-              Lưu
+              {t('Save')}
             </button>
           </div>
         </form>

@@ -1,10 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { User } from '../../../../apis/UserAPI'
 import SkeletonUserSuggest from '../../../components/Skeleton/SkeletonUserSuggest'
 import UserItem from '../UserItem/UserItem'
 
 export default function FollowUser() {
+  const { t } = useTranslation()
   const [data, setData] = useState([])
   const [allFollowUsers, setAllFollowUsers] = useState([])
   const [FollowUsers, setFollowUsers] = useState([])
@@ -33,7 +35,7 @@ export default function FollowUser() {
         {data.length === 0 ? <SkeletonUserSuggest /> : data.map((user) => <UserItem data={user} />)}
       </div>
       <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
-        {seeMore ? `Ẩn bớt` : `Xem tất cả`}
+        {seeMore ? `${t('See less')}` : `${t('See all')}`}
       </span>
     </>
   )
