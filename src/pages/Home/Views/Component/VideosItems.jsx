@@ -24,8 +24,6 @@ import { useContext } from 'react'
 import { AppContext } from '../../../../context/app.context'
 
 function VideosItems({ data, totalData, previousPath }) {
-  console.log('data', data)
-  console.log(27, data?.user.is_followed)
   const { setIsPlaying } = useContext(AppContext)
   const ratio = data?.meta.video.resolution_x > data?.meta.video.resolution_y
   const videoRef = useRef()
@@ -62,26 +60,22 @@ function VideosItems({ data, totalData, previousPath }) {
   }
   const handleFollow = () => {
     User.followUser(data?.user_id).then((res) => {
-      console.log(61, res)
       setIsFollowed(res.data.data.is_followed)
     })
   }
   const handleUnFollow = () => {
     User.unFollowUser(data?.user_id).then((res) => {
-      console.log(res)
       setIsFollowed(res.data.data.is_followed)
     })
   }
   const handleLikeVideo = () => {
     LikeAPI.LikePost(data.id).then((res) => {
-      console.log('79like', res)
       setIsLiked(true)
       setLikeCount(res.data.data.likes_count)
     })
   }
   const handleUnlikeVideo = () => {
     LikeAPI.UnLikePost(data.id).then((res) => {
-      console.log('87res', res)
       setIsLiked(false)
       setLikeCount(res.data.data.likes_count)
     })

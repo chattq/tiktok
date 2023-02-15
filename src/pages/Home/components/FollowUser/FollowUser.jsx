@@ -32,7 +32,7 @@ export default function FollowUser() {
   return (
     <>
       <div className='mt-4'>
-        {data.length === 0 ? <SkeletonUserSuggest /> : data.map((user) => <UserItem data={user} />)}
+        {data.length === 0 ? <SkeletonUserSuggest /> : data.map((user) => <UserItem key={user?.id} data={user} />)}
       </div>
       <span onClick={handleSeeAll} className='mt-4 cursor-pointer text-fontSizeTitle font-semibold text-tiktokPink'>
         {seeMore ? `${t('See less')}` : `${t('See all')}`}

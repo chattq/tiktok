@@ -40,7 +40,6 @@ import { useTranslation } from 'react-i18next'
 
 export default function HeaderLayout({ children }) {
   const { dataUser } = useContext(AppContext)
-  console.log(42, dataUser)
   const { userId, upload } = useParams()
   const checkParams = Boolean(userId)
   const checkParamsUpload = Boolean(upload)

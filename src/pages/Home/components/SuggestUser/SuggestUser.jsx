@@ -41,7 +41,7 @@ export default function SuggestUser() {
         ) : (
           data.map((user) => {
             if (user?.is_followed === false) {
-              return <UserItem data={user} page={page} perPage={perPage} />
+              return <UserItem key={user.id} data={user} page={page} perPage={perPage} />
             }
           })
         )}
