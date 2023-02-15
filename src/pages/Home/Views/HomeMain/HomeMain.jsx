@@ -5,30 +5,20 @@ import VideosList from '../Component/VideosList'
 export default function HomeMain() {
   const [dataRender, setDataRender] = useState([])
   const [numberLoad, setNumberLoad] = useState(1)
-
   const previousPath = window.location.pathname
-  const handleLoadMoreData = () => {
-    setNumberLoad((prev) => (prev += 1))
-    Videos.getVideosForyou('for-you', numberLoad + 1)
-      .then((res) => {
-        setDataRender((prev) => [...prev, ...res.data.data])
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
 
   const handleScroll = () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      handleLoadMoreData()
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 2) {
+      setNumberLoad((old) => (old += 1))
+      console.log('load data')
     }
   }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
-    Videos.getVideosForyou('for-you', 1)
+    Videos.getVideosForyou('for-you', numberLoad)
       .then((res) => {
-        setDataRender(res.data.data)
+        setDataRender((prev) => [...prev, ...res.data.data])
       })
       .catch((error) => {
         console.log(error)
@@ -37,7 +27,7 @@ export default function HomeMain() {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [numberLoad])
 
   return (
     <>
