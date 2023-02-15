@@ -18,12 +18,12 @@ import { User } from '../../../../apis/UserAPI'
 import { Link } from 'react-router-dom'
 import { LikeAPI } from '../../../../apis/Like'
 import ButtonPlayVideo from '../../../components/ControlVideo/ButtonPlayVideo'
-import ButtonVolume from '../../../components/ControlVideo/ButtonVolume'
-import ButtonChangeVolume from '../../../components/ControlVideo/ButtonChangeVolume'
 import { useContext } from 'react'
 import { AppContext } from '../../../../context/app.context'
+import Button from '../../../components/ControlVideo/Button'
 
 function VideosItems({ data, totalData, previousPath }) {
+  const checkToken = Boolean(localStorage.getItem('token'))
   const { setIsPlaying } = useContext(AppContext)
   const ratio = data?.meta.video.resolution_x > data?.meta.video.resolution_y
   const videoRef = useRef()
@@ -103,25 +103,34 @@ function VideosItems({ data, totalData, previousPath }) {
               {data?.user.first_name}
             </div>
             <div className='absolute top-1 right-0 mt-3 h-4'>
-              <div className=''>
-                {!isFollowed ? (
-                  <button
-                    className=' cursor-pointer rounded-[4px] border border-[rgba(254,44,85,1)] bg-white px-5 py-1 font-medium text-[#fe2c55] hover:bg-[#FFF2F5]'
-                    type='button'
-                    onClick={handleFollow}
-                  >
-                    Follow
-                  </button>
-                ) : (
-                  <button
-                    className='cursor-pointer rounded-[4px] border border-[#1618231f] bg-[#fff] px-5 py-1 font-medium text-[#161823] hover:border-[#d0d1d3] hover:bg-[#f8f8f8]'
-                    type='button'
-                    onClick={handleUnFollow}
-                  >
-                    Following
-                  </button>
-                )}
-              </div>
+              {checkToken ? (
+                <div className=''>
+                  {!isFollowed ? (
+                    <button
+                      className=' cursor-pointer rounded-[4px] border border-[rgba(254,44,85,1)] bg-white px-5 py-1 font-medium text-[#fe2c55] hover:bg-[#FFF2F5]'
+                      type='button'
+                      onClick={handleFollow}
+                    >
+                      Follow
+                    </button>
+                  ) : (
+                    <button
+                      className='cursor-pointer rounded-[4px] border border-[#1618231f] bg-[#fff] px-5 py-1 font-medium text-[#161823] hover:border-[#d0d1d3] hover:bg-[#f8f8f8]'
+                      type='button'
+                      onClick={handleUnFollow}
+                    >
+                      Following
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  to={'/login'}
+                  className='cursor-pointer rounded-[4px] border border-[rgba(254,44,85,1)] bg-white px-5 py-1 font-medium text-[#fe2c55] hover:bg-[#FFF2F5]'
+                >
+                  Follow
+                </Link>
+              )}
             </div>
           </div>
           <div className='w-[430px] text-base font-light leading-6 tracking-tighter line-clamp-3'>
@@ -149,13 +158,9 @@ function VideosItems({ data, totalData, previousPath }) {
                 <ButtonPlayVideo videoRef={videoRef} />
               </div>
               <div className='volumeBox'>
-                <div className='volume1 '>
-                  <ButtonVolume videoRef={videoRef} />
+                <div>
+                  <Button videoRef={videoRef} />
                 </div>
-                <ButtonChangeVolume
-                  videoRef={videoRef}
-                  style={'controlVolume absolute bottom-[70px] hidden right-[65px] rotate-[-90deg]'}
-                />
               </div>
             </div>
             <div className='flex h-full flex-col items-center   gap-1 self-end'>
