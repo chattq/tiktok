@@ -147,15 +147,16 @@ function VideosItems({ data, totalData, previousPath }) {
             <div className='absolute bottom-[25px] left-[20px] z-50'>
               <ButtonPlayVideo videoRef={videoRef} />
             </div>
-            <div className='volume1 absolute bottom-[40px] right-[170px]'>
-              <ButtonVolume videoRef={videoRef} />
+            <div className='volumeBox'>
+              <div className='volume1 absolute bottom-[40px] right-[170px]'>
+                <ButtonVolume videoRef={videoRef} />
+              </div>
+              <ButtonChangeVolume
+                videoRef={videoRef}
+                style={'controlVolume absolute bottom-[120px] hidden right-[148px] rotate-[-90deg]'}
+              />
             </div>
-            <ButtonChangeVolume
-              videoRef={videoRef}
-              style={'controlVolume absolute bottom-[120px] right-[148px] rotate-[-90deg]'}
-            />
-
-            <div className='flex h-full flex-col items-center  gap-1 self-end'>
+            <div className='flex h-full flex-col items-center   gap-1 self-end'>
               <div className='flex flex-col items-center justify-center'>
                 <span className='mr-1 flex h-12 w-12 cursor-pointer items-center justify-center rounded-[50%] bg-[#1618230f]'>
                   {!isLiked ? (
