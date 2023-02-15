@@ -11,27 +11,18 @@ export default function Following() {
   const previousPath = window.location.pathname
   const isLogin = token ? true : false
 
-  const handleLoadMoreData = () => {
-    setNumberLoad((pre) => pre + 1)
-    Videos.getVideosFollowing('following', numberLoad + 1, token)
-      .then((res) => {
-        setDataRender((prev) => [...prev, ...res.data.data])
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
   const handleScroll = () => {
+    console.log(window.innerHeight + window.scrollY, '= ', document.body.offsetHeight)
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      handleLoadMoreData()
+      setNumberLoad((prev) => (prev += 1))
     }
   }
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
     if (isLogin) {
-      Videos.getVideosFollowing('following', 1, token)
+      Videos.getVideosFollowing('following', numberLoad, token)
         .then((res) => {
-          setDataRender(res.data.data)
+          setDataRender((prev) => [...prev, ...res.data.data])
         })
         .catch((error) => {
           console.log(error)
@@ -48,7 +39,7 @@ export default function Following() {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [numberLoad])
   return (
     <div className={isLogin ? '' : 'flex w-[700px] flex-wrap gap-5'}>
       {isLogin ? (
