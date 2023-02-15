@@ -9,7 +9,7 @@ export default function ButtonChangeVolume({ videoRef, style }) {
     videoRef.current.volume = e.target.value / 100
     setNumberMuted(e.target.value)
   }
-  console.log(12, numberRange)
+
   return (
     <>
       <div className={style}>

@@ -24,7 +24,6 @@ function SignUpWithEmail() {
     setLoadingSignUp(true)
     Account.getSignUp('email', data.email, data.password)
       .then((res) => {
-        console.log(res)
         setLoadingSignUp(false)
         reset()
         setFailSignUp(false)

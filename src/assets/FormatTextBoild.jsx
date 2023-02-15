@@ -4,9 +4,13 @@ export const FormatTextBold = ({ text }) => {
     <span>
       {textArr.map((item, index) => {
         if (item.startsWith('#')) {
-          return <strong className='cursor-pointer hover:underline'>{item} </strong>
+          return (
+            <strong key={index} className='cursor-pointer hover:underline'>
+              {item}{' '}
+            </strong>
+          )
         } else {
-          return <span>{item} </span>
+          return <span key={index}>{item} </span>
         }
       })}
     </span>

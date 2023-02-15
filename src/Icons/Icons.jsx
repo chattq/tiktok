@@ -216,7 +216,7 @@ export const InstagramIcon = ({ style }) => (
       >
         <stop stop-color='#3771C8'></stop>
         <stop offset='0.128' stop-color='#3771C8'></stop>
-        <stop offset='1' stop-color='#6600FF' stop-opacity='0'></stop>
+        <stop offset='1' stop-color='#6600FF' stopOpacity='0'></stop>
       </radialGradient>
     </defs>
   </svg>
@@ -259,7 +259,6 @@ export const tick = ({ width = '14', height = '14', className }) => (
 
 export const PaperPlane = React.forwardRef(({ style }, ref) => (
   <svg
-    className='tiktok-9oofjg-StyledIcon e1nx07zo1'
     width='1em'
     data-e2e=''
     height='1em'
@@ -279,7 +278,6 @@ export const PaperPlane = React.forwardRef(({ style }, ref) => (
 
 export const Messages = React.forwardRef(({ style }, ref) => (
   <svg
-    className='tiktok-1g0p6jv-StyledInboxIcon e18kkhh41'
     width='32'
     data-e2e=''
     height='32'
@@ -479,8 +477,8 @@ export const Checked = ({ style }) => (
 export const Copyright = ({ style }) => (
   <svg width='1em' height='1em' viewBox='0 0 48 48' fill='red' xmlns='http://www.w3.org/2000/svg' style={style}>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6ZM2 24C2 11.8497 11.8497 2 24 2C36.1503 2 46 11.8497 46 24C46 36.1503 36.1503 46 24 46C11.8497 46 2 36.1503 2 24ZM27 16C27 17.6569 25.6569 19 24 19C22.3431 19 21 17.6569 21 16C21 14.3431 22.3431 13 24 13C25.6569 13 27 14.3431 27 16ZM23 22C22.4477 22 22 22.4477 22 23V34C22 34.5523 22.4477 35 23 35H25C25.5523 35 26 34.5523 26 34V23C26 22.4477 25.5523 22 25 22H23Z'
     ></path>
   </svg>
@@ -495,14 +493,7 @@ export const Play = () => (
   </svg>
 )
 export const Music = () => (
-  <svg
-    fill='rgba(22, 24, 35, 1)'
-    viewBox='0 0 48 48'
-    xmlns='http://www.w3.org/2000/svg'
-    width='1em'
-    height='1em'
-    class='tiktok-wzk98w-SvgIcon epjbyn2'
-  >
+  <svg fill='rgba(22, 24, 35, 1)' viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg' width='1em' height='1em'>
     <use xlink:href='#svg-music-note'></use>
   </svg>
 )
@@ -517,19 +508,19 @@ export const Heart = ({ style }) => (
     xmlns='http://www.w3.org/2000/svg'
     style={style}
   >
-    <g clip-path='url(#HeartFill_clip0)'>
+    <g clipPath='url(#HeartFill_clip0)'>
       <g filter='url(#HeartFill_filter0_d)'>
         <path
-          fill-rule='evenodd'
-          clip-rule='evenodd'
+          fillRule='evenodd'
+          clipRule='evenodd'
           d='M7.5 2.25C10.5 2.25 12 4.25 12 4.25C12 4.25 13.5 2.25 16.5 2.25C20 2.25 22.5 4.99999 22.5 8.5C22.5 12.5 19.2311 16.0657 16.25 18.75C14.4095 20.4072 13 21.5 12 21.5C11 21.5 9.55051 20.3989 7.75 18.75C4.81949 16.0662 1.5 12.5 1.5 8.5C1.5 4.99999 4 2.25 7.5 2.25Z'
         ></path>
       </g>
       <path
-        fill-rule='evenodd'
-        clip-rule='evenodd'
+        fillRule='evenodd'
+        clipRule='evenodd'
         d='M2.40179 12.1998C3.58902 14.6966 5.7592 16.9269 7.74989 18.75C9.5504 20.3989 10.9999 21.5 11.9999 21.5C12.9999 21.5 14.4094 20.4072 16.2499 18.75C19.231 16.0657 22.4999 12.5 22.4999 8.49997C22.4999 8.41258 22.4983 8.32566 22.4952 8.23923C20.5671 13.6619 13.6787 18.5 11.75 18.5C10.3127 18.5 5.61087 15.8131 2.40179 12.1998Z'
-        fill-opacity='0.03'
+        fillOpacity='0.03'
       ></path>
     </g>
     <defs>
@@ -540,9 +531,9 @@ export const Heart = ({ style }) => (
         width='25.8'
         height='24.05'
         filterUnits='userSpaceOnUse'
-        color-interpolation-filters='sRGB'
+        colorInterpolationFilters='sRGB'
       >
-        <feFlood flood-opacity='0' result='BackgroundImageFix'></feFlood>
+        <feFlood floodOpacity='0' result='BackgroundImageFix'></feFlood>
         <feColorMatrix
           in='SourceAlpha'
           type='matrix'
@@ -570,19 +561,19 @@ export const RedHeart = () => (
     fill='rgba(254, 44, 85, 1)'
     xmlns='http://www.w3.org/2000/svg'
   >
-    <g clip-path='url(#HeartFill_clip0)'>
+    <g clipPath='url(#HeartFill_clip0)'>
       <g filter='url(#HeartFill_filter0_d)'>
         <path
-          fill-rule='evenodd'
-          clip-rule='evenodd'
+          fillRule='evenodd'
+          clipRule='evenodd'
           d='M7.5 2.25C10.5 2.25 12 4.25 12 4.25C12 4.25 13.5 2.25 16.5 2.25C20 2.25 22.5 4.99999 22.5 8.5C22.5 12.5 19.2311 16.0657 16.25 18.75C14.4095 20.4072 13 21.5 12 21.5C11 21.5 9.55051 20.3989 7.75 18.75C4.81949 16.0662 1.5 12.5 1.5 8.5C1.5 4.99999 4 2.25 7.5 2.25Z'
         ></path>
       </g>
       <path
-        fill-rule='evenodd'
-        clip-rule='evenodd'
+        fillRule='evenodd'
+        clipRule='evenodd'
         d='M2.40179 12.1998C3.58902 14.6966 5.7592 16.9269 7.74989 18.75C9.5504 20.3989 10.9999 21.5 11.9999 21.5C12.9999 21.5 14.4094 20.4072 16.2499 18.75C19.231 16.0657 22.4999 12.5 22.4999 8.49997C22.4999 8.41258 22.4983 8.32566 22.4952 8.23923C20.5671 13.6619 13.6787 18.5 11.75 18.5C10.3127 18.5 5.61087 15.8131 2.40179 12.1998Z'
-        fill-opacity='0.03'
+        fillOpacity='0.03'
       ></path>
     </g>
     <defs>
@@ -593,9 +584,9 @@ export const RedHeart = () => (
         width='25.8'
         height='24.05'
         filterUnits='userSpaceOnUse'
-        color-interpolation-filters='sRGB'
+        colorInterpolationFilters='sRGB'
       >
-        <feFlood flood-opacity='0' result='BackgroundImageFix'></feFlood>
+        <feFlood floodOpacity='0' result='BackgroundImageFix'></feFlood>
         <feColorMatrix
           in='SourceAlpha'
           type='matrix'
@@ -616,18 +607,18 @@ export const RedHeart = () => (
 )
 export const CommentIcon = () => (
   <svg width='20' data-e2e='' height='20' viewBox='0 0 20 20' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
-    <g clip-path='url(#BubbleEllipsisRightFill_clip0)'>
+    <g clipPath='url(#BubbleEllipsisRightFill_clip0)'>
       <g opacity='1' filter='url(#BubbleEllipsisRightFill_filter0_d)'>
         <path
-          fill-rule='evenodd'
-          clip-rule='evenodd'
+          fillRule='evenodd'
+          clipRule='evenodd'
           d='M16.0393 14.7137C17.75 13 18.75 11.215 18.75 9.13662C18.75 4.91897 14.8887 1.49997 10.125 1.49997C5.36129 1.49997 1.5 4.91897 1.5 9.13675C1.5 13.3545 5.48622 16.25 10.25 16.25V17.6487C10.25 18.0919 10.7095 18.3771 11.0992 18.1659C12.3166 17.5062 14.5725 16.183 16.0393 14.7137ZM5.93527 8.10679C6.61608 8.10679 7.16797 8.65471 7.16797 9.32962C7.16797 10.0059 6.61608 10.5538 5.93527 10.5538C5.2556 10.5538 4.70368 10.0059 4.70368 9.32962C4.70368 8.65471 5.2556 8.10679 5.93527 8.10679ZM11.3572 9.32962C11.3572 8.65471 10.8055 8.10679 10.125 8.10679C9.44459 8.10679 8.89289 8.65471 8.89289 9.32962C8.89292 10.0059 9.44462 10.5538 10.125 10.5538C10.8055 10.5538 11.3572 10.0059 11.3572 9.32962ZM14.3146 8.10679C14.9953 8.10679 15.5464 8.65471 15.5464 9.32962C15.5464 10.0059 14.9953 10.5538 14.3146 10.5538C13.6339 10.5538 13.082 10.0059 13.0821 9.32962C13.0821 8.65471 13.6339 8.10679 14.3146 8.10679Z'
         ></path>
       </g>
       <path
         opacity='0.1'
-        fill-rule='evenodd'
-        clip-rule='evenodd'
+        fillRule='evenodd'
+        clipRule='evenodd'
         d='M10.25 16.2499C10.25 16.2499 15.0278 15.8807 17.025 13.3234C15.0278 16.1364 13.0307 17.6708 11.2831 18.1822C9.53561 18.6937 10.25 16.2499 10.25 16.2499Z'
         fill='url(#BubbleEllipsisRightFill_paint0_linear)'
       ></path>
@@ -640,9 +631,9 @@ export const CommentIcon = () => (
         width='19.25'
         height='18.737'
         filterUnits='userSpaceOnUse'
-        color-interpolation-filters='sRGB'
+        colorInterpolationFilters='sRGB'
       >
-        <feFlood flood-opacity='0' result='BackgroundImageFix'></feFlood>
+        <feFlood floodOpacity='0' result='BackgroundImageFix'></feFlood>
         <feColorMatrix
           in='SourceAlpha'
           type='matrix'
@@ -663,7 +654,7 @@ export const CommentIcon = () => (
         gradientUnits='userSpaceOnUse'
       >
         <stop></stop>
-        <stop offset='1' stop-opacity='0.01'></stop>
+        <stop offset='1' stopOpacity='0.01'></stop>
       </linearGradient>
       <clipPath id='BubbleEllipsisRightFill_clip0'>
         <rect width='20' height='20' fill='white'></rect>
@@ -674,15 +665,15 @@ export const CommentIcon = () => (
 export const Embedded = () => (
   <svg width='24' data-e2e='' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z'
       fill='#161823'
-      fill-opacity='0.75'
+      fillOpacity='0.75'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M12.313 7.96568C12.3665 7.65966 12.658 7.45498 12.964 7.50851C13.27 7.56203 13.4747 7.8535 13.4211 8.15951L12.0506 15.9952C11.997 16.3012 11.7056 16.5059 11.3996 16.4523C11.0936 16.3988 10.8889 16.1073 10.9424 15.8013L12.313 7.96568ZM16.2402 8.77448C15.96 8.48453 15.5058 8.48453 15.2256 8.77448C14.9454 9.06443 14.9454 9.53454 15.2256 9.82449L17.454 12.1307L15.2262 14.4364C14.946 14.7263 14.946 15.1964 15.2262 15.4864C15.5063 15.7763 15.9606 15.7763 16.2407 15.4864L19.4551 12.1598C19.4704 12.1439 19.4704 12.1182 19.4551 12.1023L19.2233 11.8623L19.2201 11.8586L19.2158 11.854L16.2402 8.77448ZM8.88972 15.4867C8.59977 15.7766 8.12966 15.7766 7.83971 15.4867L5.4207 13.0677L4.76017 12.4071L4.51191 12.1589C4.49603 12.143 4.49603 12.1173 4.51191 12.1014L7.83853 8.77477C8.12848 8.48482 8.59859 8.48482 8.88854 8.77477C9.17849 9.06472 9.17849 9.53482 8.88854 9.82478L6.58318 12.1301L8.88972 14.4367C9.17967 14.7266 9.17967 15.1967 8.88972 15.4867Z'
       fill='white'
     ></path>
@@ -691,8 +682,8 @@ export const Embedded = () => (
 export const IconAt = () => (
   <svg width='1em' data-e2e='' height='1em' viewBox='0 0 48 48' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42C28.0553 42 31.7921 40.6614 34.8006 38.401L35.6001 37.8003C36.0416 37.4686 36.6685 37.5576 37.0003 37.9992L38.2016 39.5981C38.5334 40.0397 38.4443 40.6666 38.0028 40.9983L37.2033 41.599C33.5258 44.3619 28.9513 46 24 46C11.8497 46 2 36.1503 2 24C2 11.8497 11.8497 2 24 2C36.1503 2 46 11.8497 46 24V26C46 30.4843 42.1949 34 37.8438 34C35.1966 34 32.8496 32.7142 31.3935 30.733C29.5649 32.7403 26.9303 34 24 34C18.4772 34 14 29.5228 14 24C14 18.4772 18.4772 14 24 14C29.5228 14 34 18.4772 34 24C34 24.5814 33.9502 25.1528 33.8541 25.7096C33.8473 25.8052 33.8438 25.902 33.8438 26C33.8438 28.2091 35.6347 30 37.8438 30C40.1201 30 42 28.1431 42 26V24C42 14.0589 33.9411 6 24 6ZM24 18C20.6863 18 18 20.6863 18 24C18 27.3137 20.6863 30 24 30C26.9395 30 29.3891 27.8841 29.9013 25.0918C29.9659 24.7392 30 24.3744 30 24C30 20.6863 27.3137 18 24 18Z'
     ></path>
   </svg>
@@ -700,40 +691,32 @@ export const IconAt = () => (
 export const IconFace = () => (
   <svg width='1em' data-e2e='' height='1em' viewBox='0 0 48 48' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24 6C14.0589 6 6 14.0589 6 24C6 33.9411 14.0589 42 24 42C33.9411 42 42 33.9411 42 24C42 14.0589 33.9411 6 24 6ZM2 24C2 11.8497 11.8497 2 24 2C36.1503 2 46 11.8497 46 24C46 36.1503 36.1503 46 24 46C11.8497 46 2 36.1503 2 24Z'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M17 23C18.6569 23 20 21.2091 20 19C20 16.7909 18.6569 15 17 15C15.3431 15 14 16.7909 14 19C14 21.2091 15.3431 23 17 23Z'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M31 23C32.6569 23 34 21.2091 34 19C34 16.7909 32.6569 15 31 15C29.3431 15 28 16.7909 28 19C28 21.2091 29.3431 23 31 23Z'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M16 28.3431C16 31.4673 19.5817 36 24 36C28.4183 36 32 31.4673 32 28.3431C32 25.219 16 25.219 16 28.3431Z'
     ></path>
   </svg>
 )
 export const MoreComment = () => (
-  <svg
-    class='tiktok-1w2nwdz-StyledChevronDownFill eo72wou3'
-    width='1em'
-    data-e2e=''
-    height='1em'
-    viewBox='0 0 48 48'
-    fill='currentColor'
-    xmlns='http://www.w3.org/2000/svg'
-  >
+  <svg width='1em' data-e2e='' height='1em' viewBox='0 0 48 48' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M21.8788 33.1213L7.58586 18.8284C7.19534 18.4379 7.19534 17.8047 7.58586 17.4142L10.4143 14.5858C10.8048 14.1953 11.438 14.1953 11.8285 14.5858L24.0001 26.7574L36.1716 14.5858C36.5622 14.1953 37.1953 14.1953 37.5859 14.5858L40.4143 17.4142C40.8048 17.8047 40.8048 18.4379 40.4143 18.8284L26.1214 33.1213C24.9498 34.2929 23.0503 34.2929 21.8788 33.1213Z'
     ></path>
   </svg>
@@ -741,8 +724,8 @@ export const MoreComment = () => (
 export const HeartComment = () => (
   <svg width='20' data-e2e='' height='20' viewBox='0 0 48 48' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24 9.01703C19.0025 3.74266 11.4674 3.736 6.67302 8.56049C1.77566 13.4886 1.77566 21.4735 6.67302 26.4016L22.5814 42.4098C22.9568 42.7876 23.4674 43 24 43C24.5326 43 25.0432 42.7876 25.4186 42.4098L41.327 26.4016C46.2243 21.4735 46.2243 13.4886 41.327 8.56049C36.5326 3.736 28.9975 3.74266 24 9.01703ZM21.4938 12.2118C17.9849 8.07195 12.7825 8.08727 9.51028 11.3801C6.16324 14.7481 6.16324 20.214 9.51028 23.582L24 38.1627L38.4897 23.582C41.8368 20.214 41.8368 14.7481 38.4897 11.3801C35.2175 8.08727 30.0151 8.07195 26.5062 12.2118L26.455 12.2722L25.4186 13.3151C25.0432 13.6929 24.5326 13.9053 24 13.9053C23.4674 13.9053 22.9568 13.6929 22.5814 13.3151L21.545 12.2722L21.4938 12.2118Z'
     ></path>
   </svg>
@@ -759,8 +742,8 @@ export const TikUser = () => (
 export const FlagReport = () => (
   <svg width='24' data-e2e='' height='24' viewBox='0 0 48 48' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M9 9.31286V27.0626C9.98685 26.7378 11.184 26.4042 12.5108 26.1585C16.1115 25.4917 21.0181 25.4123 25.1625 28.3726C28.0181 30.4123 31.6115 30.4917 34.7608 29.9085C36.306 29.6223 37.6602 29.1908 38.6289 28.8293C38.7603 28.7803 38.8841 28.7328 39 28.6872V10.9374C38.0131 11.2623 36.816 11.5959 35.4892 11.8416C31.8885 12.5084 26.9819 12.5878 22.8375 9.62751C19.9819 7.58781 16.3885 7.5084 13.2392 8.09161C11.694 8.37776 10.3398 8.80927 9.37105 9.17072C9.23971 9.21973 9.11586 9.2673 9 9.31286ZM40.1067 6.21064C40.7264 5.90123 41.4622 5.93453 42.0515 6.29874C42.6411 6.66315 43 7.30688 43 8.00004V30C43 30.7576 42.572 31.4501 41.8944 31.7889L41 30C41.8944 31.7889 41.8931 31.7895 41.8931 31.7895L41.8916 31.7903L41.8878 31.7922L41.8775 31.7973L41.846 31.8127C41.831 31.82 41.8128 31.8288 41.7915 31.839C41.7761 31.8464 41.7589 31.8545 41.7401 31.8634C41.651 31.9055 41.525 31.9637 41.3654 32.0343C41.0466 32.1753 40.5919 32.3663 40.0273 32.577C38.9023 32.9967 37.319 33.5027 35.4892 33.8416C31.8885 34.5084 26.9819 34.5878 22.8375 31.6275C19.9819 29.5878 16.3885 29.5084 13.2392 30.0916C11.694 30.3778 10.3398 30.8093 9.37105 31.1707C9.23971 31.2197 9.11586 31.2673 9 31.3129V44.0001C9 44.5524 8.55228 45.0001 8 45.0001H6C5.44772 45.0001 5 44.5524 5 44.0001V8.00004C5 7.24249 5.42801 6.54996 6.10558 6.21118L7 8.00004C6.10558 6.21118 6.10688 6.21053 6.10688 6.21053L6.10842 6.20976L6.11219 6.20789L6.12249 6.20279L6.15404 6.18734C6.17988 6.17477 6.21529 6.15773 6.25987 6.13667C6.34902 6.09457 6.47498 6.03636 6.63455 5.9658C6.95342 5.8248 7.4081 5.63378 7.9727 5.42311C9.09774 5.00332 10.681 4.49734 12.5108 4.15849C16.1115 3.49171 21.0181 3.4123 25.1625 6.37257C28.0181 8.41227 31.6115 8.49167 34.7608 7.90846C36.306 7.62231 37.6602 7.1908 38.6289 6.82935C39.1112 6.6494 39.4925 6.48886 39.7478 6.37595C39.8754 6.31956 39.9711 6.27523 40.0318 6.24653C40.0622 6.23219 40.0838 6.22177 40.0962 6.21572L40.1056 6.21118L40.1067 6.21064Z'
     ></path>
   </svg>
@@ -817,14 +800,14 @@ export const Telegram = () => (
 export const Email = () => (
   <svg width='26' data-e2e='' height='26' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24 48C37.2548 48 48 37.2548 48 24C48 10.7452 37.2548 0 24 0C10.7452 0 0 10.7452 0 24C0 37.2548 10.7452 48 24 48Z'
       fill='#0DBEF3'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M13.6327 14.8957C12.4779 14.8957 11.5417 15.8318 11.5417 16.9866V31.0131C11.5417 32.1679 12.4779 33.104 13.6327 33.104H34.3675C35.5223 33.104 36.4584 32.1679 36.4584 31.0131V16.9866C36.4584 15.8318 35.5223 14.8957 34.3675 14.8957H13.6327ZM33.7214 17.3809L24.0001 24.1142L14.2788 17.3809C13.9321 17.1407 13.4584 17.3889 13.4584 17.8106V19.0944L24.0001 26.396L34.5418 19.0944V17.8106C34.5418 17.3889 34.0681 17.1407 33.7214 17.3809Z'
       fill='white'
     ></path>
@@ -841,14 +824,14 @@ export const Pinterest = () => (
 export const WhatsApp = () => (
   <svg width='24' data-e2e='' height='24' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M24 47C36.7025 47 47 36.7025 47 24C47 11.2975 36.7025 1 24 1C11.2975 1 1 11.2975 1 24C1 36.7025 11.2975 47 24 47Z'
       fill='#25D366'
     ></path>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M30.9028 25.6129C30.5802 25.4515 28.9944 24.6713 28.6988 24.5635C28.4031 24.4559 28.1881 24.4021 27.9731 24.7249C27.758 25.0478 27.1399 25.7744 26.9517 25.9897C26.7636 26.2049 26.5754 26.2319 26.2529 26.0704C25.9303 25.909 24.891 25.5684 23.659 24.4694C22.7002 23.6141 22.0528 22.5579 21.8647 22.235C21.6765 21.9121 21.8446 21.7375 22.0061 21.5767C22.1512 21.4321 22.3287 21.2 22.4899 21.0116C22.6512 20.8233 22.705 20.6887 22.8125 20.4735C22.92 20.2582 22.8663 20.0699 22.7855 19.9085C22.7049 19.747 22.0599 18.1593 21.7911 17.5134C21.5293 16.8845 21.2634 16.9697 21.0654 16.9598C20.8774 16.9504 20.6622 16.9484 20.4472 16.9484C20.2322 16.9484 19.8827 17.0291 19.587 17.352C19.2914 17.6749 18.4581 18.4553 18.4581 20.0428C18.4581 21.6306 19.6139 23.1643 19.7752 23.3795C19.9365 23.5949 22.0496 26.8528 25.2853 28.2499C26.0548 28.5823 26.6557 28.7807 27.1241 28.9293C27.8968 29.1749 28.5999 29.1402 29.1557 29.0572C29.7754 28.9646 31.064 28.277 31.3328 27.5235C31.6016 26.7699 31.6016 26.1242 31.521 25.9897C31.4404 25.8551 31.2253 25.7744 30.9028 25.6129ZM25.0178 33.6472H25.0134C23.0881 33.6465 21.1998 33.1292 19.5524 32.1517L19.1606 31.9191L15.0998 32.9844L16.1837 29.0251L15.9286 28.6191C14.8546 26.9109 14.2873 24.9365 14.2881 22.9091C14.2905 16.9934 19.1037 12.1805 25.022 12.1805C27.8879 12.1815 30.5817 13.299 32.6076 15.3271C34.6333 17.3551 35.7482 20.0509 35.7471 22.9178C35.7447 28.8339 30.9315 33.6472 25.0178 33.6472ZM34.1489 13.7858C31.7117 11.3458 28.4706 10.0014 25.0173 10C17.902 10 12.111 15.7906 12.1082 22.908C12.1073 25.1832 12.7017 27.4039 13.8313 29.3617L12 36.0509L18.8432 34.2559C20.7287 35.2843 22.8516 35.8264 25.0121 35.827H25.0174H25.0174C32.132 35.827 37.9234 30.0359 37.9263 22.9184C37.9276 19.4691 36.5861 16.2258 34.1489 13.7858Z'
       fill='white'
     ></path>
@@ -867,16 +850,8 @@ export const FacebookIcon = () => (
   </svg>
 )
 export const TiktokLogo = () => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    fill='none'
-    viewBox='0 0 48 48'
-    width='40'
-    height='40'
-    data-e2e='browse-logo'
-    class='tiktok-1ncsqqe-StyledLogo e11s2kul13'
-  >
-    <g fill-rule='evenodd' clip-path='url(#logo-icon_svg__a)' clip-rule='evenodd'>
+  <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 48 48' width='40' height='40' data-e2e='browse-logo'>
+    <g fillRule='evenodd' clipPath='url(#logo-icon_svg__a)' clipRule='evenodd'>
       <path
         fill='#000'
         d='M0 36c0 6.627 5.373 12 12 12h24c6.627 0 12-5.373 12-12V12c0-6.628-5.373-12-12-12H12C5.373 0 0 5.372 0 12v24z'
@@ -909,8 +884,8 @@ export const CloseIcon = () => (
 export const ToOtherVideo = () => (
   <svg width='26' data-e2e='' height='26' viewBox='0 0 48 48' fill='#fff' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M34.4142 22.5858L18.1213 6.29289C17.7308 5.90237 17.0976 5.90237 16.7071 6.29289L15.2929 7.70711C14.9024 8.09763 14.9024 8.7308 15.2929 9.12132L30.1716 24L15.2929 38.8787C14.9024 39.2692 14.9024 39.9024 15.2929 40.2929L16.7071 41.7071C17.0976 42.0976 17.7308 42.0976 18.1213 41.7071L34.4142 25.4142C35.1953 24.6332 35.1953 23.3668 34.4142 22.5858Z'
     ></path>
   </svg>
@@ -925,19 +900,19 @@ export const LikedHeart = ({ style }) => (
     xmlns='http://www.w3.org/2000/svg'
     style={style}
   >
-    <g clip-path='url(#HeartFill_clip0)'>
+    <g clipPath='url(#HeartFill_clip0)'>
       <g filter='url(#HeartFill_filter0_d)'>
         <path
-          fill-rule='evenodd'
-          clip-rule='evenodd'
+          fillRule='evenodd'
+          clipRule='evenodd'
           d='M7.5 2.25C10.5 2.25 12 4.25 12 4.25C12 4.25 13.5 2.25 16.5 2.25C20 2.25 22.5 4.99999 22.5 8.5C22.5 12.5 19.2311 16.0657 16.25 18.75C14.4095 20.4072 13 21.5 12 21.5C11 21.5 9.55051 20.3989 7.75 18.75C4.81949 16.0662 1.5 12.5 1.5 8.5C1.5 4.99999 4 2.25 7.5 2.25Z'
         ></path>
       </g>
       <path
-        fill-rule='evenodd'
-        clip-rule='evenodd'
+        fillRule='evenodd'
+        clipRule='evenodd'
         d='M2.40179 12.1998C3.58902 14.6966 5.7592 16.9269 7.74989 18.75C9.5504 20.3989 10.9999 21.5 11.9999 21.5C12.9999 21.5 14.4094 20.4072 16.2499 18.75C19.231 16.0657 22.4999 12.5 22.4999 8.49997C22.4999 8.41258 22.4983 8.32566 22.4952 8.23923C20.5671 13.6619 13.6787 18.5 11.75 18.5C10.3127 18.5 5.61087 15.8131 2.40179 12.1998Z'
-        fill-opacity='0.03'
+        fillOpacity='0.03'
       ></path>
     </g>
     <defs>
@@ -948,9 +923,9 @@ export const LikedHeart = ({ style }) => (
         width='25.8'
         height='24.05'
         filterUnits='userSpaceOnUse'
-        color-interpolation-filters='sRGB'
+        colorInterpolationFilters='sRGB'
       >
-        <feFlood flood-opacity='0' result='BackgroundImageFix'></feFlood>
+        <feFlood floodOpacity='0' result='BackgroundImageFix'></feFlood>
         <feColorMatrix
           in='SourceAlpha'
           type='matrix'
@@ -972,8 +947,8 @@ export const LikedHeart = ({ style }) => (
 export const TrashIcon = () => (
   <svg width='24' data-e2e='' height='24' viewBox='0 0 48 48' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M19.5 7.50006V9.50006H28.5V7.50006H19.5ZM32.5 9.50006V6.00006C32.5 4.61935 31.3807 3.50006 30 3.50006H18C16.6193 3.50006 15.5 4.61935 15.5 6.00006V9.50006H7C6.44772 9.50006 6 9.94778 6 10.5001V12.5001C6 13.0523 6.44772 13.5001 7 13.5001H9.5V39.5001C9.5 41.7092 11.2909 43.5001 13.5 43.5001H34.5C36.7091 43.5001 38.5 41.7092 38.5 39.5001V13.5001H41C41.5523 13.5001 42 13.0523 42 12.5001V10.5001C42 9.94778 41.5523 9.50006 41 9.50006H32.5ZM34.5 13.5001H13.5V39.5001H34.5V13.5001ZM18.5 34.0001C17.9477 34.0001 17.5 33.5523 17.5 33.0001V20.0001C17.5 19.4478 17.9477 19.0001 18.5 19.0001H20.5C21.0523 19.0001 21.5 19.4478 21.5 20.0001V33.0001C21.5 33.5523 21.0523 34.0001 20.5 34.0001H18.5ZM27.5 34.0001C26.9477 34.0001 26.5 33.5523 26.5 33.0001V20.0001C26.5 19.4478 26.9477 19.0001 27.5 19.0001H29.5C30.0523 19.0001 30.5 19.4478 30.5 20.0001V33.0001C30.5 33.5523 30.0523 34.0001 29.5 34.0001H27.5Z'
     ></path>
   </svg>
@@ -1054,8 +1029,8 @@ export const PauseVideo = () => (
 export const OffVolume = () => (
   <svg width='28' data-e2e='' height='28' viewBox='0 0 48 48' fill='#fff' xmlns='http://www.w3.org/2000/svg'>
     <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
+      fillRule='evenodd'
+      clipRule='evenodd'
       d='M25 10.8685C25 8.47242 22.3296 7.04325 20.3359 8.37236L10.3944 15H6C4.34315 15 3 16.3431 3 18V30C3 31.6568 4.34314 33 6 33H10.3944L20.3359 39.6276C22.3296 40.9567 25 39.5276 25 37.1315V10.8685ZM29.2929 18.1213L35.1716 24L29.2929 29.8787C28.9024 30.2692 28.9024 30.9024 29.2929 31.2929L30.7071 32.7071C31.0976 33.0976 31.7308 33.0976 32.1213 32.7071L38 26.8284L43.8787 32.7071C44.2692 33.0976 44.9024 33.0976 45.2929 32.7071L46.7071 31.2929C47.0976 30.9024 47.0976 30.2692 46.7071 29.8787L40.8284 24L46.7071 18.1213C47.0976 17.7308 47.0976 17.0976 46.7071 16.7071L45.2929 15.2929C44.9024 14.9024 44.2692 14.9024 43.8787 15.2929L38 21.1716L32.1213 15.2929C31.7308 14.9024 31.0976 14.9024 30.7071 15.2929L29.2929 16.7071C28.9024 17.0976 28.9024 17.7308 29.2929 18.1213Z'
     ></path>
   </svg>

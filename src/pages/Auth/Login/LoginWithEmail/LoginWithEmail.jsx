@@ -24,7 +24,6 @@ function LoginWithEmail() {
     setLoading(true)
     Account.getLogin(data.email, data.password)
       .then((res) => {
-        console.log(res)
         setLoginFail(false)
         setLoading(false)
         reset()
