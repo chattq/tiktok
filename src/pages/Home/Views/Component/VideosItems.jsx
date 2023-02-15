@@ -128,7 +128,7 @@ function VideosItems({ data, totalData, previousPath }) {
             <FormatTextBold text={data?.description} /> 🎧
           </div>
           {data?.music ? <div className='mt-1 font-medium'>Nhạc Nền - {data?.music} 🎧🎧🎧</div> : null}
-          <div className='relative mt-3 mb-3 flex'>
+          <div className='relative mt-3 mb-3 flex w-fit'>
             <Link
               to={`/users/@${data?.user.nickname}/${data?.uuid}`}
               className={`div-video mr-2 ${
@@ -144,17 +144,19 @@ function VideosItems({ data, totalData, previousPath }) {
                 ref={videoRef}
               />
             </Link>
-            <div className='absolute bottom-[25px] left-[20px] z-50'>
-              <ButtonPlayVideo videoRef={videoRef} />
-            </div>
-            <div className='volumeBox'>
-              <div className='volume1 absolute bottom-[40px] right-[170px]'>
-                <ButtonVolume videoRef={videoRef} />
+            <div className='absolute left-4 bottom-6 flex w-full items-center justify-between pr-[90px]'>
+              <div className=' '>
+                <ButtonPlayVideo videoRef={videoRef} />
               </div>
-              <ButtonChangeVolume
-                videoRef={videoRef}
-                style={'controlVolume absolute bottom-[120px] hidden right-[148px] rotate-[-90deg]'}
-              />
+              <div className='volumeBox'>
+                <div className='volume1 '>
+                  <ButtonVolume videoRef={videoRef} />
+                </div>
+                <ButtonChangeVolume
+                  videoRef={videoRef}
+                  style={'controlVolume absolute bottom-[70px] hidden right-[65px] rotate-[-90deg]'}
+                />
+              </div>
             </div>
             <div className='flex h-full flex-col items-center   gap-1 self-end'>
               <div className='flex flex-col items-center justify-center'>

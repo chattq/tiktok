@@ -17,7 +17,7 @@ export default function ButtonPlayVideo({ videoRef }) {
     setIsPlaying((currentPlayStatus) => !currentPlayStatus)
   }
   return (
-    <div className='h-[40px] w-[40px] bg-transparent'>
+    <>
       <button onClick={playVideo}>
         {
           <FontAwesomeIcon
@@ -26,6 +26,6 @@ export default function ButtonPlayVideo({ videoRef }) {
           />
         }
       </button>
-    </div>
+    </>
   )
 }
