@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Tippy from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
 import MenuItem from '../MenuItem/MenuItem'
 import { useState } from 'react'
 import HeaderMenu from '../HeaderMenu/HeaderMenu'
+import { useTranslation } from 'react-i18next'
 
 function Menu({ children, dataMenu, className, onClick }) {
   const [history, setHistory] = useState([{ data: dataMenu }])
   const current = history[history.length - 1]
   const onBack = () => {
     setHistory((prev) => prev.slice(0, prev.length - 1))
+  }
+  const { i18n } = useTranslation()
+  const handeChangeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
   }
   const renderItem = () => {
     return current.data?.map((item, index) => {
@@ -28,6 +33,12 @@ function Menu({ children, dataMenu, className, onClick }) {
             }
             if (isLogOut) {
               onClick()
+            }
+            if (item.code === 'en') {
+              handeChangeLanguage('en')
+            }
+            if (item.code === 'vi') {
+              handeChangeLanguage('vi')
             }
           }}
         />

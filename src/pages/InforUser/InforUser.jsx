@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { useQuery } from '@tanstack/react-query'
 import React, { useContext, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { User } from '../../apis/UserAPI'
 import { formatNumberFollow, formatNumberLike } from '../../assets/formatNumber'
@@ -14,6 +15,7 @@ import SkeletonUserInfor from '../components/Skeleton/SkeletonUseInfor'
 import Videos from './Videos/Videos'
 
 export default function InforUser() {
+  const { t } = useTranslation()
   const DataUser = JSON.parse(localStorage.getItem('userInfo'))
   const [checkPage, setCheckPage] = useState(false)
   const previousPath = window.location.pathname
@@ -78,7 +80,7 @@ export default function InforUser() {
                       <div className='w-[125px] cursor-pointer'>
                         <div className='border-[rgba(22, 24, 35, 0.12)] flex items-center justify-center rounded-[4px] border font-bold'>
                           {EditProfile()}
-                          <span className='ml-2'>Sửa hồ sơ</span>
+                          <span className='ml-2'>{t('Edit profile')}</span>
                         </div>
                       </div>
                     </ModalEditProfile>
@@ -92,7 +94,7 @@ export default function InforUser() {
                   ) : (
                     <div className='flex items-center'>
                       <div className='w-[164px] cursor-pointer rounded border border-[rgba(254,44,85,1)] px-[8px] text-center font-medium text-[rgba(254,44,85,1)] hover:bg-[#FFF2F5]'>
-                        Tin Nhắn
+                        {t('Messages')}
                       </div>
                       <ButtonUnfollow
                         idUserUnFollow={inforUser?.id}
@@ -108,7 +110,7 @@ export default function InforUser() {
               <div className='mt-6 flex items-center'>
                 <div className='mr-5'>
                   <b className='mr-2 text-[18px]'>{formatNumberFollow(inforUser?.followings_count)}</b>
-                  <span className='text-[#23242fbf]'>Đang Follow</span>
+                  <span className='text-[#23242fbf]'>{t('Following')}</span>
                 </div>
                 <div className='mr-5'>
                   <b className='mr-2 text-[18px]'>{formatNumberFollow(inforUser?.followers_count)}</b>
@@ -116,7 +118,7 @@ export default function InforUser() {
                 </div>
                 <div>
                   <b className='mr-2 text-[18px]'>{formatNumberLike(inforUser?.likes_count)}</b>
-                  <span className='text-[#23242fbf]'>Thích</span>
+                  <span className='text-[#23242fbf]'>{t('Likes')}</span>
                 </div>
               </div>
               <h1 className='mt-3 max-w-[550px] leading-7 tracking-[0.5px]'>{`${inforUser?.bio}`}</h1>
@@ -198,7 +200,7 @@ export default function InforUser() {
                 onClick={handleLike}
               >
                 {locks()}
-                <span className='ml-2'>Đã thích</span>
+                <span className='ml-2'>{t('liked')}</span>
               </div>
               {!checkPage ? <div className={'tab_line1'} /> : <div className={'tab_line2'} />}
             </div>

@@ -7,7 +7,6 @@ import { AppContext } from '../../../context/app.context'
 
 export default function ButtonPlayVideo({ videoRef }) {
   const { isPlaying, setIsPlaying } = useContext(AppContext)
-  console.log(10, isPlaying)
 
   const playVideo = () => {
     if (isPlaying) {

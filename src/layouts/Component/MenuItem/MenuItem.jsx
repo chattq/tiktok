@@ -14,7 +14,7 @@ function MenuItem({ className, data, onClick }) {
   return (
     <Comp className={className} {..._props}>
       <span>{data.icon}</span>
-      {data.title === 'Dark mode' ? (
+      {data.title === 'Dark mode' || data.title === 'Chế độ tối' ? (
         <>
           <span>{data.title}</span>
           <label className='relative inline-flex cursor-pointer items-center'>

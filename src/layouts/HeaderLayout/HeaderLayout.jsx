@@ -36,13 +36,15 @@ import { Link, useParams } from 'react-router-dom'
 import { Account } from '../../apis/AcountAPI'
 import { ImgBasic } from '../../assets/img'
 import { AppContext } from '../../context/app.context'
+import { useTranslation } from 'react-i18next'
 
 export default function HeaderLayout({ children }) {
-  const { setDataUser } = useContext(AppContext)
+  const { dataUser } = useContext(AppContext)
+  console.log(42, dataUser)
   const { userId, upload } = useParams()
   const checkParams = Boolean(userId)
   const checkParamsUpload = Boolean(upload)
-  const dataUser = JSON.parse(localStorage.getItem('userInfo'))
+  // const dataUser = JSON.parse(localStorage.getItem('userInfo'))
   const [resultSearch, setResultSearch] = useState([])
   const [search, setSearch] = useState('')
   const [showResult, setShowResult] = useState(true)
@@ -50,10 +52,11 @@ export default function HeaderLayout({ children }) {
   const inputSearchRef = useRef()
   const debouncedValue = useDebounce(search, 800)
   const { darkMode } = useContext(AppContext)
+  const { t } = useTranslation()
   const dataMenu = [
     {
       icon: <Language style={{ width: '20px', height: '20px' }} />,
-      title: 'EngLish',
+      title: t('Language'),
       child: {
         title: 'Language',
         data: [
@@ -64,62 +67,48 @@ export default function HeaderLayout({ children }) {
           {
             code: 'vi',
             title: 'Tiếng Việt'
-          },
-          {
-            code: 'fr',
-            title: 'Français'
           }
         ]
       }
     },
     {
       icon: <Question style={{ width: '20px', height: '20px' }} />,
-      title: 'Feed back and help',
+      title: t('Feed back and help'),
       to: '/feedback'
     },
     {
       icon: <KeyBroad style={{ width: '20px', height: '20px' }} />,
-      title: 'Keyboard shortcuts'
+      title: t('Keyboard shortcuts')
     },
     {
       icon: <Moon style={{ width: '20px', height: '20px' }} />,
-      title: 'Dark mode'
+      title: t('Dark mode')
     }
   ]
   const dataMenuUser = [
     {
       icon: <FontAwesomeIcon icon={faUser} className='w-5' />,
-      title: 'View Profile',
+      title: t('View profile'),
       to: dataUser ? `/users/@${dataUser.nickname}` : null
     },
     {
       icon: <FontAwesomeIcon icon={faCoins} className='w-5' />,
-      title: 'Get Coin'
+      title: t('Get Coin')
     },
     {
       icon: <FontAwesomeIcon icon={faVideoCamera} className='w-5' />,
 
-
-
-
-
-
-
-
-
-
-      
       title: 'Live'
     },
     {
       icon: <FontAwesomeIcon icon={faGear} className='w-5' />,
-      title: 'Settings'
+      title: t('Setting')
     },
     {
       icon: <Language style={{ width: '20px', height: '20px' }} />,
-      title: 'EngLish',
+      title: t('Language'),
       child: {
-        title: 'Language',
+        title: t('Language'),
         data: [
           {
             code: 'en',
@@ -128,26 +117,22 @@ export default function HeaderLayout({ children }) {
           {
             code: 'vi',
             title: 'Tiếng Việt'
-          },
-          {
-            code: 'fr',
-            title: 'Français'
           }
         ]
       }
     },
     {
       icon: <Question style={{ width: '20px', height: '20px' }} />,
-      title: 'Feed back and help',
+      title: t('Feed back and help'),
       to: '/feedback'
     },
     {
       icon: <KeyBroad style={{ width: '20px', height: '20px' }} />,
-      title: 'Keyboard shortcuts'
+      title: t('Keyboard shortcuts')
     },
     {
       icon: <Moon style={{ width: '20px', height: '20px' }} />,
-      title: 'Dark mode'
+      title: t('Dark mode')
     },
     {
       icon: <LogoutIcon style={{ width: '20px', height: '20px' }} />,
@@ -159,7 +144,6 @@ export default function HeaderLayout({ children }) {
   const handleSearch = () => {
     User.searchUser({ q: search, type: 'less' })
       .then((res) => {
-        console.log(res)
         setResultSearch(res.data.data)
       })
       .catch((error) => {
@@ -174,7 +158,6 @@ export default function HeaderLayout({ children }) {
     setLoading(true)
     User.searchUser({ q: debouncedValue, type: 'less' })
       .then((res) => {
-        console.log(res)
         setResultSearch(res.data.data)
         setLoading(false)
       })
@@ -197,7 +180,6 @@ export default function HeaderLayout({ children }) {
   const handleLogout = () => {
     Account.getLogout()
       .then((res) => {
-        console.log(res)
         localStorage.removeItem('token')
         localStorage.removeItem('userInfo')
         window.location.assign('/')
@@ -261,7 +243,7 @@ export default function HeaderLayout({ children }) {
                 value={search}
                 className='h-full flex-1 rounded-full bg-[#f1f1f2] pl-4 text-[#707070] caret-red-500 outline-none'
                 type='text'
-                placeholder='Search account and video'
+                placeholder={t('Search accounts and videos')}
                 onChange={(e) => setSearch(e.target.value)}
                 onFocus={() => setShowResult(true)}
               />
@@ -287,7 +269,7 @@ export default function HeaderLayout({ children }) {
               to={'/upload'}
             >
               <FontAwesomeIcon icon={faPlus} className='mr-[8px] h-[16px] w-[16px]' />
-              <span className='font-semibold leading-6 text-[#161823]'>Upload</span>
+              <span className='font-semibold leading-6 text-[#161823]'>{t('Upload')}</span>
             </Link>
             {dataUser ? (
               <div className='flex items-center gap-[20px] text-[#161823]'>
@@ -344,7 +326,7 @@ export default function HeaderLayout({ children }) {
                   className='flex h-[36px] min-w-[100px] cursor-pointer items-center justify-center rounded-md bg-[#FE2C55] px-[8px]  py-[6px] text-[white] hover:bg-[#EA284E]'
                   to={'/login'}
                 >
-                  <span>Login</span>
+                  <span>{t('Login')}</span>
                 </Link>
                 <div className='flex cursor-pointer items-center'>
                   <Menu className='w-[240px] rounded-lg bg-[white] py-3 shadow-lg' dataMenu={dataMenu}>

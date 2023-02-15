@@ -76,7 +76,6 @@ function Upload() {
           }
         })
         .then((res) => {
-          console.log(res)
           setLoadingUpload(false)
           toast.success(
             <>

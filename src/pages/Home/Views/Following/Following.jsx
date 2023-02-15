@@ -15,7 +15,6 @@ export default function Following() {
     setNumberLoad((pre) => pre + 1)
     Videos.getVideosFollowing('following', numberLoad + 1, token)
       .then((res) => {
-        console.log(res)
         setDataRender((prev) => [...prev, ...res.data.data])
       })
       .catch((error) => {
@@ -32,7 +31,6 @@ export default function Following() {
     if (isLogin) {
       Videos.getVideosFollowing('following', 1, token)
         .then((res) => {
-          console.log(res)
           setDataRender(res.data.data)
         })
         .catch((error) => {
@@ -41,7 +39,6 @@ export default function Following() {
     } else {
       Videos.getVideosForyou('for-you', 1)
         .then((res) => {
-          console.log(res, 17)
           setDataRender(res.data.data)
         })
         .catch((error) => {
