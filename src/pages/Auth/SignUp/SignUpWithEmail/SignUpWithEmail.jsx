@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Account } from '../../../../apis/AcountAPI'
-import { rules } from '../../../../rules/Rules'
+import { rules } from '../../../../rules/rules'
 function SignUpWithEmail() {
   const [loaddingSignUp, setLoadingSignUp] = useState(false)
   const [failSignUp, setFailSignUp] = useState(false)
