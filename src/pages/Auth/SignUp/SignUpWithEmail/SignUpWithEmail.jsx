@@ -4,11 +4,10 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { useForm } from 'react-hook-form'
-import { rules } from '../../../../rules/Rules'
-import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { Account } from '../../../../apis/AcountAPI'
+import { rules } from '../../../../rules/rules'
 function SignUpWithEmail() {
   const [loaddingSignUp, setLoadingSignUp] = useState(false)
   const [failSignUp, setFailSignUp] = useState(false)
