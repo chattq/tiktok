@@ -15,5 +15,15 @@ export default function ButtonVolume({ videoRef }) {
     }
     setMuted((currentMutedStatus) => !currentMutedStatus)
   }
-  return <button onClick={playVideo}>{numberMuted === '0' ? OffVolume() : isMuted ? Volume() : OffVolume()}</button>
+  return (
+    <button onClick={playVideo}>
+      {numberMuted === '0' ? (
+        <OffVolume style={{ width: '24px', height: '24px' }} />
+      ) : isMuted ? (
+        <Volume style={{ width: '24px', height: '24px' }} />
+      ) : (
+        <OffVolume style={{ width: '24px', height: '24px' }} />
+      )}
+    </button>
+  )
 }

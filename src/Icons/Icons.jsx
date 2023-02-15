@@ -1006,8 +1006,8 @@ export const CloseX = () => (
     ></path>
   </svg>
 )
-export const Volume = () => (
-  <svg width='28' data-e2e='' height='28' viewBox='0 0 48 48' fill='#fff' xmlns='http://www.w3.org/2000/svg'>
+export const Volume = ({ style }) => (
+  <svg data-e2e='' viewBox='0 0 48 48' fill='#fff' xmlns='http://www.w3.org/2000/svg' style={style}>
     <path
       fillRrule='evenodd'
       clipRule='evenodd'
@@ -1026,8 +1026,8 @@ export const PauseVideo = () => (
     <use fill='#fff' xlink:href='#svg-play-fill'></use>
   </svg>
 )
-export const OffVolume = () => (
-  <svg width='28' data-e2e='' height='28' viewBox='0 0 48 48' fill='#fff' xmlns='http://www.w3.org/2000/svg'>
+export const OffVolume = ({ style }) => (
+  <svg data-e2e='' viewBox='0 0 48 48' fill='#fff' xmlns='http://www.w3.org/2000/svg' style={style}>
     <path
       fillRule='evenodd'
       clipRule='evenodd'
