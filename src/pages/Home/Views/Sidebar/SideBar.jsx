@@ -20,6 +20,10 @@ export default function SideBar() {
   const [data, setData] = useState([])
   const [page] = useState(1)
   const [perPage] = useState(15)
+  const { data: dataUser, isLoading } = useQuery({
+    queryKey: ['/api/users/suggested', { page, perPage }],
+    queryFn: () => User.suggestUserList({ page, perPage })
+  })
   useEffect(() => {
     const getAcounts = async () => {
       const result = await User.followUserList({ page, perPage })
@@ -28,10 +32,7 @@ export default function SideBar() {
     }
     getAcounts()
   }, [page, perPage])
-  const { data: dataUser, isLoading } = useQuery({
-    queryKey: ['/api/users/suggested', { page, perPage }],
-    queryFn: () => User.suggestUserList({ page, perPage })
-  })
+
   return (
     <>
       <div className='pr-[10px] pb-[100px]'>

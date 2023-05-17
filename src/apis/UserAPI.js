@@ -4,7 +4,7 @@ export const User = {
   suggestUserList({ page, perPage }) {
     return http.get(`/api/users/suggested`, {
       params: {
-        page,
+        page: page,
         per_page: perPage
       }
     })
@@ -12,7 +12,7 @@ export const User = {
   followUserList({ page, perPage }) {
     return http.get(`/api/me/followings`, {
       params: {
-        page,
+        page: page,
         per_page: perPage
       }
     })

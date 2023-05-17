@@ -8,6 +8,7 @@ export default function ButtonFollow({ style, idUserFollow, isFollowed, uuidVide
   const queryClient = useQueryClient()
   const followMutation = useMutation(User.followUser)
   const unFollowMutation = useMutation(User.unFollowUser)
+
   const handleFollow = () => {
     if (isFollowed) {
       unFollowMutation.mutate(idUserFollow, {
@@ -22,7 +23,7 @@ export default function ButtonFollow({ style, idUserFollow, isFollowed, uuidVide
     } else {
       followMutation.mutate(idUserFollow, {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ['/api/users/suggested', { page, perPage }] })
+          queryClient.invalidateQueries({ queryKey: ['/api/users/suggested', { page, perPage }], exact: true })
           queryClient.invalidateQueries({ queryKey: [`/api/users/@`, userId], exact: true })
           if (uuidVideo) {
             queryClient.invalidateQueries({ queryKey: ['/api/users/@', uuidVideo], exact: true })

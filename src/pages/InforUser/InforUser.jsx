@@ -89,6 +89,7 @@ export default function InforUser() {
                       style={
                         'w-[207px] cursor-pointer rounded border border-tiktokPink bg-tiktokPink px-[8px] text-center font-medium text-white hover:bg-[#dc1f44]'
                       }
+                      isFollowed={false}
                       idUserFollow={inforUser?.id}
                     />
                   ) : (
@@ -97,6 +98,7 @@ export default function InforUser() {
                         {t('Messages')}
                       </div>
                       <ButtonUnfollow
+                        isFollowed={true}
                         idUserUnFollow={inforUser?.id}
                         title={TikUser()}
                         style={

@@ -27,7 +27,7 @@ export default function SuggestUser() {
       setSuggestedUsers(lessResult)
       setData(lessResult)
     }
-  }, [page, perPage])
+  }, [dataUser])
 
   const handleSeeAll = async () => {
     seeMore ? setData(suggestedUsers) : setData(allSuggestedUsers)
